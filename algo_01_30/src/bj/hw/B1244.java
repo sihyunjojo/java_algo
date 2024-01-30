@@ -1,10 +1,11 @@
+package bj.hw;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class B1244 {
     static int[] arr;
     static int[][] p_option;
     public static void main(String[] args) throws IOException {
@@ -67,8 +68,3 @@ public class Main {
         }
     }
 }
-//1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1
-//25
-//0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
-//1
-//1 1
