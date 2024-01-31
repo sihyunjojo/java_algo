@@ -6,8 +6,12 @@ import java.io.InputStreamReader;
 public class B15649 {
     static int[] arr;
     static int m,n;
+    // String builder를 사용하면 속도가 배로 빠르다.
+    // BufferedWriter를 사용해도 된다.
+    static StringBuilder sb = new StringBuilder();
     public static void main(String args[]) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br;
+        br = new BufferedReader(new InputStreamReader(System.in));
 
         String s = br.readLine();
         n = s.charAt(0) - '0';
@@ -16,26 +20,23 @@ public class B15649 {
         arr = new int[m];
 
         per(0);
+        // 이 코드
+        System.out.println(sb);
 
     }
     private static void per(int count){
-        if (count >= m){
+        if (count == m){
             for (int i = 0; i < m; i++){
-                System.out.print(arr[i] + " ");
+                // 이 코드
+                sb.append(arr[i]).append(' ');
             }
-            System.out.println();
+            // 이 코드
+            sb.append('\n');
             return;
         }
-        loop:
         for (int i = 1; i <= n; i++){
-            for (int j = 0; j < m; j++){
-                if (arr[j] == i) {
-                    continue loop;
-                }
-            }
             arr[count] = i;
             per(count+1);
-            arr[count] = 0;
         }
     }
 }
