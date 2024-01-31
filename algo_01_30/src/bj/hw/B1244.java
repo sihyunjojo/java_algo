@@ -38,6 +38,7 @@ public class B1244 {
             int b = Integer.parseInt(st.nextToken());
             if (a == 1){
                 int temp = b;
+                // 이 방식보다 for 문을 통해서 i + b처럼 해주는게 더 가시적으로 좋은 코드이다.
                 while (n >= b){
                     arr[b-1] = (arr[b-1] + 1) % 2;
                     b += temp;
