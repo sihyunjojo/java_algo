@@ -1,7 +1,9 @@
+package swea.hw;
+
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Solution {
+public class Swea_1954 {
     public static void main(String args[]) throws Exception {
         System.setIn(new FileInputStream("./input3.txt"));
 
@@ -32,9 +34,9 @@ public class Solution {
                         continue;
                     }
                 }
-                    y -= delta[d][0];
-                    x -= delta[d][1];
-                    d = (d + 1) % 4;
+                y -= delta[d][0];
+                x -= delta[d][1];
+                d = (d + 1) % 4;
             }
 
             System.out.println("#"+ tc);

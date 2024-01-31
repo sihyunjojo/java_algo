@@ -1,43 +1,48 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int[] arr;
-    static int m,n;
-    // String builder를 사용하면 속도가 배로 빠르다.
-    // BufferedWriter를 사용해도 된다.
-    static StringBuilder sb = new StringBuilder();
+    static int[] arr = new int[9];
+    static int[] result = new int[2];
+    static int[] answer = new int[2];
+    static int sum_values = 0;
+    static boolean[] isVisited;
     public static void main(String args[]) throws Exception {
-        BufferedReader br;
-        br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        String s = br.readLine();
-        n = s.charAt(0) - '0';
-        m = s.charAt(2) - '0';
+        sum_values = 0;
+        for (int i = 0; i < 9; i++){
+            st = new StringTokenizer(br.readLine());
+            arr[i] = Integer.parseInt(st.nextToken());
+            sum_values += arr[i];
+        }
+        sum_values -= 100;
 
-        arr = new int[m];
+        isVisited = new boolean[9];
 
-        per(0);
-        // 이 코드
-        System.out.println(sb);
-
-    }
-    private static void per(int count){
-        if (count == m){
-            for (int i = 0; i < m; i++){
-                // 이 코드
-                sb.append(arr[i]).append(' ');
+        per(0,0,sum_values);
+        for (int i = 0; i < 9; i++){
+            if (answer[0] != i && answer[1] != i){
+                System.out.println(arr[i]);
             }
-            // 이 코드
-            sb.append('\n');
+        }
+    }
+
+
+    private static void per(int count, int start, int sum_value){
+        if (count == 2) {
+            if (sum_value == 0){
+                answer = Arrays.copyOf(result,count);
+                return;
+            }
             return;
         }
-        for (int i = 1; i <= n; i++){
-            arr[count] = i;
-            per(count+1);
+        for (int i = start; i < 9; i++){
+            sum_value -= arr[i];
+            result[count] = i;
+            per(count+1,i+1, sum_value);
+            sum_value += arr[i];
         }
     }
 }
