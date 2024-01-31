@@ -5,15 +5,38 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
+    static int[] arr;
+    static int m,n;
     public static void main(String args[]) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int t = Integer.parseInt(st.nextToken());
-        int result = 0;
+        String s = br.readLine();
+        n = s.charAt(0) - '0';
+        m = s.charAt(2) - '0';
 
-        for (int tc = 1; tc <= t; tc++){
-            System.out.printf("#%d %d",tc, result);
+        arr = new int[m];
+
+        per(0);
+
+    }
+    private static void per(int count){
+        if (count >= m){
+            for (int i = 0; i < m; i++){
+                System.out.print(arr[i] + " ");
+            }
+            System.out.println();
+            return;
+        }
+        loop:
+        for (int i = 1; i <= n; i++){
+            for (int j = 0; j < m; j++){
+                if (arr[j] == i) {
+                    continue loop;
+                }
+            }
+            arr[count] = i;
+            per(count+1);
+            arr[count] = 0;
         }
     }
 }
