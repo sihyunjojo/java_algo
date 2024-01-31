@@ -1,10 +1,9 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
+package bj;
 
-public class Main {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class B15651_nice {
     static int[] arr;
     static int m,n;
     // String builder를 사용하면 속도가 배로 빠르다.

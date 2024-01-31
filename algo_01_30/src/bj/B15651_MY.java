@@ -1,15 +1,11 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
+package bj;
 
-public class Main {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class B15651_MY {
     static int[] arr;
     static int m,n;
-    // String builder를 사용하면 속도가 배로 빠르다.
-    // BufferedWriter를 사용해도 된다.
-    static StringBuilder sb = new StringBuilder();
     public static void main(String args[]) throws Exception {
         BufferedReader br;
         br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,18 +17,14 @@ public class Main {
         arr = new int[m];
 
         per(0);
-        // 이 코드
-        System.out.println(sb);
 
     }
     private static void per(int count){
         if (count == m){
             for (int i = 0; i < m; i++){
-                // 이 코드
-                sb.append(arr[i]).append(' ');
+                System.out.print(arr[i] + " ");
             }
-            // 이 코드
-            sb.append('\n');
+            System.out.println();
             return;
         }
         for (int i = 1; i <= n; i++){
