@@ -3,42 +3,44 @@ import java.util.*;
 
 public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static boolean[] isvisited;
-    static int[] arr,temp;
-    final static int max_count = 6;
-    static int n;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        while (true){
-            st = new StringTokenizer(br.readLine());
-            n = Integer.parseInt(st.nextToken());
-            if (n==0){
-                break;
-            }
-            arr = new int[n];
-            for (int i = 0; i < n; i++){
-                arr[i] = Integer.parseInt(st.nextToken());
-            }
-            isvisited = new boolean[n];
+        st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
-            per("",0,0);
-            bw.newLine();
+        int[][] arr = new int[n][n+1];
+
+        for (int i = 0; i < n; i++){
+            st = new StringTokenizer(br.readLine());
+            arr[i][0] = 0;
+            for (int j = 1; j <= n; j++){
+                arr[i][j] = arr[i][j-1] + Integer.parseInt(st.nextToken());
+            }
+//            System.out.println(Arrays.toString(arr[i]));
+        }
+
+        for (int i =0; i< m; i++){
+            st = new StringTokenizer(br.readLine());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int result = 0;
+            for (int j = y1-1; j <= y2-1; j++){
+                result += arr[j][x2] - arr[j][x1-1];
+            }
+            if (y1==y2) {
+                result = arr[y1-1][x2] - arr[y1-1][x1-1];
+//                System.out.println(arr[y1-1][x2]);
+//                System.out.println(arr[y1-1][x1-1]);
+            }
+//            System.out.println();
+            bw.write(result + "\n");
         }
         bw.flush();
-    }
-    private static void per(String str, int count, int start) throws IOException {
-        if (count == max_count){
-            bw.write(str + "\n");
-            return;
-        }
-        for (int i = start; i < n; i++){
-            if (isvisited[i]) continue;
-            isvisited[i] = true;
-            per(str + arr[i] + " ",count+1, i+1);
-            isvisited[i] = false;
-        }
-        // 0은 자연수가 아니다.
     }
 }

@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/swea/2805_농작물_수확하기/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/swea/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/algo_02_01/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
