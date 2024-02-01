@@ -1,8 +1,10 @@
+package swea;
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Solution {
+public class Swea_5215 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static int result, foods[][], L, n;
 
