@@ -1,5 +1,4 @@
 package swea;
 
-public class Swea_5212
-{
+public class Swea_5212 {
 }
