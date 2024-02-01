@@ -2,30 +2,43 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int[] temp;
-    static boolean[] isvisited;
-    static int n,m;
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static boolean[] isvisited;
+    static int[] arr,temp;
+    final static int max_count = 6;
+    static int n;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
-        n = s.charAt(0)-'0';
-        m = s.charAt(2)-'0';
+        StringTokenizer st;
 
-        isvisited = new boolean[n+1];
-        temp = new int[m];
+        while (true){
+            st = new StringTokenizer(br.readLine());
+            n = Integer.parseInt(st.nextToken());
+            if (n==0){
+                break;
+            }
+            arr = new int[n];
+            for (int i = 0; i < n; i++){
+                arr[i] = Integer.parseInt(st.nextToken());
+            }
+            isvisited = new boolean[n];
 
-        per("",0,1);
+            per("",0,0);
+            bw.newLine();
+        }
         bw.flush();
     }
     private static void per(String str, int count, int start) throws IOException {
-        if (count == m){
+        if (count == max_count){
             bw.write(str + "\n");
             return;
         }
-        for (int i = start; i <= n; i++){
-            per(str + i + " ",count+1, i);
+        for (int i = start; i < n; i++){
+            if (isvisited[i]) continue;
+            isvisited[i] = true;
+            per(str + arr[i] + " ",count+1, i+1);
+            isvisited[i] = false;
         }
-
+        // 0은 자연수가 아니다.
     }
 }
