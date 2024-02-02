@@ -19,9 +19,10 @@ Swea_d2_문제_이름_메모.java
 ```
 
 # 📚Table
-유형 정렬
+<blockquote>
 
 [//]: # (<td colspan="2">내용</td>)
+
 [//]: # (<td rowspan="3">내용</td>)
 <table>
   <thead align="center">
@@ -32,7 +33,6 @@ Swea_d2_문제_이름_메모.java
         <td><b>메모</b></td>
     </tr>
   </thead>
-
   <tbody>
     <tr>
       <td rowspan="14">구현</td>  <!-- 구현 -->
@@ -122,7 +122,7 @@ Swea_d2_문제_이름_메모.java
     </tr>
   </tbody>
 </table>
-
+</blockquote>
 
 
 
