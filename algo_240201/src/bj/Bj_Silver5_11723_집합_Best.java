@@ -1,35 +1,37 @@
 package bj;
 
-import java.io.*;
-import java.util.*;
-
-// 비트마스킹으로 풀기
-public class B11723 {
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-
-        int n = Integer.parseInt(br.readLine());
-        ArrayList<Integer> list = new ArrayList<>();
-
-        for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine());
-            String command = st.nextToken();
-            if (st.hasMoreTokens()) {
-                int num = Integer.parseInt(st.nextToken());
-                if (command.equals("add")){
-
-                }if (command.equals("remove")){
-
-                }if (command.equals("check")){
-
-                }if (command.equals("toggle")){
-
-                }
+import java.util.Scanner;
+public class Bj_Silver5_11723_집합_Best {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+        int n = sc.nextInt();
+        int S = 0;
+        for(int i = 0; i<n; i++) {
+            String com = sc.next();
+            if(com.equals("add")) {
+                int num = sc.nextInt();
+                S=S|(1<<num);
             }
-
+            else if(com.equals("remove")) {
+                int num = sc.nextInt();
+                S=S&~(1<<num);
+            }
+            else if(com.equals("check")) {
+                int num = sc.nextInt();
+                if((S&(1<<num))>0) sb.append("1 \n");
+                else sb.append("0 \n");
+            }
+            else if(com.equals("toggle")) {
+                int num = sc.nextInt();
+                S=S^(1<<num);
+            }
+            else if(com.equals("all")) {
+                S=(1<<21)-1;
+            }
+            else
+                S=0;
         }
+        System.out.println(sb);
     }
 }
