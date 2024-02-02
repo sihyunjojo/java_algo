@@ -1,10 +1,8 @@
-package swea;
-
 import java.io.*;
 import java.util.StringTokenizer;
 
 // 미친놈 .... 문제 좀 재대로 읽고 코딩하자 제발....... 아..... 인생 날라갓네 .
-public class Swea_d3_6808_규영이와인영이의카드게임_MySolve {
+public class Swea_d3_6808_규영이와인영이의카드게임 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static final int game_count = 9;
     static final int card_count = 18;

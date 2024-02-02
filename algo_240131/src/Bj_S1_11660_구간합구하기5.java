@@ -3,7 +3,7 @@ package bj;
 import java.io.*;
 import java.util.*;
 
-public class B11660_plus {
+public class Bj_S1_11660_구간합구하기4 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {

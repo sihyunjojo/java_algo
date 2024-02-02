@@ -3,7 +3,7 @@ package bj;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class B15651_MY {
+public class Bj_Silver3_15651_n과m3 {
     static int[] arr;
     static int m,n;
     public static void main(String args[]) throws Exception {

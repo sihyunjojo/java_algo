@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class B1244 {
+public class Bj_Silver4_1244_스위치켜고끄기 {
     static int[] arr;
     static int[][] p_option;
     public static void main(String[] args) throws IOException {

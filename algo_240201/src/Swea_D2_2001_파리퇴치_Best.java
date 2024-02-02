@@ -1,10 +1,8 @@
-package swea;
-
 import java.io.*;
 import java.util.StringTokenizer;
 
 // 중복합 알고리즘
-public class Swea_2001_Best {
+public class Swea_D2_2001_파리퇴치_Best {
     public static void main(String args[]) throws Exception {
         System.setIn(new FileInputStream("./inputFile/input4.txt"));
 

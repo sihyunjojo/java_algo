@@ -3,7 +3,7 @@ package bj;
 import java.io.*;
 import java.util.*;
 
-public class B3040 {
+public class Bj_B3_3040_백설공주와일곱난쟁이 {
     static int[] arr = new int[9];
     static int[] result = new int[2];
     static int[] answer = new int[2];

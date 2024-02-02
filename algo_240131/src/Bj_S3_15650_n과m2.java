@@ -1,9 +1,9 @@
 package bj;
 
-// n과 m (4) 중복 조합
 import java.io.*;
 
-public class B15652 {
+// n과 m(2) 조합
+public class Bj_S3_15650_n과m2 {
     static int[] temp;
     static boolean[] isvisited;
     static int n,m;
@@ -26,7 +26,8 @@ public class B15652 {
             return;
         }
         for (int i = start; i <= n; i++){
-            per(str + i + " ",count+1, i);
+            if (isvisited[i]) continue;
+            per(str + i + " ",count+1, i+1);
         }
 
     }

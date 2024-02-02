@@ -3,7 +3,7 @@ package bj;
 import java.util.*;
 
 // 내 코드보다 4배나 빠름.
-public class B1549_Best {
+public class B15649_Best {
     static int n, m;
     static boolean[] vst;
     static StringBuffer sb = new StringBuffer();
