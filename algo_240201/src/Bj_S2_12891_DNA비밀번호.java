@@ -1,11 +1,9 @@
-package bj;
-
 import java.io.*;
 import java.util.*;
 
 // 윈도우 슬라이스 기법을 반드시 적용해야하는 문제
 // 윈도우 슬라이스라는 기법이 자동으로 나오도록 잘 외워서 상기시켜 놓아야겠다.
-public class B12891_Solve {
+public class Bj_S2_12891_DNA비밀번호 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static char[] arr,temp;
     static int s_len,p_len,counts[];

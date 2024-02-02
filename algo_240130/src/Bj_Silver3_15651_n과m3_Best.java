@@ -1,9 +1,7 @@
-package bj;
-
 import java.util.Scanner;
 
 // 인자로 String을 받아와서 반복문 없이 바로바로 넣어줘서 출력해줌.
-public class B15651_Best {
+public class Bj_Silver3_15651_n과m3_Best {
 
     static int n, m;
     static StringBuilder sb;

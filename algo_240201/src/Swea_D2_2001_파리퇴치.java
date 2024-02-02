@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 // 무식한 4중 포문
 // 원래 나는 더 무식하게 하나의 위치당 4개 9개 이렇게 만든 다음에 옮겨주려고 했음.
 // 그거 보단 덜 무식한듯.
-public class Swea_2001_My {
+public class Swea_D2_2001_파리퇴치 {
     public static void main(String args[]) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));

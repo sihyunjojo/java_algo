@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Swea_1954 {
+public class Swea_D2_1954_달팽이숫자 {
     public static void main(String args[]) throws Exception {
         System.setIn(new FileInputStream("./input3.txt"));
 

@@ -1,9 +1,7 @@
-package bj;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class B15651_nice {
+public class Bj_Silver3_15649_n과m1_nice {
     static int[] arr;
     static int m,n;
     // String builder를 사용하면 속도가 배로 빠르다.

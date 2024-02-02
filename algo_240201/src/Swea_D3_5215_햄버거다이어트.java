@@ -1,8 +1,7 @@
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Swea_5215 {
+public class Swea_D3_5215_햄버거다이어트 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static int result, foods[][], L, n;
 

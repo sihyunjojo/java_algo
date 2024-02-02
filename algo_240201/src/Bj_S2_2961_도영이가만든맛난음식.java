@@ -1,9 +1,7 @@
-package bj;
-
 import java.io.*;
 import java.util.*;
 
-public class B2961 {
+public class Bj_S2_2961_도영이가만든맛난음식 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static int n, result, foods[][];
     public static void main(String[] args) throws IOException {

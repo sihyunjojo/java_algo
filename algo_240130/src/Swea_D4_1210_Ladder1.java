@@ -3,7 +3,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Ladder1 {
+public class Swea_D4_1210_Ladder1 {
     public static void main(String args[]) throws Exception {
         System.setIn(new FileInputStream("./input2.txt"));
 

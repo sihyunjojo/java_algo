@@ -1,5 +1,3 @@
-package bj;
-
 // n과 m (4) 중복 조합
 import java.io.*;
 

@@ -1,10 +1,8 @@
-package bj;
-
 // 로또
 import java.io.*;
 import java.util.*;
 
-public class B6603 {
+public class Bj_S3_6603_로또 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static boolean[] isvisited;
     static int[] arr,temp;

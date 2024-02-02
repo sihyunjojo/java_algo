@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Flatten {
+public class Swea_D3_1208_Flatten {
     public static void main(String args[]) throws Exception{
         System.setIn(new FileInputStream("./input1.txt"));
 

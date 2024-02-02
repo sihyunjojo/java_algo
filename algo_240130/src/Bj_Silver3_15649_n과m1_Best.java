@@ -1,9 +1,7 @@
-package bj;
-
 import java.util.*;
 
 // 내 코드보다 4배나 빠름.
-public class B15649_Best {
+public class Bj_Silver3_15649_n과m1_Best {
     static int n, m;
     static boolean[] vst;
     static StringBuffer sb = new StringBuffer();

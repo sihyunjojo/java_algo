@@ -1,9 +1,7 @@
-package bj;
-
 import java.io.*;
 import java.util.*;
 
-public class Bj_S1_11660_구간합구하기4 {
+public class Bj_S1_11660_구간합구하기5 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {

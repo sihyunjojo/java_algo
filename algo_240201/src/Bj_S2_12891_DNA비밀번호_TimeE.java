@@ -1,11 +1,9 @@
-package bj;
-
 import java.io.*;
 import java.util.*;
 
 //- 슬라이딩 윈도우 알고리즘을 이용하여 고정된 크기의 구간 결과를 계산
 //- 단순 반복문을 통해 매번 문자열의 특정 구간 발생한 문자 개수를 세면 시간 초과 발생
-public class B12891_My_TimeE {
+public class Bj_S2_12891_DNA비밀번호_TimeE {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {

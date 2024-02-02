@@ -1,5 +1,3 @@
-package bj;
-
 import java.io.*;
 
 // n과 m(2) 조합
