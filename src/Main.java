@@ -1,48 +1,36 @@
 import java.io.*;
 import java.util.*;
 
+//  메모리 제한이 4메가 이므로 비트마스킹으로 풀어야할 가능성이 크다.
 public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        int result = 0;
 
-        st = new StringTokenizer(br.readLine());
-        int s_len = Integer.parseInt(st.nextToken());
-        int p_len = Integer.parseInt(st.nextToken());
+        String s = br.readLine();
+        int n = s.charAt(0) - '0';
+        int k = s.charAt(2) - '0';
 
-        char[] arr = br.readLine().toCharArray();
+        int[] arr = new int[n];
+        int[] result = new int[n];
 
-        st = new StringTokenizer(br.readLine());
-        int[][] counts = new int[][] {{'A',0},{'C',0},{'G',0},{'T',0}};
-
-        for (int i = 0; i < 4; i++) {
-           counts[i][1] = Integer.parseInt(st.nextToken());
+        for (int i = 0; i < n; i++){
+            arr[i] = i+1;
         }
 
-//        char[] temp = Arrays.copyOfRange(arr, 0 , p_len);
+        int count = 0;
+        int tmp = 0;
 
-        loop:
-        for (int i = 0; i < s_len - p_len + 1; i++){
-            int[] tmp = new int[4];
-            char[] temp = new char[p_len];
-            System.arraycopy(arr, i , temp,0,p_len);
-            for (int j = 0; j < 4; j++){
-                for (int k = 0; k < p_len; k++){
-                    if (temp[k] == counts[j][0]){
-                        tmp[j] += 1;
-                    }
-                }
-                if (tmp[j] < counts[j][1]){
-//                    System.out.println(j + " "+ counts[j][0] +" "+ counts[j][1]+" "+ tmp[j] +" " + Arrays.toString(temp));
-                    continue loop;
-                }
+        bw.write("<");
+        for (int i = 0; i < n; i++){
+            count += k;
+            while(count >= n){
+                count = count % n;
             }
-            result += 1;
-//            System.out.println(Arrays.toString(temp));
+            result[i] = arr[count];
+            System.out.println(arr[count]);
+//            bw.write(arr[count-tmp]+", ");
         }
-        System.out.println(result);
+        bw.write(">");
     }
 }

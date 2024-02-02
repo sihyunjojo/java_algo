@@ -19,8 +19,6 @@ Swea_d2_문제_이름_메모.java
 ```
 
 # 📚Table
-<blockquote>
-
 [//]: # (<td colspan="2">내용</td>)
 
 [//]: # (<td rowspan="3">내용</td>)
@@ -122,7 +120,6 @@ Swea_d2_문제_이름_메모.java
     </tr>
   </tbody>
 </table>
-</blockquote>
 
 
 
