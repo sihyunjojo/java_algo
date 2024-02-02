@@ -26,7 +26,6 @@ public class B12891_My_TimeE {
             counts[i][1] = Integer.parseInt(st.nextToken());
         }
 
-//        char[] temp = Arrays.copyOfRange(arr, 0 , p_len);
 
         loop:
         for (int i = 0; i < s_len - p_len + 1; i++){
