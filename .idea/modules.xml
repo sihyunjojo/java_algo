@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/algo_240130/algo_240130.iml" filepath="$PROJECT_DIR$/algo_240130/algo_240130.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_240131/algo_240131.iml" filepath="$PROJECT_DIR$/algo_240131/algo_240131.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_hw/algo_hw.iml" filepath="$PROJECT_DIR$/algo_hw/algo_hw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_240201/algo_240201.iml" filepath="$PROJECT_DIR$/algo_240201/algo_240201.iml" />
       <module fileurl="file://$PROJECT_DIR$/hw/hw.iml" filepath="$PROJECT_DIR$/hw/hw.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java_algo.iml" filepath="$PROJECT_DIR$/.idea/java_algo.iml" />
     </modules>

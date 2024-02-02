@@ -5,7 +5,7 @@
 문제 풀이 파일은 '플랫폼_레벨_문제_이름_메모.java' 형태의 네이밍 사용
 ```
 ex)
-Bj_silver1_문제_이름_메모.java
+Bj_S1_문제_이름_메모.java
 Swea_d2_문제_이름_메모.java
 ```
 
@@ -15,13 +15,97 @@ Swea_d2_문제_이름_메모.java
 240131(과제 제출 날짜 기준 폴더 생성)
 ㄴ Swea_d2_2001_파리퇴치_(Sovled,Best).java
 240201
-ㄴ Bj_silver4_1244_스위치끄고켜기.java
+ㄴ Bj_S4_1244_스위치끄고켜기.java
 ```
 
 # 📚Table
-날짜 정렬  
-유형 정렬  
-사이트별 정렬
+유형 정렬
+
+[//]: # (<td colspan="2">내용</td>)
+[//]: # (<td rowspan="3">내용</td>)
+<table>
+  <thead align="center">
+    <tr>
+        <td><b>알고리즘 유형</b></td>
+        <td><b>문제 정보</b></td>
+        <td><b>코드 위치</b></td>
+        <td><b>메모</b></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td rowspan="1">구현</td>  <!-- 구현 -->
+      <td>시뮬레이션</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td rowspan="2">백트래킹</td>  <!-- 백트래킹 -->
+      <td>순열</td>
+      <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Bj_Silver3_15649_n%EA%B3%BCm1.java">Bj_silver3_15649_N과 M (1)</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td>순열</td>
+      <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Bj_silver3_15649_N과 M (3).java">Bj_silver3_15649_N과 M (3)</a></td>
+      <td>빙글빙글</td>
+    </tr>
+    <tr>
+      <td>240201</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240201/Swea_d2_2001_%ED%8C%8C%EB%A6%AC%ED%87%B4%EC%B9%98.java">Swea_d2_2001_파리퇴치</a></td>
+      <td>누적합 알고리즘</td>
+    </tr>
+    <tr>
+      <td rowspan="3">조합</td> <!-- 조합 -->
+      <td>240130</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td>240130</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td>240130</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td rowspan="1">비트마스킹</td> <!-- 비트 마스킹 -->
+      <td>240130</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td rowspan="1">재귀</td> <!-- 비트 마스킹 -->
+      <td>240130</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td rowspan="1">비트마스킹</td> <!-- 비트 마스킹 -->
+      <td>240130</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td rowspan="1">부분 집합</td> <!-- 비트 마스킹 -->
+      <td>240130</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+    <tr>
+      <td rowspan="1">완전 탐색</td> <!-- 완전 탐색 -->
+      <td>240130</td>
+      <td><a href="https://lab.ssafy.com/si4018/algo_hw/-/blob/master/240130/Bj_silver4_1244_%EC%8A%A4%EC%9C%84%EC%B9%98%EB%81%84%EA%B3%A0%EC%BC%9C%EA%B8%B0.java">Bj_silver4_1244_스위치키고켜기</a></td>
+      <td>for문 마지막 인자 리팩토링</td>
+    </tr>
+  </tbody>
+</table>
+
+
 
 
 # 📚 숙제
@@ -32,6 +116,9 @@ Swea_d2_문제_이름_메모.java
 
 누적합 알고리즘 외워서 자주 적용시키기 
 이전거 + 현재거 / 결과 = [a-1] - [b]
+
+## 02.02
+윈도우 슬라이스 예시 항상 상기시켜서 잘 외워두기
 
 
 
