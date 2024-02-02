@@ -100,6 +100,7 @@ Swea_d2_문제_이름_메모.java
     </tr> 
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_S3_15650_n과m4.java">Bj_S3_15650_n과m4</a></td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
