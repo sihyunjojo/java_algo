@@ -2,18 +2,18 @@
 
 
 ## 📝 File Naming Convention
-문제 풀이 파일은 '플랫폼_레벨_문제_이름.java' 형태의 네이밍 사용
+문제 풀이 파일은 '플랫폼_레벨_문제_이름_메모.java' 형태의 네이밍 사용
 ```
 ex)
-Bj_silver1_문제_이름.java
-Swea_d2_문제_이름.java
+Bj_silver1_문제_이름_메모.java
+Swea_d2_문제_이름_메모.java
 ```
 
 ## 📁 FOLDER STRUCTURE
 날짜 기준 폴더링 구조
 ```
 240131(과제 제출 날짜 기준 폴더 생성)
-ㄴ Swea_d2_2001_파리퇴치.java
+ㄴ Swea_d2_2001_파리퇴치_(Sovled,Best).java
 240201
 ㄴ Bj_silver4_1244_스위치끄고켜기.java
 ```
