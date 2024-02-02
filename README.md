@@ -38,69 +38,87 @@ Swea_d2_문제_이름_메모.java
       <td rowspan="14">구현</td>  <!-- 구현 -->
       <td>시뮬레이션</td>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Bj_Silver4_1244_스위치켜고끄기.java">Bj_Silver4_1244_스위치켜고끄기</a></td>
+      <td></td>
     </tr>
     <tr>
       <td rowspan="5">완전 탐색</td> <!-- 완전 탐색 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Swea_D3_1208_Flatten.java">Swea_D3_1208_Flatten</a></td>
+      <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Swea_D3_2805_농작물수확하기.java">Swea_D3_2805_농작물수확하기</a></td>
+      <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Swea_D4_1210_Ladder1.java">Swea_D4_1210_Ladder1</a></td>
+      <td></td>
     </tr>
      <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Swea_D2_1954_달팽이숫자.java">Swea_D2_1954_달팽이숫자</a></td>
+      <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_S3_6603_로또.java">Bj_S3_6603_로또</a></td>
+      <td></td>
     </tr>
     <tr>
       <td rowspan="4">부분 집합</td> <!-- 완전 탐색 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_2961_도영이가만든맛난음식.java">Bj_S2_2961_도영이가만든맛난음식</a></td>
+      <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Swea_D2_2001_파리퇴치.java">Swea_D2_2001_파리퇴치</a></td>
+      <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Swea_D3_5215_햄버거다이어트.ja">Swea_D3_5215_햄버거다이어트</a></td>
+      <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Swea_d3_6808_규영이와인영이의카드게임.java">Swea_d3_6808_규영이와인영이의카드게임</a></td>
+      <td></td>
     </tr>
     <tr>
       <td rowspan="2">누적합 알고리즘</td> <!-- 비트 마스킹 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_S1_11660_구간합구하기5.java">Bj_S1_11660_구간합구하기5</a></td>
+      <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_S3_11659_구간합구하기4.java">Bj_S3_11659_구간합구하기4</a></td>
+      <td></td>
     </tr>
     <tr>
       <td rowspan="1">윈도우 슬라이싱</td> <!-- 완전 탐색 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_12891_DNA비밀번호.java">Bj_S2_12891_DNA비밀번호</a></td></a></td>
+      <td></td>
     </tr>
     <tr>
       <td rowspan="1">비트 마스킹</td> <!-- 완전 탐색 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S5_11723_집합_Best.java">Bj_S5_11723_집합_Best</a></td>
+      <td></td>
     </tr>
     <tr>
       <td rowspan="5">백트래킹</td>  <!-- 백트래킹 -->
       <td rowspan="2">조합</td> <!-- 비트 마스킹 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Bj_Silver3_15649_n%EA%B3%BCm1.java">Bj_silver3_15649_n과m1</a></td>
+      <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Bj_Silver3_15651_n과m3.java">Bj_silver3_15649_n과m3</a></td>
+      <td></td>
     </tr>
     <tr>
       <td rowspan="3">조합</td> <!-- 비트 마스킹 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_B3_3040_백설공주와일곱난쟁이.java">Bj_B3_3040_백설공주와일곱난쟁이</a></td>
+      <td></td>
     </tr>
      <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_S3_15650_n과m2.java">Bj_S3_15650_n과m2</a></td>
+      <td></td>
     </tr> 
     <tr>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_S3_15650_n과m4.java">Bj_S3_15650_n과m4</a></td>
-      <td>1</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
