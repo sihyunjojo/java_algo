@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Bj_S5_11723_집합_Best {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
