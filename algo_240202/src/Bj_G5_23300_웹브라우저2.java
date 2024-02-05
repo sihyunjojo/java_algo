@@ -1,7 +1,8 @@
 import java.io.*;
 import java.util.*;
 
-//  메모리 제한이 4메가 이므로 비트마스킹으로 풀어야할 가능성이 크다.
+// 구현
+// 반복문 + 어레이덱 
 public class Bj_G5_23300_웹브라우저2 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static char[] arr, temp;

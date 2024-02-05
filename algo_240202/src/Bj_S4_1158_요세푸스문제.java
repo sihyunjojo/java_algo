@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+// 자료구조 ArrayList
 public class Bj_S4_1158_요세푸스문제 {
 //    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringBuffer sb = new StringBuffer(new StringBuffer());

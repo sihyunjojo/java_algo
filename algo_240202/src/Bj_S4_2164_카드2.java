@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 
 //  메모리 제한이 4메가 이므로 비트마스킹으로 풀어야할 가능성이 크다.
+// 어레이덱 자료구조
 public class Bj_S4_2164_카드2 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static void main(String[] args) throws IOException {

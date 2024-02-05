@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-// String으로 선언한 후 하나씩 접근하는 방법
+// 구현
 public class Swea_d4_5432_쇠막대기자르기 {
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {

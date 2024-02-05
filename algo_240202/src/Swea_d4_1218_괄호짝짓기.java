@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
+// 구현
 public class Swea_d4_1218_괄호짝짓기 {
     static StringBuilder sb = new StringBuilder();
     public static void main(String args[]) throws Exception {

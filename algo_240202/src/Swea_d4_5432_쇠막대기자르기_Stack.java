@@ -1,12 +1,11 @@
 import java.io.*;
 import java.util.Stack;
 
+// 내 코드아님.
 public class Swea_d4_5432_쇠막대기자르기_Stack {
 
     static BufferedWriter bw;
     static BufferedReader br;
-
-
 
     public static void main(String args[]) throws Exception {
         br = new BufferedReader(new InputStreamReader(System.in));
