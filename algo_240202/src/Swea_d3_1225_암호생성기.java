@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-// String으로 선언한 후 하나씩 접근하는 방법
 public class Swea_d3_1225_암호생성기 {
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
