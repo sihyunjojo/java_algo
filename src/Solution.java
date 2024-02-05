@@ -1,80 +1,48 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
-// 미친놈 .... 문제 좀 재대로 읽고 코딩하자 제발....... 아..... 인생 날라갓네 .
+// String으로 선언한 후 하나씩 접근하는 방법
 public class Solution {
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static final int game_count = 9;
-    static final int card_count = 18;
-    static int all_game_count = 1;
-    static boolean[] isused, sortcard;
-    static int[] your_cards, my_cards;
-    static int win_result;
-
-    public static void main(String args[]) throws Exception {
-        System.setIn(new FileInputStream("./inputFile/s_input.txt"));
+    static StringBuilder sb = new StringBuilder();
+    public static void main(String[] args) throws IOException {
+        System.setIn(new FileInputStream("inputFile/input6.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
 
-        for (int i = 1; i <= 9; i++){
-            all_game_count *=  i;
-        }
+        for (int tc = 1; tc <= 10; tc++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int t = Integer.parseInt(st.nextToken());
 
-        int T = Integer.parseInt(br.readLine());
-
-        for (int tc = 1; tc <= T; tc++){
-            your_cards = new int[9];
-            my_cards = new int[9];
-            sortcard = new boolean[card_count+1];
-
+            ArrayDeque<Integer> arr = new ArrayDeque<>();
+            int min_value = Integer.MAX_VALUE;
 
             st = new StringTokenizer(br.readLine());
-            for (int i = 0; i < card_count/2; i++){
-                your_cards[i] = Integer.parseInt(st.nextToken());
-                sortcard[your_cards[i]] = true;
+            for (int i = 0; i < 8; i++){
+                arr.add(Integer.valueOf(st.nextToken()));
             }
 
-            // 이 기술 멋잇다.
-            for(int i = 1, j = 0; i <= card_count; i++){
-                if (!sortcard[i]) {
-                    my_cards[j++] = i;
+            // 8번 씩 돌릴떄마다 다 같은 수가 빠진다를 이용하면 될거 같다.
+            for (int i = 0; i< 8; i++){
+                arr.offerLast( arr.pollFirst() - min_value);
+            }
+
+            int num = 0, tmp = 0;
+            while (true){
+                num = (num % 5) + 1;
+                tmp = arr.pollFirst() - num;
+                if (tmp <= 0){
+//                    tmp = 0;
+//                    arr.offerLast(tmp);
+                    arr.offerLast(0);
+                    break;
                 }
+                arr.offerLast(tmp);
             }
-
-            isused = new boolean[game_count];
-//            System.out.println(Arrays.toString(my_cards));
-//            System.out.println(Arrays.toString(your_cards));
-//            System.out.println(Arrays.toString(isused));
-            win_result = 0;
-            game(0,0,0);
-            bw.write("#"+tc+" "+win_result+ " " + (all_game_count - win_result) + "\n");
-
+            sb.append("#").append(t);
+            for (int i = 0; i < 8; i++){
+                sb.append(" ").append(arr.pollFirst());
+            }
+            sb.append("\n");
         }
-        bw.flush();
-        bw.close();
-    }
-
-    private static void game(int count, int my_score, int your_score){
-        if (count == game_count) {
-            if (my_score > your_score) win_result += 1;
-            return;
-        }
-        for (int i = 0; i < game_count; i++){
-            if (isused[i]){
-                continue;
-            }
-            isused[i] = true;
-
-            int tmp_score = my_cards[count] + your_cards[i];
-            if (my_cards[count] < your_cards[i]){
-                game(count + 1,my_score + tmp_score, your_score);
-            }
-            else {
-                game(count + 1, my_score, your_score + Math.abs(tmp_score));
-            }
-
-            isused[i] = false;
-        }
+        System.out.println(sb);
     }
 }
