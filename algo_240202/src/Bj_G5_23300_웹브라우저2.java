@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 // 구현
-// 반복문 + 어레이덱 
+// 반복문 + 어레이덱
 public class Bj_G5_23300_웹브라우저2 {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static char[] arr, temp;

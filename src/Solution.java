@@ -5,15 +5,14 @@ import java.util.*;
 public class Solution {
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("inputFile/input6.txt"));
+        System.setIn(new FileInputStream("inputFile/input1228.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         for (int tc = 1; tc <= 10; tc++){
             StringTokenizer st = new StringTokenizer(br.readLine());
-            int t = Integer.parseInt(st.nextToken());
+            int n = Integer.parseInt(st.nextToken());
 
-            ArrayDeque<Integer> arr = new ArrayDeque<>();
-            int min_value = Integer.MAX_VALUE;
+            int[] origin = new int[n];
 
             st = new StringTokenizer(br.readLine());
             for (int i = 0; i < 8; i++){

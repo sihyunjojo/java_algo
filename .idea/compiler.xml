@@ -2,5 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Eclipse" />
+    <bytecodeTargetLevel>
+      <module name="algo_240205" target="17" />
+      <module name="algo_240205.main" target="17" />
+      <module name="algo_240205.test" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
