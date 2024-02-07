@@ -3,31 +3,55 @@ import java.util.*;
 
 // 탑
 public class Main {
-    static StringBuilder sb = new StringBuilder();
-    static int n, tower_heis[];
+    static int[] wheels;
     public static void main(String[] args) throws IOException {
         // n개의 높이가 서로 다른 탑을 수평 직선의 왼쪽부터 오른쪽 방향으로 차례로 세우고
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-
-        st = new StringTokenizer(br.readLine());
-        tower_heis = new int[n];
-        SortedSet <Integer> hei = new TreeSet<>();
-
-        loop:
-        for (int i = 0; i < n; i++){
-            tower_heis[i] = Integer.parseInt(st.nextToken());
-            for (int j = i-1; j > 0; j--){
-                if (tower_heis[i] < tower_heis[j]){
-                    sb.append(j+1).append(" ");
-                    continue loop;
-                }
-            }
-            sb.append(0).append(" ");
+        wheels = new int[4];
+        for (int i = 0; i < 4; i++){
+            st = new StringTokenizer(br.readLine());
+            wheels[i] = Integer.parseInt(st.nextToken());
         }
-        System.out.println(sb);
+
+        st = new StringTokenizer(br.readLine());
+        int k = Integer.parseInt(st.nextToken());
+
+        int[][] commend = new int[k][2];
+        for (int i = 0; i < k; i++){
+            st = new StringTokenizer(br.readLine());
+            commend[i][0] = Integer.parseInt(st.nextToken());
+            commend[i][1] = Integer.parseInt(st.nextToken());
+        }
+        int result = 0;
+
+        System.out.println(wheels[0]);
+        change(wheels[0],1);
+        System.out.println(wheels[0]);
+        change(wheels[0],2);
+        System.out.println(wheels[0]);
+
+    }
+    // dir는 영향을 주는 wheel이 영향을 받는 wheel을 기준으로 어디 있는지 확인함.
+    // dir = 1 오른쪽
+    private static void go(int wheel1, int wheel2, int dir){
+        if (dir == 1){
+//            wheels[wheel1] <<
+        }
+    }
+    // dir 는 돌아가는 방향
+    // dir = 1 시계 방향
+    private static void change(int wheel_num,int dir){
+        if (dir == 1){
+            int tmp = wheels[wheel_num] / 128;
+            wheels[wheel_num] = wheels[wheel_num] << 1;
+            wheels[wheel_num] += tmp;
+        }
+        if (dir == 2){
+            int tmp = wheels[wheel_num] % 2;
+            wheels[wheel_num] = wheel_num >> 1;
+            wheels[wheel_num] += (128 * tmp);
+        }
     }
 }
