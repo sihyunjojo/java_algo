@@ -12,7 +12,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/algo_240205.test.iml" filepath="$PROJECT_DIR$/.idea/modules/algo_240205.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_240205/algo_2402051.iml" filepath="$PROJECT_DIR$/algo_240205/algo_2402051.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_240206/algo_240206.iml" filepath="$PROJECT_DIR$/algo_240206/algo_240206.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/algo_240207/algo_240207.iml" filepath="$PROJECT_DIR$/algo_240207/algo_240207.iml" />
+=======
+>>>>>>> 9b7f55d6308351cc4ee20f6242c6c824d647adae
       <module fileurl="file://$PROJECT_DIR$/algo_hw/algo_hw.iml" filepath="$PROJECT_DIR$/algo_hw/algo_hw.iml" />
       <module fileurl="file://$PROJECT_DIR$/hw/hw.iml" filepath="$PROJECT_DIR$/hw/hw.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java_algo.iml" filepath="$PROJECT_DIR$/.idea/java_algo.iml" />
