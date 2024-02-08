@@ -18,7 +18,7 @@ Swea_d2_문제_이름_메모.java
 ㄴ Bj_S4_1244_스위치끄고켜기.java
 ```
 
-# 📚Table
+# 📚Algo Table
 [//]: # (<td colspan="2">내용</td>)
 
 [//]: # (<td rowspan="3">내용</td>)
@@ -33,7 +33,7 @@ Swea_d2_문제_이름_메모.java
   </thead>
   <tbody>
     <tr>
-      <td rowspan="15">구현</td>  <!-- 구현 -->
+      <td rowspan="13">구현</td>  <!-- 구현 -->
       <td>시뮬레이션</td>
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Bj_Silver4_1244_스위치켜고끄기.java">Bj_Silver4_1244_스위치켜고끄기</a></td>
       <td></td>
@@ -86,16 +86,6 @@ Swea_d2_문제_이름_메모.java
       <td></td>
     </tr>
     <tr>
-      <td rowspan="1">윈도우 슬라이싱</td> <!-- 완전 탐색 -->
-      <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_12891_DNA비밀번호.java">Bj_S2_12891_DNA비밀번호</a></td></a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td rowspan="1">비트 마스킹</td> <!-- 완전 탐색 -->
-      <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S5_11723_집합_Best.java">Bj_S5_11723_집합_Best</a></td>
-      <td></td>
-    </tr>
-    <tr>
       <td rowspan="1">큐</td> <!-- 완전 탐색 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240202/src/Bj_S4_1158_요세푸스문제.java">Bj_S4_1158_요세푸스문제</a></td>
       <td>자료구조 문제.</td>
@@ -111,7 +101,7 @@ Swea_d2_문제_이름_메모.java
       <td></td>
     </tr>
     <tr>
-      <td rowspan="3">조합</td> <!-- 비트 마스킹 -->
+      <td rowspan="3">조합</td> <!-- 조합 -->
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_B3_3040_백설공주와일곱난쟁이.java">Bj_B3_3040_백설공주와일곱난쟁이</a></td>
       <td></td>
     </tr>
@@ -123,8 +113,70 @@ Swea_d2_문제_이름_메모.java
       <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240131/src/Bj_S3_15650_n과m4.java">Bj_S3_15650_n과m4</a></td>
       <td></td>
     </tr>
+ 
   </tbody>
 </table>
+
+
+[//]: # (<tr>)
+
+[//]: # (  <td rowspan="5">백트래킹</td>  <!-- 백트래킹 -->)
+
+[//]: # (  <td rowspan="2">순열</td> )
+
+[//]: # (  <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240130/src/Bj_Silver3_15649_n%EA%B3%BCm1.java">Bj_silver3_15649_n과m1</a></td>)
+
+[//]: # (  <td></td>)
+
+[//]: # (</tr>)
+
+# 📚Fail Table
+- 외울때 까지 무한 반복
+<table>
+<thead align="center">
+<tr>
+    <td><b>알고리즘 유형</b></td>
+    <td><b>문제 정보</b></td>
+    <td><b>문제</b></td>
+    <td><b>메모</b></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td rowspan="2">구현</td>
+    <td rowspan="1">윈도우 슬라이싱</td> <!-- 완전 탐색 -->
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_12891_DNA비밀번호.java">Bj_S2_12891_DNA비밀번호</a></td></a></td>
+    <td>슬라이싱에 대한 개념 외우기</td>
+</tr>
+<tr>
+  <td rowspan="1">비트 마스킹</td> <!-- 완전 탐색 -->
+  <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S5_11723_집합_Best.java">Bj_S5_11723_집합_Best</a></td>
+  <td>비트마스킹 하는 전체 방식 외우기</td>
+</tr>
+<tr>
+    <td rowspan="1">자료구조</td>  <!-- 자료구조 -->
+    <td rowspan="1">Stack</td> 
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240205/src/fail/Bj_G5_2493_탑_Fail.java">Bj_G5_2493_탑_Fail</a></td>
+    <td>순차적으로 된 형태?? 그걸 스택 형태로 빠르게 해결할 수 있는 방법 외우기</td>
+</tr>
+</tbody>
+</table>
+
+[//]: # (    <tr>)
+
+[//]: # (        <td rowspan="1">자료구조</td>  <!-- 자료구조 -->)
+
+[//]: # (        <td rowspan="1">Stack</td> )
+
+[//]: # (        <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240205/src/fail/Bj_G5_2493_탑_Fail.java">Bj_G5_2493_탑_Fail</a></td>)
+
+[//]: # (        <td>순차적으로 된 형태?? 그걸 스택 형태로 빠르게 해결할 수 있는 방법 외우기</td>)
+
+[//]: # (    </tr>)
+
+
+
+
 
 
 # 💻 📋 알고리즘 종류 
@@ -151,6 +203,7 @@ Swea_d2_문제_이름_메모.java
 - **플로이드 워셜**
 - Deque
 - Queue
+- Stack
 - 외판원 순회 문제
 - 0-1 BFS
 - 이분 그래프
@@ -174,3 +227,5 @@ Swea_d2_문제_이름_메모.java
 ## 02.04
 출력에는 StringBuilder 사용하자!
 
+## 02.09
+스택 (문제 탑) 유형 외우기.
