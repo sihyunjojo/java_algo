@@ -139,6 +139,7 @@ Swea_d2_문제_이름_메모.java
     <td><b>문제 정보</b></td>
     <td><b>문제</b></td>
     <td><b>메모</b></td>
+    <td><b>복습(5)</b></td>
 </tr>
 </thead>
 <tbody>
@@ -147,17 +148,20 @@ Swea_d2_문제_이름_메모.java
     <td rowspan="1">윈도우 슬라이싱</td> <!-- 완전 탐색 -->
     <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_12891_DNA비밀번호.java">Bj_S2_12891_DNA비밀번호</a></td></a></td>
     <td>슬라이싱에 대한 개념 외우기</td>
+    <td>1</td>
 </tr>
 <tr>
-  <td rowspan="1">비트 마스킹</td> <!-- 완전 탐색 -->
-  <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S5_11723_집합_Best.java">Bj_S5_11723_집합_Best</a></td>
-  <td>비트마스킹 하는 전체 방식 외우기</td>
+    <td rowspan="1">비트 마스킹</td> <!-- 완전 탐색 -->
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S5_11723_집합_Best.java">Bj_S5_11723_집합_Best</a></td>
+    <td>비트마스킹 하는 전체 방식 외우기</td>
+    <td>1</td>
 </tr>
 <tr>
     <td rowspan="1">자료구조</td>  <!-- 자료구조 -->
     <td rowspan="1">Stack</td> 
     <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240205/src/fail/Bj_G5_2493_탑_Fail.java">Bj_G5_2493_탑_Fail</a></td>
     <td>순차적으로 된 형태?? 그걸 스택 형태로 빠르게 해결할 수 있는 방법 외우기</td>
+    <td>1</td>
 </tr>
 </tbody>
 </table>
