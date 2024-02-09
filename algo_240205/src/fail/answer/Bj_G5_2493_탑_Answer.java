@@ -1,3 +1,5 @@
+package fail.answer;
+
 import java.io.*;
 import java.util.*;
 
@@ -7,7 +9,7 @@ import java.util.*;
 // 이전보다 작으면 = 방금껄로 바꿔주고
 // 답지 봤음.
 // 외우기
-public class Bj_G5_2493_탑 {
+public class Bj_G5_2493_탑_Answer {
     static StringBuilder sb = new StringBuilder();
     static int n, tower_heis[];
     public static void main(String[] args) throws IOException {
