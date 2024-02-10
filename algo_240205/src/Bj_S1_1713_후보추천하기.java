@@ -103,7 +103,6 @@ public class Bj_S1_1713_후보추천하기 {
 //        List<List<Integer>> arr = new ArrayList<>();
         List<Integer> temp = new ArrayList<>();
 
-        picture.comparator();
         int pi_size = picture.size();
         for(int i =0; i < pi_size; i++){
             temp.add(picture.poll()[1]);
