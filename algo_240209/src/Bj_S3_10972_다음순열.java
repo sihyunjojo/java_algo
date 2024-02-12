@@ -3,8 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-// 트리의 순회
-public class Main {
+public class Bj_S3_10972_다음순열 {
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -12,7 +11,7 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
         int[] input = new int[n];
-        
+
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++){
             input[i] = Integer.parseInt(st.nextToken());
