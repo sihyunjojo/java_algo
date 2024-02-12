@@ -4,17 +4,19 @@ import java.util.*;
 
 public class Solution {
     static StringBuilder sb = new StringBuilder();
-    static int n,board[][];
+    static int board[][],nums[],arr[],temp[],flavors,n;
+    static boolean isvisited[];
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("inputFile/input1861.txt"));
+//        System.setIn(new FileInputStream("inputFile/input4012.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int tc = Integer.parseInt(br.readLine());
 
         for (int t = 1; t <= tc; t++){
+            System.out.println(tc);
             sb.append("#").append(t).append(" ");
             n = Integer.parseInt(br.readLine());
-
+            System.out.println(n);
             board = new int[n][n];
 
             for (int i = 0; i < n; i++) {
@@ -23,61 +25,74 @@ public class Solution {
                     board[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
-
-            List<Integer> result = new ArrayList<>();
-            int max_count = 0;
-            for (int i = 0; i < n; i++) {
-                for(int j = 0; j < n; j++){
-                    int count = bfs(i, j);
-                    if (max_count < count) {
-                        max_count = count;
-                        result = new ArrayList<>();
-                        result.add(board[i][j]);
-                    } else if(max_count == count) {
-                        result.add(board[i][j]);
-                    }
-                }
+            for (int[] ints : board) {
+                System.out.println(Arrays.toString(ints));
             }
-//            System.out.println("Result " + result);
 
-            Collections.sort(result);
-            sb.append(result.get(0)).append(" ").append(max_count).append("\n");
+            arr = new int[] {1,2,3};
+            System.out.println(Arrays.toString(arr));
+            cal_flavors();
+            System.out.println(flavors);
+//            int result = cal_result(n/2);
+
+//            sb.append(result).append("\n");
         }
-        System.out.println(sb);
+//        System.out.println(sb);
     }
-    private static int bfs (int init_y, int init_x){
-        int count = 1;
-        int[][] delta = new int[][]{{1,0},{-1,0},{0,1},{0,-1}};
-        boolean[] isvisited = new boolean[n*n+1];
+    // 순서 상관 없고
+    private static int cal_best_result(int num){
+        int result = Integer.MAX_VALUE;
+        arr = new int[num];
 
-//        System.out.println(init_x+" "+ init_y);
-        Deque<int[]> s = new ArrayDeque<>();
-        s.add(new int[]{init_y, init_x});
-        isvisited[board[init_y][init_x]] = true;
+        while(true){
+            if (arr.length == num){
+                for (int i = 0; i < num; i++){
 
-//        for (int[] ints : s) {
-//            System.out.printf(Arrays.toString(ints));
-//        }
-//        System.out.println();
-        while(!s.isEmpty()){
-            int[] poll = s.pollLast();
-            int y = poll[0];
-            int x = poll[1];
-//            System.out.println(n);
-            for (int d = 0; d<4; d++){
-                int dy = y + delta[d][0];
-                int dx = x + delta[d][1];
-                if (0<= dy && dy < n && 0<= dx && dx<n && board[y][x]+1 == board[dy][dx] && !isvisited[board[dy][dx]]){
-//                    System.out.println(board[dy][dx]);
-                    count += 1;
-                    s.addFirst(new int[]{dy,dx});
                 }
             }
-//            for (int[] ints : s) {
-//                System.out.printf(Arrays.toString(ints));
-//            }
-//            System.out.println();
         }
-        return count;
+        return result;
+    }
+
+    private static int cal_result(int count, int start){
+        if (count == n/2){
+            arr = temp;
+            return cal_flavors()
+        }
+        for (int i = start; i < arr.length; i++){
+            if (isvisited[i]) continue;
+            isvisited[i] = true;
+            temp[count] = arr[i];
+            cal_flavor(count+1,i+1);
+            isvisited[i] = false;
+        }
+    }
+
+    // 조합
+    private static void cal_flavors(){
+        isvisited = new boolean[arr.length];
+        temp = new int[2];
+        int r = 2;
+        cal_flavor(0,0,2);
+    }
+    private static void cal_flavor(int count,int start,int r){
+        if (count == 2){
+            return;
+        }
+        for (int i = start; i < arr.length; i++){
+            if (isvisited[i]) continue;
+            isvisited[i] = true;
+            temp[count] = arr[i];
+            cal_flavor(count+1,i+1,r);
+            isvisited[i] = false;
+        }
     }
 }
+
+
+//1
+//4
+//0 5 3 8
+//4 0 4 1
+//2 5 0 3
+//7 2 3 0
