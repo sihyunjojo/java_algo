@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.*;
 
-
-public class Solution {
+// 완전 구현인데... 아... 조합을 무슨 반복문에다 돌려서 무한 반복떠서 하...
+public class Swea_4012_요리사 {
     static StringBuilder sb = new StringBuilder();
     static int board[][],arr[],temp[],flavors,n,result;
     static boolean isvisited[],isvisited2[];
