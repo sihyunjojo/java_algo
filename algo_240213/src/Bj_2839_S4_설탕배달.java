@@ -2,11 +2,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.Collectors;
 
 // 회의실 배정
 // 굳이 배열을 업데이트 할 필요가 없이,
-public class Main {
+public class Bj_2839_S4_설탕배달 {
     static int result,n,arr[][];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
