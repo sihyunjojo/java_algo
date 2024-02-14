@@ -7,27 +7,37 @@ public class Solution {
     static int board[][],arr[],temp[],flavors,n,result;
     static boolean isvisited[],isvisited2[];
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("inputFile/input4012.txt"));
+//        System.setIn(new FileInputStream("inputFile/input4012.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int tc = Integer.parseInt(br.readLine());
 
         for (int t = 1; t <= tc; t++){
             sb.append("#").append(t).append(" ");
-            n = Integer.parseInt(br.readLine());
-            board = new int[n][n];
 
+            st = new StringTokenizer(br.readLine());
+            int n = Integer.parseInt(st.nextToken());
+            int m = Integer.parseInt(st.nextToken());
+            int k = Integer.parseInt(st.nextToken());
+            // m초 동안 k개의 언제 도착하는지 주어진다.
+
+            String result = "Possible";
+
+            st = new StringTokenizer(br.readLine());
+            int[] arr = new int[n];
             for (int i = 0; i < n; i++) {
-                st = new StringTokenizer(br.readLine());
-                for(int j = 0; j < n; j++){
-                    board[i][j] = Integer.parseInt(st.nextToken());
+               arr[i] = Integer.parseInt(st.nextToken());
+//               int now_time = Integer.parseInt(st.nextToken());
+            }
+
+            Arrays.sort(arr);
+
+            for (int i = 0; i< n; i++){
+                if ((arr[i] / m * k) < i+1){
+                    result = "Impossible";
                 }
             }
 
-
-            result = Integer.MAX_VALUE;
-
-            cal_best_result();
             sb.append(result).append("\n");
         }
         System.out.println(sb);
@@ -95,11 +105,3 @@ public class Solution {
         }
     }
 }
-
-
-//1
-//4
-//0 5 3 8
-//4 0 4 1
-//2 5 0 3
-//7 2 3 0
