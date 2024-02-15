@@ -4,10 +4,9 @@ import java.util.*;
 
 public class Solution {
     static StringBuilder sb = new StringBuilder();
-    static int board[][],arr[],temp[],flavors,n,result;
-    static boolean isvisited[],isvisited2[];
+    static int[][] board = new int[][];
     public static void main(String[] args) throws IOException {
-//        System.setIn(new FileInputStream("inputFile/input4012.txt"));
+        System.setIn(new FileInputStream("inputFile/input1247.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int tc = Integer.parseInt(br.readLine());
@@ -17,91 +16,33 @@ public class Solution {
 
             st = new StringTokenizer(br.readLine());
             int n = Integer.parseInt(st.nextToken());
-            int m = Integer.parseInt(st.nextToken());
-            int k = Integer.parseInt(st.nextToken());
-            // m초 동안 k개의 언제 도착하는지 주어진다.
-
-            String result = "Possible";
 
             st = new StringTokenizer(br.readLine());
-            int[] arr = new int[n];
+            int[] home = new int[2];
+            int[] company = new int[2];
+            int[][] guest_arr = new int[n][2];
+            home[0] = Integer.parseInt(st.nextToken());
+            home[1] = Integer.parseInt(st.nextToken());
+            company[0] = Integer.parseInt(st.nextToken());
+            company[1] = Integer.parseInt(st.nextToken());
+
             for (int i = 0; i < n; i++) {
-               arr[i] = Integer.parseInt(st.nextToken());
-//               int now_time = Integer.parseInt(st.nextToken());
+               guest_arr[i][0] = Integer.parseInt(st.nextToken());
+               guest_arr[i][1] = Integer.parseInt(st.nextToken());
             }
 
-            Arrays.sort(arr);
+            board = new int[n+2][n+2];
+            for (int i = 0; i < n+2; i++){
+                for (int j = 0; j < n+2; j++){
 
-            for (int i = 0; i< n; i++){
-                if ((arr[i] / m * k) < i+1){
-                    result = "Impossible";
                 }
             }
 
-            sb.append(result).append("\n");
         }
         System.out.println(sb);
     }
-    // 순서 상관 없고
-    private static void cal_best_result(){
-        isvisited2 = new boolean[n];
-        arr = new int[n/2]; // 첫 음식에 들어가는 재료들 (절반)
-        cal_result(0,0);
-    }
 
-    private static void cal_result(int count, int start){
-        if (count == n/2){
-            cal_flavors();
-            return;
-        }
-        for (int i = start; i < n; i++){
-            arr[count] = i;
-            cal_result(count+1,i+1);
-        }
-    }
-
-
-    // 조합
-    private static void cal_flavors(){
-        temp = new int[2];
-        flavors = 0;
-        cal_flavor(0,0);
-
-        int temp1_flavor = flavors;
-
-        int[] temp_arr = arr;
-        int[] temp2 = new int[n/2];
-
-        int index = 0;
-        loop:
-        for (int i2 = 0; i2 < n; i2++){
-            for (int i1 : arr) {
-                if (i1 == i2){
-                    continue loop;
-                }
-            }
-            temp2[index++] = i2;
-        }
-
-        arr = temp2;
-        temp = new int[2];
-        flavors = 0;
-
-        cal_flavor(0,0);
-        int temp2_flavor = flavors;
-
-        int temp_result = Math.abs(temp1_flavor - temp2_flavor);
-        if (result > temp_result) result = temp_result;
-        arr = temp_arr;
-    }
-    private static void cal_flavor(int count,int start){
-        if (count == 2){
-            flavors += board[temp[0]][temp[1]] + board[temp[1]][temp[0]];
-            return;
-        }
-        for (int i3 = start; i3 < n/2; i3++){
-            temp[count] = arr[i3];
-            cal_flavor(count+1,i3+1);
-        }
+    private static int cal_dis(int[] place1, int[] place2) {
+        return Math.abs(place1[0]-place2[0]) + Math.abs(place1[1] - place2[1]);
     }
 }

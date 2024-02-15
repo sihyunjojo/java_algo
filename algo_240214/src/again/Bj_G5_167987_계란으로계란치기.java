@@ -1,9 +1,12 @@
+package again;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
 // 계란으로 계란 치기
+// ans 값 넣어서 함수도 만들어보기
 public class Bj_G5_167987_계란으로계란치기 {
     static int n,arr[][],res;
     public static void main(String[] args) throws IOException {

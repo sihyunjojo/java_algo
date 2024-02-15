@@ -1,3 +1,5 @@
+package again;
+
 import java.util.Scanner;
 
 public class JOL_G2_1183_동전자판기하_Best {
