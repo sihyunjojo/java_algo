@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 // 계란으로 계란 치기
-public class Main {
+public class Bj_G5_167987_계란으로계란치기 {
     static int n,arr[][],res;
     public static void main(String[] args) throws IOException {
         // 각 계란에는 내구도와 무게가 정해져있다.
@@ -61,12 +61,12 @@ public class Main {
         }
 
         for (int i = 0; i < n; i++){
-           // System.out.println("i "+ i);
+            // System.out.println("i "+ i);
             int flag = 0;
             if (i == egg1_loc) continue;
             if (arr[i][0] <= 0) continue;
 
-           // System.out.println(egg1_loc+ " " +i);
+            // System.out.println(egg1_loc+ " " +i);
             arr[egg1_loc][0] -= arr[i][1];
             arr[i][0] -= arr[egg1_loc][1];
             cal(egg1_loc+1);
