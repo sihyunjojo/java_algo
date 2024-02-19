@@ -1,15 +1,10 @@
-import java.io.FileInputStream;
+package refactor;
+
 import java.io.*;
 import java.util.*;
 
-// 삭제는 무조건 다 움직여주고 하는게 좋다.
-// 왜냐면 꼬일 수 도있다.
-// 그리고 remove 를 객체로 하면 remove를 equals와 같은것을 다해준다???
-// 그러니까 그럼 인덱스를 통해서 지워줘야 정확히 지워준다ㅣ.
-// 그래서 민종이는 직접 보통 삭제를 구현한다고 한다.
 
-
-public class Solution {
+public class Swea_2382_미생물격리_fail {
     static class Micro{
         int x;
         int y;
@@ -59,6 +54,9 @@ public class Solution {
         StringTokenizer st;
         int tc = Integer.parseInt(br.readLine());
         for (int t = 1; t <= tc; t++) {
+//            System.out.println(t +" " + t);
+//            System.out.println();
+//            System.out.println();
             sb.append("#").append(t).append(" ");
 
             st = new StringTokenizer(br.readLine());
@@ -77,14 +75,13 @@ public class Solution {
                 micros.add(new Micro(i,x,y,cnt,dir));
             }
 
-            for (Micro micro : micros) {
-                System.out.println(micro);
-            }
-            System.out.println();
-
             // 시간당 움직임.
             for (int i = 0; i < m; i++){
                 go();
+//                for (Micro micro : micros) {
+//                    System.out.println(micro);
+//                }
+//                System.out.println();
             }
 
             int res = 0;
@@ -102,7 +99,7 @@ public class Solution {
         for (int i = 0; i < micros.size(); i++){
             Micro micro = micros.get(i);
             move(micro);
-            if (micro.cnt == 0) { // 없으면 보드와 리스트에서 없애줌. // 이걸 꼭 나중에 해줘야함...
+            if (micro.cnt == 0) { // 없으면 보드와 리스트에서 없애줌.
                 micros.remove(micro);
                 i--;
             }
@@ -110,9 +107,6 @@ public class Solution {
 
         // mix 해결.
         micros.sort((m1, m2) -> {
-            if (m1.x == m2.x && m1.y == m2.y){
-                return -(m1.cnt - m2.cnt);
-            }
             if (m1.x == m2.x) {
                 return m1.y - m2.y;
             }
@@ -122,48 +116,39 @@ public class Solution {
 
         for (int i = 0; i < micros.size(); i++){
             Micro micro1 = micros.get(i);
-//            List<Micro> temp_micros = new ArrayList<>();
-//            temp_micros.add(micro1);
+            List<Micro> temp_micros = new ArrayList<>(List.of(micro1));
 
             for (int j = i+1; j < micros.size(); j++){
-
-//                for (Micro micro : micros) {
-//                    System.out.println(micro);
-//                }
-//                System.out.println(i +" "+ j);
-
                 Micro micro2 = micros.get(j);
                 if (micro1.equals(micro2)){
-                    micro1.cnt += micro2.cnt;
-                    micro1.index.addAll(micro2.index);
-                    micros.remove(j); // ??? ?왜왜왜 물어보러가야지 아 짜증나 아 ㅏ
-//                    micros.remove(micro2); // ??? ?왜왜왜 물어보러가야지 아 짜증나 아 ㅏ
+                    temp_micros.add(micro2);
+                    micros.remove(micro2);
+                    j--;
                     i--;
                 } else {
                     break;
                 }
             }
 
-//            if (temp_micros.size() > 1){
-//                micros.remove(micro1);
-//                Micro mixMicro = mix(temp_micros);
-//                micros.add(mixMicro);
-//                i++;
-//            }
+            if (temp_micros.size() > 1){
+                micros.remove(micro1);
+                Micro mixMicro = mix(temp_micros);
+                micros.add(mixMicro);
+                i++;
+            }
         }
     }
 
-//    static Micro mix(List<Micro> micros){
-//        micros.sort((o1, o2) -> -(o1.cnt - o2.cnt));
-//        Micro micro = micros.get(0);
-//        for (int i =1; i < micros.size(); i++){
-//            micro.cnt += micros.get(i).cnt;
-//            micro.index.addAll(micros.get(i).index);
-//            micro.aa.addAll(micros.get(i).aa);
-//        }
-//        return micro;
-//    }
-
+    static Micro mix(List<Micro> micros){
+        micros.sort((o1, o2) -> -(o1.cnt - o2.cnt));
+        Micro micro = micros.get(0);
+        for (int i =1; i < micros.size(); i++){
+            micro.cnt += micros.get(i).cnt;
+            micro.index.addAll(micros.get(i).index);
+            micro.aa.addAll(micros.get(i).aa);
+        }
+        return micro;
+    }
     static void move(Micro m){
         switch (m.dir){
             case 1:
@@ -199,9 +184,6 @@ public class Solution {
                     break;
             }
         }
-//        if (m.cnt == 0) { // 없으면 보드와 리스트에서 없애줌.
-//            micros.remove(m);
-//        }
     }
 }
 // 오답
