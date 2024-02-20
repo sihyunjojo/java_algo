@@ -109,7 +109,6 @@ public class Swea_2382_미생물격리 {
                 i--;
             }
         }
-
         // mix 해결.
         micros.sort((m1, m2) -> {
             if (m1.x == m2.x && m1.y == m2.y){
@@ -137,7 +136,7 @@ public class Swea_2382_미생물격리 {
                 Micro micro2 = micros.get(j);
                 if (micro1.equals(micro2)){
                     micro1.cnt += micro2.cnt;
-                    micro1.index.addAll(micro2.index);
+//                    micro1.index.addAll(micro2.index);
                     micros.remove(j); // ??? ?왜왜왜 물어보러가야지 아 짜증나 아 ㅏ
 //                    micros.remove(micro2); // ??? ?왜왜왜 물어보러가야지 아 짜증나 아 ㅏ
                     i--;

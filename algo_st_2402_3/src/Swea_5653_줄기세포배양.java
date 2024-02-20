@@ -4,7 +4,7 @@ import java.util.*;
 
 // 재귀에서 time을 time에 따라서 함수들의 순서를 어떻게 구현하고 안에 time인자가 들어가야하는 부분을 어떻게 설정해야할지에 대해서 고민이 조금 더 필요함.
 
-public class Solution {
+public class Swea_5653_줄기세포배양 {
     static class Cell {
         int x;
         int y;
