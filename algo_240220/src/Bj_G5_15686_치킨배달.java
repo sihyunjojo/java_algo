@@ -6,7 +6,7 @@ import java.util.*;
 
 // 모든 치킨집의 그거에 대해서 다 완탐하는 방식
 //
-public class Main {
+public class Bj_G5_15686_치킨배달 {
     static int n, m, res;
     static int[][] board;
     static boolean isused[], isvisited[][];
@@ -24,7 +24,6 @@ public class Main {
         board = new int[n][n];
         house = new ArrayList<>();
         chicken = new ArrayList<>();
-
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
@@ -61,6 +60,7 @@ public class Main {
     }
 
     static int cal_min_distance(int[][] chickens) {
+        int[][] delta = new int[][]{{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
         int min_dis = 0;
 
         for (int i = 0; i < house.size(); i++) {

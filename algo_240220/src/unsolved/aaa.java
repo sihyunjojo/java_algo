@@ -24,7 +24,6 @@ public class Main {
         board = new int[n][n];
         house = new ArrayList<>();
         chicken = new ArrayList<>();
-
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
@@ -47,7 +46,9 @@ public class Main {
 
     static void go(int count, int start) {
         if (count == m) {
+            System.out.println(Arrays.deepToString(tmp_chicken));
             int ans = cal_min_distance(tmp_chicken);
+            System.out.println(ans);
             if (res > ans) res = ans;
             return;
         }
@@ -60,25 +61,39 @@ public class Main {
         }
     }
 
-    static int cal_min_distance(int[][] chickens) {
+    static int cal_min_distance(int[][] chicken) {
+        int[][] delta = new int[][]{{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
         int min_dis = 0;
 
+        isvisited = new boolean[n][n];
+
+        ArrayDeque<int[]> q = new ArrayDeque<>();
         for (int i = 0; i < house.size(); i++) {
-            isvisited = new boolean[n][n];
+            int[] now_house =  house.get(i);
+            q.addFirst(new int[]{now_house[0],now_house[1]});
+            isvisited[now_house[0]][now_house[1]] = true;
 
-            int[] now_house = house.get(i);
-            min_dis += min_chi_dis(chickens,now_house);
+            loop:
+            while (!q.isEmpty()) {
+                int[] poll = q.pollFirst();
+                int y = poll[0];
+                int x = poll[1];
 
-            if (min_dis > res) return Integer.MAX_VALUE;
-        }
-        return min_dis;
-    }
-
-    static int min_chi_dis(int[][] chickens, int[] house){
-        int min_dis = Integer.MAX_VALUE;
-        for (int[] chi : chickens) {
-            int tmp = cal_dis(chi, house);
-            if (min_dis > tmp) min_dis = tmp;
+                for (int d = 0; d < 4; d++) {
+                    int dy = y + delta[d][0];
+                    int dx = x + delta[d][1];
+                    if (check_size(dy, dx) && !isvisited[dy][dx] && board[dy][dx] == 2) {
+                        min_dis += cal_dis(new int[]{dy, dx}, now_house);
+                        System.out.println("chi" + Arrays.toString(now_house) + "board" + dy+" "+dx);
+                        break loop;
+                        //                    System.out.println("bfs" + min_dis+" "+ dy+ " "+dx);
+                    }
+                    if (check_size(dy, dx) && !isvisited[dy][dx] && board[dy][dx] == 0) {
+                        q.addFirst(new int[]{dy, dx});
+                        isvisited[dy][dx] = true;
+                    }
+                }
+            }
         }
         return min_dis;
     }
@@ -86,7 +101,6 @@ public class Main {
     static int cal_dis(int[] house, int[] chi){
         return Math.abs(house[0] - chi[0]) + Math.abs(house[1] - chi[1]);
     }
-
     static boolean check_size(int y, int x) {
         return 0 <= x && 0 <= y && x < n && y < n;
     }
