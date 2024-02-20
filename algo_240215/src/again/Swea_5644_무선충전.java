@@ -142,8 +142,6 @@ public class Swea_5644_무선충전 {
         if (temp1.size() > 1) tmp1 = temp1.get(1).p;
         if (temp2.size() > 1) tmp2 = temp2.get(1).p;
         res += Math.max(temp1.get(0).p + tmp2, tmp1 + temp2.get(0).p);
-
-        return;
     }
     private static boolean outOfIndexCheck(int y, int x){
         return 0 <= y && y < 10 && 0<= x && x<10;

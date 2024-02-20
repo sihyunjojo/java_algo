@@ -123,34 +123,17 @@ public class Swea_2382_미생물격리 {
 
         for (int i = 0; i < micros.size(); i++){
             Micro micro1 = micros.get(i);
-//            List<Micro> temp_micros = new ArrayList<>();
-//            temp_micros.add(micro1);
 
             for (int j = i+1; j < micros.size(); j++){
-
-//                for (Micro micro : micros) {
-//                    System.out.println(micro);
-//                }
-//                System.out.println(i +" "+ j);
-
                 Micro micro2 = micros.get(j);
                 if (micro1.equals(micro2)){
                     micro1.cnt += micro2.cnt;
-//                    micro1.index.addAll(micro2.index);
-                    micros.remove(j); // ??? ?왜왜왜 물어보러가야지 아 짜증나 아 ㅏ
-//                    micros.remove(micro2); // ??? ?왜왜왜 물어보러가야지 아 짜증나 아 ㅏ
+                    micros.remove(j);
                     i--;
                 } else {
                     break;
                 }
             }
-
-//            if (temp_micros.size() > 1){
-//                micros.remove(micro1);
-//                Micro mixMicro = mix(temp_micros);
-//                micros.add(mixMicro);
-//                i++;
-//            }
         }
     }
 

@@ -69,13 +69,11 @@ public class Swea_4008_숫자만들기_Good {
             result = cal(result, operands[count+1], operators[i]);
             go(count+1, result);
             result = last_res;
-            isvisited[i] = false;₩
+            isvisited[i] = false;
         }
     }
 
-
     static int cal(int o1, int o2, int operator){
-        cont += 1;
         switch (operator){
             case 0:
                 return o1+o2;
@@ -83,10 +81,8 @@ public class Swea_4008_숫자만들기_Good {
                 return o1-o2;
             case 2:
                 return o1*o2;
-            case 3:
-                return o1/o2;
             default:
-                throw new RuntimeException();
+                return o1/o2;
         }
     }
 }
