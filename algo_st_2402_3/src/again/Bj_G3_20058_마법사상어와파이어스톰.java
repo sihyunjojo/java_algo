@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 
-public class Main {
+public class Bj_G3_20058_마법사상어와파이어스톰 {
     static int[][] board;
     static int n, two_pow_n;
 
