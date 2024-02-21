@@ -3,53 +3,52 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-
-// 모든 치킨집의 그거에 대해서 다 완탐하는 방식
-//
+// 어디서든지 true를 해주면 false를 해줘야한다.
 public class Main {
-    static int w, h;
-    static int[][] board;
-    static boolean isused[], isvisited[][];
-    static ArrayList<int[]> house, chicken;
-    static int[][] tmp_chicken;
-
+    static int l,c,mo_place[];
+    static char[] arr;
+    static boolean[] isused;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        while (true) {
-            String s = br.readLine();
-            if (s.equals("0 0")) break;
+        // 서로 다른 L개의 알파벳 소문자들로 구성되며
+        // 최소 한 개의 모음(a, e, i, o, u)과 최소 두 개의 자음으로 구성되어 있다고 알려져 있다.
 
-            st = new StringTokenizer(s);
-            w = Integer.parseInt(st.nextToken());
-            h = Integer.parseInt(st.nextToken());
+        l = Integer.parseInt(st.nextToken());
+        c = Integer.parseInt(st.nextToken());
 
-            board = new int[h][w];
-            for (int i = 0; i < h; i++) {
-                st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < w; j++) {
-                    board[i][j] = Integer.parseInt(st.nextToken());
-                }
-            }
-            int res = 0;
-            int[][] delta = new int[][] {{0,1},{1,0},{-1,0},{0,-1}};
-            ArrayDeque<int[]> q = new ArrayDeque<>();
-            q.add(new int[] {0,0});
+        List<Character> mo = new ArrayList<>(List.of('a', 'e', 'i', 'o', 'u'));
+        List<Character> arr_mo = new ArrayList<>();
+        List<Character> arr_ja = new ArrayList<>();
 
-            while (!q.isEmpty()){
-                int[] poll = q.poll();
-                int y = poll[0];
-                int x = poll[1];
-
-                for (int d = 0; d <4; d++){
-
-                }
-            }
-
-            System.out.println(res);
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < c; i++) {
+            char cha = st.nextToken().charAt(0);
+            if (mo.contains(cha))  arr_mo.add(cha);
+            if (!mo.contains(cha))  arr_ja.add(cha);
         }
 
+        mo_place = new int[2];
+        isused = new boolean[c];
+    }
+
+    // 모음 빼두는 답  햐
+    static void c(int start, int count){
+        if (count == 2){
+            p()
+            return;
+        }
+        for (int i = 0; i < l; i++){
+            if(isused[i]) continue;
+            isused[i] = true;
+            c(i+1,count+1);
+            isused[i] = false;
+        }
+    }
+
+    static void p(int count){
 
     }
 }
+
