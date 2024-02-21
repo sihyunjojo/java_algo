@@ -1,3 +1,5 @@
+package again;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,7 +8,7 @@ import java.util.*;
 
 // 모든 치킨집의 그거에 대해서 다 완탐하는 방식
 //
-public class Main {
+public class Bj_G5_15686_치킨배달_fail {
     static int n, m, res;
     static int[][] board;
     static boolean isused[], isvisited[][];

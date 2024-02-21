@@ -4,8 +4,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 
-// 모든 치킨집의 그거에 대해서 다 완탐하는 방식
-//
+// 모든 하우스의 조합에 대해서 다 완탐하는 방식
 public class Bj_G5_15686_치킨배달 {
     static int n, m, res;
     static int[][] board;
