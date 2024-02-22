@@ -5,8 +5,9 @@ import java.util.*;
 
 // 어디서든지 true를 해주면 false를 해줘야한다.
 public class Main {
-    static int l,c,mo_place[];
+    static int l,c;
     static char[] arr;
+    static char[] temp;
     static boolean[] isused;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,38 +18,45 @@ public class Main {
 
         l = Integer.parseInt(st.nextToken());
         c = Integer.parseInt(st.nextToken());
-
-        List<Character> mo = new ArrayList<>(List.of('a', 'e', 'i', 'o', 'u'));
-        List<Character> arr_mo = new ArrayList<>();
-        List<Character> arr_ja = new ArrayList<>();
+        arr = new char[c];
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < c; i++) {
-            char cha = st.nextToken().charAt(0);
-            if (mo.contains(cha))  arr_mo.add(cha);
-            if (!mo.contains(cha))  arr_ja.add(cha);
+            arr[i] = st.nextToken().charAt(0);
         }
 
-        mo_place = new int[2];
-        isused = new boolean[c];
-    }
+        Arrays.sort(arr);
+        System.out.println(arr);
 
-    // 모음 빼두는 답  햐
-    static void c(int start, int count){
-        if (count == 2){
-            p()
+        temp = new char[l];
+        isused = new boolean[c];
+
+        p(0,0);
+    }
+    static void p(int start, int count){
+        if (count == l){
+            if (check_mo_count()){
+                System.out.println(temp);
+            }
             return;
         }
-        for (int i = 0; i < l; i++){
-            if(isused[i]) continue;
-            isused[i] = true;
-            c(i+1,count+1);
-            isused[i] = false;
+
+        for (int i = start; i < c; i++){
+            temp[count] = arr[i];
+            p(i+1,count+1);
         }
     }
 
-    static void p(int count){
-
+    static boolean check_mo_count(){
+        int mo_count = 0;
+        int ja_count = 0;
+        for (char x : temp) {
+            if (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u') {
+                mo_count += 1;
+            }
+            else { ja_count += 1; }
+        }
+        return 1 <= mo_count && 2 <= ja_count;
     }
 }
 
