@@ -11,6 +11,7 @@ public class Solution {
         int to;
         int from;
         int index;
+        int depth;
 
         public Edge(int to, int from, int index) {
             this.to = to;
@@ -42,51 +43,45 @@ public class Solution {
             int data_len = Integer.parseInt(st.nextToken());
             start_point = Integer.parseInt(st.nextToken());
 
-            Deque<Integer> q = new ArrayDeque<>();
-            edges = new ArrayList<>();
+            int res = start_point;
+            int res_depth = 0;
+
+            ArrayList<Integer>[] arr = new ArrayList[100+1];
+            for (int i = 0; i < 101; i++){
+                arr[i] = new ArrayList<>();
+            }
+
+            boolean[] isvisited = new boolean[101];
 
             st = new StringTokenizer(br.readLine());
             for (int i = 0; i < data_len/2; i++){
                 int from = Integer.parseInt(st.nextToken());
                 int to = Integer.parseInt(st.nextToken());
-                Edge edge = new Edge(to, from, from);
-                edges.add(edge);
+                arr[from].add(to);
             }
 
-            q.addFirst(start_point);
-            int res = start_point;
+            Deque<int[]> q = new ArrayDeque<>();
+            q.add(new int[] {start_point,0});
+            isvisited[start_point] = true;
 
-            // 그냥 없으면 자기가 젤 큼.
-//            if (q.isEmpty()) System.out.println(res);
-
-            // 전화 받은 사람 중 가장 숫자가 큰 사람을 출력
             while (!q.isEmpty()){
-                Integer now = q.pollLast();
+                int[] now = q.poll();
 
-                for (int i = 0 ; i < edges.size(); i++){
-                    Edge to_edge = edges.get(i);
-                    if (to_edge.from == now){
-                        q.addFirst(to_edge.to);
+                for (int a : arr[now[0]]){
+                    if (isvisited[a]) continue;
+                    isvisited[a] = true;
+                    q.add(new int[] {a, now[1] + 1} );
 
-                        // 내 생각엔 이게 문제야.
-//                        to_edge.from = start_point;
+                    if (res_depth < now[1]+1) {res = a; res_depth = now[1]+1;}
+                    if (res_depth == now[1]+1 && res < a) {res = a;}
 
-                        if (res < to_edge.index) res = to_edge.index;
-                    }
                 }
-
-                // 2 -> 7 // 7 - 2 ///// 7 -> 1 // 1 -> 2
             }
+
             sb.append(res).append("\n");
         }
         System.out.println(sb);
     }
-    static boolean union(Edge e1, Edge e2){
-         if (e1.from == e2.from){
-             return false;
-         }
-         e2.from = e1.from;
-         return true;
-    }
 }
-
+//24 2
+//2 7 11  6  6  2  2  15  15  4  4  2  4  10 7  1  1  7  1  8  1  17  3  22
