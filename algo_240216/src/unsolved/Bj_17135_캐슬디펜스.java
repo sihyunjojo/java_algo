@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 // 문제 꼼꼼히 읽기.
-public class Main {
+public class Bj_17135_캐슬디펜스 {
     static int n,m,d,res;
     static boolean[] isused;
     static boolean[][] isvisited;
@@ -55,6 +55,7 @@ public class Main {
         }
     }
     static int go(int[] archers) {
+        return 0;
     }
 
     static int cal_dis(int[] en,int[] archer){
