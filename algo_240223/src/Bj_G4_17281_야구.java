@@ -2,12 +2,11 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.SimpleFileVisitor;
 import java.util.*;
 
 
 // 문제 꼼꼼히 읽기.
-public class Main {
+public class Bj_G4_17281_야구 {
     static int[][] arr;
     static int n,res;
     static int player_index;
