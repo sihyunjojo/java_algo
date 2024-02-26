@@ -1,20 +1,16 @@
 package abc;
 
-import java.awt.List;
-import java.awt.image.RescaleOp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import javax.xml.stream.events.EndDocument;
-
 // 회의실 배정.
 // 즉 3월 1일부터 11월 30일까지 매일 한
 // 가지 이상 프로젝트에 참여하고 있을 수 있도록 프로젝트를 선택할 때, 선택한 프로젝트들의
 // 최소 개수를 출력하는 프로그램을 작성하시오.
-public class Algo2_구미_4반_조시현 {
+public class Bj_G3_2457_공주님의정원 {
     static int[] month_day = new int[] {0,31,28,31,30,31,30,31,31,30,31,30,31};
     static class Pro{
         int start;

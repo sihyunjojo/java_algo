@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Bj_P5_14865_곡선자르기 {
     static class Work{
         int index;
         int score;

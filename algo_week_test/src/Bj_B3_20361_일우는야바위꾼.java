@@ -1,13 +1,9 @@
-package abc;
-
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Algo1_구미_4반_조시현 {
+public class Bj_B3_20361_일우는야바위꾼 {
     static int[] arr;
     static StringBuilder sBuilder = new StringBuilder();
     public static void main(String[] args) throws IOException {

@@ -3,16 +3,12 @@ package abc;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.StringTokenizer;
 
-import javax.xml.namespace.QName;
-
-public class Algo3_구미_4반_조시현 {
+public class Bj_P5_3197_백조의호수 {
     static int r,c;
     static char[][] board;
     static ArrayList<int[]> ices;
