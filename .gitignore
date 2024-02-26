@@ -27,8 +27,8 @@
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
-algo_hw.iml
-algo_hw.git
+/algo_hw.iml
+/algo_hw.git
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
