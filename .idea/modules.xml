@@ -19,8 +19,10 @@
       <module fileurl="file://$PROJECT_DIR$/algo_240222/algo_240222.iml" filepath="$PROJECT_DIR$/algo_240222/algo_240222.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_240223/algo_240223.iml" filepath="$PROJECT_DIR$/algo_240223/algo_240223.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_hw/algo_hw.iml" filepath="$PROJECT_DIR$/algo_hw/algo_hw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_month_test/algo_month_test.iml" filepath="$PROJECT_DIR$/algo_month_test/algo_month_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_st_2402_3/algo_st_2402_3.iml" filepath="$PROJECT_DIR$/algo_st_2402_3/algo_st_2402_3.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_st_2402_4/algo_st_2402_4.iml" filepath="$PROJECT_DIR$/algo_st_2402_4/algo_st_2402_4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_week_test/algo_week_test.iml" filepath="$PROJECT_DIR$/algo_week_test/algo_week_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java_algo.iml" filepath="$PROJECT_DIR$/.idea/java_algo.iml" />
       <module fileurl="file://$PROJECT_DIR$/time/time.iml" filepath="$PROJECT_DIR$/time/time.iml" />
     </modules>
