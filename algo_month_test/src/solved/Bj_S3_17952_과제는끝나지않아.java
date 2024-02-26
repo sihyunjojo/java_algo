@@ -1,4 +1,4 @@
-package def;
+package solved;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,38 +36,30 @@ public class Bj_S3_17952_과제는끝나지않아 {
 
         int res = 0;
         ArrayDeque<Work> works = new ArrayDeque<>();
-
+        Work go_work;
         for (int i = 0; i < n; i++) {
             stringTokenizer = new StringTokenizer(br.readLine());
             char check = stringTokenizer.nextToken().charAt(0);
-            if (check == '0') {
+            if (check == '1'){
+                int score = Integer.parseInt(stringTokenizer.nextToken());
+                int time = Integer.parseInt(stringTokenizer.nextToken());
+                go_work = new Work(index++,score,time);
+            }
+            else {
                 // 해야할 일 없으면 패스
                 if (works.isEmpty()) continue;
-
                 // 하나라도 있으면 맨 마지막꺼 꺼내서 하기.
-                Work go_work = works.peekLast();
-                go_work.time--;
-
-                if (go_work.time == 0) {
-                    works.poll();
-                    res += go_work.score;
-                }
-
-                continue;
+                go_work = works.pollLast();
             }
 
-            int score = Integer.parseInt(stringTokenizer.nextToken());
-            int time = Integer.parseInt(stringTokenizer.nextToken());
-            time--;
-
+            go_work.time--;
             // 그냥 1초만에 할 수 있으면 바로 해결
-            if (time == 0) {
-                res += score;
+            if (go_work.time == 0) {
+                res += go_work.score;
                 continue;
             }
 
-            works.add(new Work(index++,score,time));
-
+            works.add(go_work);
         }
 
         System.out.println(res);

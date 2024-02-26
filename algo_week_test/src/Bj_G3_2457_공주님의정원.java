@@ -1,5 +1,3 @@
-package abc;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,11 +33,6 @@ public class Bj_G3_2457_공주님의정원 {
             this.start = start;
             this.end = end-1;
 
-//			int pro_len;
-//			if (end < 335) pro_len= end - 59;
-//			else pro_len = 335 - start;
-//
-//			this.pro_len =
         }
 
         @Override
@@ -65,8 +58,8 @@ public class Bj_G3_2457_공주님의정원 {
 
             pros.add(new Pro(m1,d1,m2,d2));
         }
-        // 60 , 335
-//		System.out.println(new Pro(3, 1, 12, 1));
+        // 60 , 333
+        System.out.println(new Pro(3,1,11,30));
 
         pros.sort((o1,o2) -> {
             if (o1.start == o2.start) {
@@ -88,50 +81,47 @@ public class Bj_G3_2457_공주님의정원 {
             }
         }
 
-//		for (Pro pro : pros) {
-//			System.out.println(pro);
-//		}
-
         int res = 1;
+
         Pro temp_pro = pros.get(0);
-        if (pros.size() == 1 && temp_pro.end < 60) {
-            res = 0;
-        }
-        if (pros.size() == 1 && temp_pro.start >= 60 && temp_pro.end <= 335) {
-            res = 0;
-        }
+
         for (int i = 1; i < pros.size(); i++) {
             Pro pro = pros.get(i);
-//			System.out.println("temp" + temp_pro + " pro " + pro);
+			System.out.println("temp" + temp_pro + " pro " + pro);
 
             // 실패
             if(temp_pro.end < pro.start) {
                 res = 0;
                 break;
             }
-            if (temp_pro.end >= pro.start) {
-                if (pro.start <= 60) {
-                    if (temp_pro.end - 59 < pro.end - 59) {
-                        temp_pro = pro;
-                        continue;
-//						res++;
-                    }
-                }
-                else {
-                    if (temp_pro.end - 59 < pro.end - 59) {
-                        temp_pro = pro;
-                        res++;
-                    }
-                }
-//				temp_pro = pro;
-//				res++;
 
+
+            // 이 로직은 괜찮은거 같은데..
+            if (pro.start <= 60) {
+                if (temp_pro.end - 59 < pro.end - 59) {
+                    temp_pro = pro;
+                }
             }
-//			System.out.println(res);
+
+            else {
+                if (temp_pro.end - 59 < pro.end - 59) {
+                    temp_pro = pro;
+                    res++;
+                }
+            }
+
+            if (pros.size() == 1) {
+                res = 0;
+            }
+            if (pros.size() == 1 && temp_pro.start <= 60 && temp_pro.end > 333) {
+                res = 1;
+            }
+
+            if (pros.isEmpty()){
+                res = 0;
+            }
+
         }
-
         System.out.println(res);
-
     }
-
 }
