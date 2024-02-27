@@ -2,86 +2,77 @@ import java.io.FileInputStream;
 import java.io.*;
 import java.util.*;
 
-// 재귀에서 time을 time에 따라서 함수들의 순서를 어떻게 구현하고 안에 time인자가 들어가야하는 부분을 어떻게 설정해야할지에 대해서 고민이 조금 더 필요함.
 
 public class Solution {
-    static class Edge{
-        // to는 항상 자기 자신? 자기자신에서 출발하는게 맞으니까.
-        // to를 루트노드로 생각하면 되지 않을까??
-        int to;
-        int from;
-        int index;
-        int depth;
-
-        public Edge(int to, int from, int index) {
-            this.to = to;
-            this.from = from;
-            this.index = index;
-        }
-
-        @Override
-        public String toString() {
-            return "Edge{" +
-                    "to=" + to +
-                    ", from=" + from +
-                    ", index=" + index +
-                    '}';
-        }
-    }
-    static List<Edge> edges;
-    static int start_point;
-
     static StringBuilder sb = new StringBuilder();
+    static int n,m,res,index;
+    static int[][] board;
+
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("InputFile/input1238.txt"));
+        System.setIn(new FileInputStream("InputFile/input1949.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
+        int tc = Integer.parseInt(br.readLine());
 
-        for (int t = 1; t <= 10; t++) {
+        for (int t = 1; t <= tc; t++) {
             sb.append("#").append(t).append(" ");
             st = new StringTokenizer(br.readLine());
-            int data_len = Integer.parseInt(st.nextToken());
-            start_point = Integer.parseInt(st.nextToken());
+            n = Integer.parseInt(st.nextToken());
+            m = Integer.parseInt(st.nextToken()); // 하나의 집이 지불 할 수있는 비용.
 
-            int res = start_point;
-            int res_depth = 0;
-
-            ArrayList<Integer>[] arr = new ArrayList[100+1];
-            for (int i = 0; i < 101; i++){
-                arr[i] = new ArrayList<>();
-            }
-
-            boolean[] isvisited = new boolean[101];
-
-            st = new StringTokenizer(br.readLine());
-            for (int i = 0; i < data_len/2; i++){
-                int from = Integer.parseInt(st.nextToken());
-                int to = Integer.parseInt(st.nextToken());
-                arr[from].add(to);
-            }
-
-            Deque<int[]> q = new ArrayDeque<>();
-            q.add(new int[] {start_point,0});
-            isvisited[start_point] = true;
-
-            while (!q.isEmpty()){
-                int[] now = q.poll();
-
-                for (int a : arr[now[0]]){
-                    if (isvisited[a]) continue;
-                    isvisited[a] = true;
-                    q.add(new int[] {a, now[1] + 1} );
-
-                    if (res_depth < now[1]+1) {res = a; res_depth = now[1]+1;}
-                    if (res_depth == now[1]+1 && res < a) {res = a;}
-
+            board = new int[n][n];
+            res = 0;
+            for (int i = 0; i < n; i++) {
+                st = new StringTokenizer(br.readLine());
+                for (int j = 0; j < n; j++) {
+                    board[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
+
+            go();
 
             sb.append(res).append("\n");
         }
         System.out.println(sb);
     }
+
+    static void go() {
+        index = n+1;
+        while (index > 0){
+            int index_cost = cal_cost(index);
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    int count_house = count_house(i, j);
+                    if (count_house * m >= index_cost && res < count_house) {
+                        res = count_house;
+                    }
+                }
+            }
+            index--;
+        }
+
+    }
+    static int count_house(int y, int x){
+        int cnt = 0;
+        for (int i = y - index < 0 ? 0 : y - index; i <= n; i++) {
+            for (int j= x - index < 0 ? 0 : x - index; j <= n; j++) {
+                if (check_size(i,j) && check_dis(y,x,i,j) && board[i][j] == 1){
+                    cnt += 1;
+
+                }
+            }
+        }
+        return cnt;
+    }
+    static boolean check_dis(int y1, int x1, int y2,int x2){
+        int dis = Math.abs(y1-y2) + Math.abs(x1-x2);
+        return index > dis;
+    }
+    static int cal_cost(int k){
+        return k * k + (k-1) * (k-1);
+    }
+    static boolean check_size(int y , int x){
+        return 0 <= y && y < n && 0 <= x && x < n;
+    }
 }
-//24 2
-//2 7 11  6  6  2  2  15  15  4  4  2  4  10 7  1  1  7  1  8  1  17  3  22
+
