@@ -1,3 +1,5 @@
+package solved;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -70,7 +72,6 @@ public class Bj_G4_17471_게리맨더링_another {
     }
 
     private static boolean check(List<Integer> list) {
-
         Queue<Integer> q = new LinkedList<>();
         visited = new boolean[N];
         visited[list.get(0)] = true;
@@ -81,6 +82,7 @@ public class Bj_G4_17471_게리맨더링_another {
             int cur = q.poll();
             for (int i = 0; i < graph.get(cur).size(); i++) {
                 int y = graph.get(cur).get(i);
+                // 선거구에 해당하고가 중요한 로직.
                 if (list.contains(y) && !visited[y]) { // 선거구에 해당하고, 아직 미방문
                     q.offer(y);
                     visited[y] = true;
@@ -88,6 +90,7 @@ public class Bj_G4_17471_게리맨더링_another {
                 }
             }
         }
+
         if (count == list.size()) // 선거구에 해당하는 지역수와 방문한 지역수가 같은 경우
             return true;
         else

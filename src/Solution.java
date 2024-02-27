@@ -2,7 +2,11 @@ import java.io.FileInputStream;
 import java.io.*;
 import java.util.*;
 
+<<<<<<< Updated upstream
 
+=======
+// 보호 필름
+>>>>>>> Stashed changes
 public class Solution {
     static StringBuilder sb = new StringBuilder();
     static int n,k,res,index;
@@ -11,11 +15,16 @@ public class Solution {
     static int[][][] make_board;
     static ArrayList<int[]> tops;
     public static void main(String[] args) throws IOException {
+<<<<<<< Updated upstream
         System.setIn(new FileInputStream("InputFile/input1949.txt"));
+=======
+        System.setIn(new FileInputStream("InputFile/input2112.txt"));
+>>>>>>> Stashed changes
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int tc = Integer.parseInt(br.readLine());
 
+<<<<<<< Updated upstream
         for (int t = 1; t <= tc; t++) {
             sb.append("#").append(t).append(" ");
             st = new StringTokenizer(br.readLine());
@@ -43,8 +52,14 @@ public class Solution {
             go();
 
             sb.append(res).append("\n");
+=======
+        int tc = Integer.parseInt(br.readLine());
+        for (int t = 1; t <= tc; t++) {
+            sb.append("#").append(t).append(" ");
+            st = new StringTokenizer(br.readLine());
+
+>>>>>>> Stashed changes
         }
-        System.out.println(sb);
     }
 
     static void go() {
@@ -68,4 +83,7 @@ public class Solution {
         return 0 <= y && y < n && 0 <= x && x < n;
     }
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
