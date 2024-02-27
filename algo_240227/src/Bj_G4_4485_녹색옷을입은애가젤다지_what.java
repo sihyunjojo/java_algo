@@ -4,33 +4,12 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 // 문제 꼼꼼히 읽기.
-public class Main {
-    static class data implements Comparable<data>{
-        int x;
-        int y;
-        int w;
-        public data(int x, int y, int w) {
-            super();
-            this.x = x;
-            this.y = y;
-            this.w = w;
-        }
-        @Override
-        public int compareTo(data o) {
-            return w-o.w;
-        }
-
-        @Override
-        public String toString() {
-            return "data{" +
-                    "x=" + x +
-                    ", y=" + y +
-                    ", w=" + w +
-                    '}';
-        }
-    }
+public class Bj_G4_4485_녹색옷을입은애가젤다지_what {
+    static StringBuilder sb = new StringBuilder();
+    static int n,res;
     static int[][] delta = new int[][] {{0,1},{1,0},{-1,0},{0,-1}};
-    static int n;
+    static boolean[][] isvisited;
+    static int[][] board;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -39,8 +18,9 @@ public class Main {
         while(true){
             n = Integer.parseInt(br.readLine());
             if (n == 0) break;
+            sb.append("Problem ").append(t++).append(": ");
 
-            int[][] board = new int[n][n];
+            board = new int[n][n];
             for (int i = 0; i < n; i++) {
                 st = new StringTokenizer(br.readLine());
                 for (int j = 0; j < n; j++) {
@@ -48,31 +28,38 @@ public class Main {
                 }
             }
 
+            isvisited = new boolean[n][n];
+            isvisited[0][0] = true;
 
-            PriorityQueue<data> pq = new PriorityQueue<>();
+            res = Integer.MAX_VALUE;
+            PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o[2]));
             int[][] make = new int[n][n];
 
-            pq.add(new data(0,0,board[0][0]));
+            pq.add(new int[] {0,0,board[0][0]});
             make[0][0] = board[0][0];
 
             loop:
             while (!pq.isEmpty()){
-                data poll = pq.poll();
+                int[] poll = pq.poll();
+                int y = poll[0];
+                int x = poll[1];
+                int money = poll[2];
 
                 for (int d = 0; d < 4; d++) {
-                    int dy = poll.y + delta[d][0];
-                    int dx = poll.x + delta[d][1];
+                    int dy = y + delta[d][0];
+                    int dx = x + delta[d][1];
                     if (check_size(dy, dx) && make[dy][dx] == 0) {
-                        make[dy][dx] = make[dy][dx] + board[dy][dx];
-                        pq.add(new data(dx, dy, make[dy][dx]));
+                        pq.add(new int[]{dy, dx, money + board[dy][dx]});
+                        make[dy][dx] = money + board[dy][dx];
                         if (dy == n - 1 && dx == n - 1) {
                             break loop;
                         }
                     }
                 }
             }
-            System.out.printf("Problem %d: %d\n",t,make[n-1][n-1]);
+            sb.append(make[n-1][n-1]).append("\n");
         }
+        System.out.println(sb);
     }
 
     static boolean check_size(int y , int x){

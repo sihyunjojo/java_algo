@@ -1,3 +1,5 @@
+package solved;
+
 import java.io.FileInputStream;
 import java.io.*;
 import java.util.*;
