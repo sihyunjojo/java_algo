@@ -4,7 +4,8 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 
-public class Main {
+// 자료형 주의주의
+public class Bj_G4_17069_파이프옮기기2 {
     static int n, m, res;
     static int[] arr;
     static ArrayList<Integer>[] relation;
