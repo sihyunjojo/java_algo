@@ -27,11 +27,11 @@ public class Bj_G4_4485_녹색옷을입은애가젤다지_what {
                     board[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
+//
+//            isvisited = new boolean[n][n];
+//            isvisited[0][0] = true;
 
-            isvisited = new boolean[n][n];
-            isvisited[0][0] = true;
 
-            res = Integer.MAX_VALUE;
             PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o[2]));
             int[][] make = new int[n][n];
 
