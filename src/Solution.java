@@ -6,15 +6,13 @@ import java.util.*;
 // 보호 필름
 public class Solution {
     static StringBuilder sb = new StringBuilder();
-    static int n,k,res,index;
+    static int d,w,k,res;
     static int[][] board;
-    static boolean[][][] isvisited;
-    static int[][][] make_board;
-    static ArrayList<int[]> tops;
+    static int[] temp_combi_arr;
     static int[][] delta = new int[][] {{0,1},{1,0},{-1,0},{0,-1}};
 
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("InputFile/input1949.txt"));
+        System.setIn(new FileInputStream("InputFile/input2112.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int tc = Integer.parseInt(br.readLine());
@@ -22,27 +20,19 @@ public class Solution {
         for (int t = 1; t <= tc; t++) {
             sb.append("#").append(t).append(" ");
             st = new StringTokenizer(br.readLine());
-            n = Integer.parseInt(st.nextToken());
+            d = Integer.parseInt(st.nextToken());
+            w = Integer.parseInt(st.nextToken());
             k = Integer.parseInt(st.nextToken());
 
             board = new int[n][n];
-            tops = new ArrayList<>();
-            int max_top = 0;
             res = 0;
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < d; i++) {
                 st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < n; j++) {
+                for (int j = 0; j < w; j++) {
                     board[i][j] = Integer.parseInt(st.nextToken());
-                    if (max_top < board[i][j]) {
-                        max_top = board[i][j];
-                        tops.clear();
-                    }
-                    if (max_top == board[i][j]) tops.add(new int[] {i,j});
                 }
             }
-
-
             go();
 
             sb.append(res).append("\n");
@@ -51,60 +41,55 @@ public class Solution {
     }
 
     static void go() {
-        for (int i = 0; i < tops.size(); i++){
-            isvisited = new boolean[2][n][n];
-            make_board = new int[2][n][n];
-            bfs(tops.get(i));
+        // 바꿀 수 있는 최대 수
+        for (int i = 0; i < d; i++){
+            temp_combi_arr = new int[d];
+            line_combination(i,0,0);
         }
     }
-    static void bfs(int[] top){
-        ArrayDeque<int[]> q = new ArrayDeque<>();
-        q.add(new int[] {top[0],top[1],1,0});
-        make_board[0][top[0]][top[1]] = 1;
-        make_board[1][top[0]][top[1]] = 1;
-        isvisited[0][top[0]][top[1]] = true;
-        isvisited[1][top[0]][top[1]] = true;
+    static void line_combination(int r,int count, int start){
+        if (count == r){
+            drug_subset(r,0);
+            return;
+        }
+        for (int i = start; i < d; i++){
+            temp_combi_arr[count] = i;
+            line_combination(r,count+1,i+1);
+        }
+    }
+    static void drug_subset(int r, int count){
+        if (count == r){
+            use_drug();
+            return;
+        }
 
-        while (!q.isEmpty()){
-            int[] poll = q.poll();
-            int y = poll[0];
-            int x = poll[1];
-            int is_break = poll[2];
-            int last_block = poll[3];
+    }
 
-            for (int d = 0; d < 4; d++){
-                int dx = x + delta[d][1];
-                int dy = y + delta[d][0];
-                if (check_size(dy,dx)){
-                    if (board[dy][dx] < board[y][x]){
-                        if(is_break == 1 && make_board[0][dy][dx] == 0){
-                            q.add(new int[] {dy,dx,is_break,0});
-                            make_board[0][dy][dx] = make_board[0][y][x] + 1;
-                        }
-                        if (is_break == 0  && make_board[1][dy][dx] < make_board[1][y][x]){
-                            System.out.println(y + " " + x + " " + dy+ " " +dx + " "+board[dy][dx] + " " +board[y][x] + " " +last_block);
-                            if (last_block <= board[dy][dx]) continue;
-                            make_board[1][dy][dx] = make_board[1][y][x] +1;
-                            if (last_block != board[dy][dx]) q.add(new int[] {dy,dx,is_break,board[dy][dx]});
-                            System.out.println(dy+ " " +dx + " "+board[dy][dx] + " " +board[y][x]);
-                            q.add(new int[] {dy,dx,is_break,board[dy][dx]});
+    //
+    static void use_drug(){
 
-                        }
+    }
 
-                    }
-                    // 부숨
-                    if (board[dy][dx] <= board[dy][dx] && is_break == 1  && make_board[1][dy][dx] < make_board[0][y][x]){
-                        if (board[y][x] - board[dy][dx] >= k) continue;
-                        q.add(new int[] {dy,dx,0,board[y][x]-1});
-                        make_board[1][dy][dx] = make_board[0][y][x] + 1;
-                    }
+    static boolean check_nice_product(){
+        int last_color = -1;
+        int cnt = 0;
+        int line_success = 0;
+        for (int i = 0; i < w; i++){
+            for (int j = 0; j < d; j++){
+                if (last_color == board[j][i]){
+                    cnt++;
+                } else {
+                    last_color = board[j][1];
+                    cnt++;
+                }
+                if (cnt == k){
+                    line_success++;
+                    break;
                 }
             }
+            if (i+1 != line_success) return false;
         }
-        System.out.println(Arrays.toString(top));
-        print_board(board);
-        print_board(make_board[0]);
-        print_board(make_board[1]);
+        return true;
     }
 
     static boolean check_size(int y , int x){
