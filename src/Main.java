@@ -3,80 +3,82 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-// 문제 꼼꼼히 읽기.
-public class Main {
-    static class data implements Comparable<data>{
-        int x;
-        int y;
-        int w;
-        public data(int x, int y, int w) {
-            super();
-            this.x = x;
-            this.y = y;
-            this.w = w;
-        }
-        @Override
-        public int compareTo(data o) {
-            return w-o.w;
-        }
 
-        @Override
-        public String toString() {
-            return "data{" +
-                    "x=" + x +
-                    ", y=" + y +
-                    ", w=" + w +
-                    '}';
-        }
-    }
-    static int[][] delta = new int[][] {{0,1},{1,0},{-1,0},{0,-1}};
-    static int n;
+public class Main {
+    static int[][] delta = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    static int n,m,cnt;
+    static int[][] board;
+    static ArrayList<int[]> arr;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int t = 1;
-        while(true){
-            n = Integer.parseInt(br.readLine());
-            if (n == 0) break;
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        arr = new ArrayList<>();
 
-            int[][] board = new int[n][n];
-            for (int i = 0; i < n; i++) {
-                st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < n; j++) {
-                    board[i][j] = Integer.parseInt(st.nextToken());
+        cnt = 0;
+        board = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < m; j++) {
+                board[i][j] = Integer.parseInt(st.nextToken());
+                if (board[i][j] != 0 && board[i][j] != 6){
+                    arr.add(new int[] {i,j});
                 }
             }
+        }
 
+        dfs();
+        System.out.println(cnt);
+    }
 
-            PriorityQueue<data> pq = new PriorityQueue<>();
-            int[][] make = new int[n][n];
-
-            pq.add(new data(0,0,board[0][0]));
-            make[0][0] = board[0][0];
-
-            loop:
-            while (!pq.isEmpty()){
-                data poll = pq.poll();
-
-                for (int d = 0; d < 4; d++) {
-                    int dy = poll.y + delta[d][0];
-                    int dx = poll.x + delta[d][1];
-                    if (check_size(dy, dx) && make[dy][dx] == 0) {
-                        make[dy][dx] = make[dy][dx] + board[dy][dx];
-                        pq.add(new data(dx, dy, make[dy][dx]));
-                        if (dy == n - 1 && dx == n - 1) {
-                            break loop;
-                        }
-                    }
-                }
-            }
-            System.out.printf("Problem %d: %d\n",t,make[n-1][n-1]);
+    public static void dfs(int cctv_cnt, int[][] temp_board){
+        if (cctv_cnt == arr.size()){
+            temp_board
         }
     }
 
-    static boolean check_size(int y , int x){
+    public static void checkLeft(int[][] map, int x, int y) {
+        for(int i=y-1; i>=0; i--) {
+            if(map[x][i] == 6) return;
+            if(map[x][i] != 0) continue;
+            map[x][i] = -1;
+        }
+    }
+    public static void checkRight(int[][] map, int x, int y) {
+        for(int i=y+1; i<M; i++) {
+            if(map[x][i] == 6) return;
+            if(map[x][i] != 0) continue;
+            map[x][i] = -1;
+        }
+    }
+    public static void checkUp(int[][] map, int x, int y) {
+        for(int i=x-1; i>=0; i--) {
+            if(map[i][y] == 6) return;
+            if(map[i][y] != 0) continue;
+            map[i][y] = -1;
+        }
+    }
+    public static void checkDown(int[][] map, int x, int y) {
+        for(int i=x+1; i<N; i++) {
+            if(map[i][y] == 6) return;
+            if(map[i][y] != 0) continue;
+            map[i][y] = -1;
+        }
+    }
+
+    static boolean check_size(int y, int x) {
         return 0 <= y && y < n && 0 <= x && x < n;
+    }
+
+    static void count_watch(int[][] board){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == )
+            }
+        }
     }
 }
 
