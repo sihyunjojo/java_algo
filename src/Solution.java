@@ -5,14 +5,36 @@ import java.util.*;
 
 // 보호 필름
 public class Solution {
+
+    static class Core{
+        int x,y;
+        ArrayList<Integer> dirs = new ArrayList<>();
+
+        public Core(int y, int x) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return "Core{" +
+                    "y=" + y +
+                    ", x=" + x +
+                    ", dirs=" + dirs +
+                    '}';
+        }
+    }
+
+    static int[][] delta = new int[][] {{-1,0},{1,0},{0,-1},{0,1}};
     static StringBuilder sb = new StringBuilder();
-    static int d,w,k,res;
-    static int[][] board;
-    static int[] temp_combi_arr;
-    static int[][] delta = new int[][] {{0,1},{1,0},{-1,0},{0,-1}};
+    static int n, res,temp_res;
+    static int[][] init_board, temp_board;
+    static boolean isfinish;
+    static ArrayList<Core> cores;
+    static int[] temp_combi_arr, temp_combi_dir_arr;
 
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("InputFile/input2112.txt"));
+        System.setIn(new FileInputStream("InputFile/input1767.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int tc = Integer.parseInt(br.readLine());
@@ -20,18 +42,45 @@ public class Solution {
         for (int t = 1; t <= tc; t++) {
             sb.append("#").append(t).append(" ");
             st = new StringTokenizer(br.readLine());
-            d = Integer.parseInt(st.nextToken());
-            w = Integer.parseInt(st.nextToken());
-            k = Integer.parseInt(st.nextToken());
+            n = Integer.parseInt(st.nextToken());
 
-            board = new int[n][n];
-            res = 0;
+            init_board = new int[n][n];
+            temp_board = new int[n][n];
+            cores = new ArrayList<>();
+            res = 200;
 
-            for (int i = 0; i < d; i++) {
+            for (int i = 0; i < n; i++) {
                 st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < w; j++) {
-                    board[i][j] = Integer.parseInt(st.nextToken());
+                for (int j = 0; j < n; j++) {
+                    temp_board[i][j] = init_board[i][j] = Integer.parseInt(st.nextToken());
+                    if (init_board[i][j] == 1 && i != 0 && i != n-1 && j != 0 && j != n-1){
+                        cores.add(new Core(i, j));
+                    }
                 }
+            }
+
+            for (Core core : cores) {
+                int x = core.x;
+                int y = core.y;
+
+                loop:
+                for (int d = 0; d < 4; d++){
+                    int dx = x + delta[d][1];;
+                    int dy = y + delta[d][0];;
+                    while (check_size(dy,dx)){
+                        if (init_board[dy][dx] == 1 ) {
+                            continue loop;
+                        }
+                        dy += delta[d][0];
+                        dx += delta[d][1];
+                    }
+                    // 상하좌우 방향으로 돌려서
+                    core.dirs.add(d);
+                }
+            }
+
+            for (Core core : cores) {
+                System.out.println(core);
             }
             go();
 
@@ -42,61 +91,83 @@ public class Solution {
 
     static void go() {
         // 바꿀 수 있는 최대 수
-        for (int i = 0; i < d; i++){
-            temp_combi_arr = new int[d];
-            line_combination(i,0,0);
-        }
-    }
-    static void line_combination(int r,int count, int start){
-        if (count == r){
-            drug_subset(r,0);
-            return;
-        }
-        for (int i = start; i < d; i++){
-            temp_combi_arr[count] = i;
-            line_combination(r,count+1,i+1);
-        }
-    }
-    static void drug_subset(int r, int count){
-        if (count == r){
-            use_drug();
-            return;
-        }
+        for (int i = cores.size(); i > 0; i--) {
+            temp_combi_arr = new int[i];
+            temp_res = 200;
 
+            line_combination(i,0,0);
+
+            if (res != temp_res) {
+                res = temp_res;
+                return;
+            }
+        }
+    }
+
+    static void line_combination(int r, int count, int start) {
+        if (count == r) {
+            temp_combi_dir_arr = new int[r];
+            dfs(r, 0);
+            return;
+        }
+        for (int i = start; i < cores.size(); i++) {
+            temp_combi_arr[count] = i;
+            line_combination(r, count + 1, i + 1);
+        }
+    }
+
+    static void dfs(int r, int count) {
+        if (count == r) {
+            System.out.println(Arrays.toString(temp_combi_dir_arr));
+            int cnt = check_line(r);
+            if (temp_res > cnt) temp_res = cnt;
+            return;
+        }
+        int core_index = temp_combi_arr[count];
+        Core core = cores.get(core_index);
+
+        for (int i = 0; i < core.dirs.size(); i++) {
+            temp_combi_dir_arr[count] = core.dirs.get(i);
+            dfs(r,count+1);
+        }
     }
 
     //
-    static void use_drug(){
-
-    }
-
-    static boolean check_nice_product(){
-        int last_color = -1;
+    static int check_line(int r) {
         int cnt = 0;
-        int line_success = 0;
-        for (int i = 0; i < w; i++){
-            for (int j = 0; j < d; j++){
-                if (last_color == board[j][i]){
-                    cnt++;
-                } else {
-                    last_color = board[j][1];
-                    cnt++;
-                }
-                if (cnt == k){
-                    line_success++;
-                    break;
+        for (int i = 0; i < r; i++) {
+            Core core = cores.get(temp_combi_arr[i]);
+            int dy = core.y;
+            int dx = core.x;
+            while (check_size(dy,dx)){
+                dy += delta[temp_combi_dir_arr[i]][0];
+                dx += delta[temp_combi_dir_arr[i]][1];
+                if (temp_board[dy][dx] == 0){
+                    temp_board[dy][dx] = -1;
+                    cnt += 1;
+                } if (temp_board[dy][dx] != 0){
+                    // 있어서는 안되는 경우 가장 큰 값으로 리턴함.
+                    return Integer.MAX_VALUE;
                 }
             }
-            if (i+1 != line_success) return false;
         }
-        return true;
+        copy_board();
+        return cnt;
+    }
+
+    static void copy_board() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                temp_board[i][j] = init_board[i][j];
+            }
+        }
     }
 
     static boolean check_size(int y , int x){
         return 0 <= y && y < n && 0 <= x && x < n;
     }
 
-    static void print_board(int[][] board){
+    static void print_board(int[][] board) {
         for (int[] ints : board) {
             System.out.println(Arrays.toString(ints));
         }
