@@ -281,3 +281,9 @@ np 외우기
 for 문보다  
 for each문이 훨씬 빠름.  
 자료형 주의  int -> long  
+
+## 02.29
+isvisited = new boolean[h][w][k + 1]; // 이 아이디어가 핵심이다.  
+bfs();  
+if (res == 0) res = -1;  
+if (w == 1 && h == 1) res = 0; // 이것도 조심해야할듯 애매하게 항상 하나 틀릴듯  

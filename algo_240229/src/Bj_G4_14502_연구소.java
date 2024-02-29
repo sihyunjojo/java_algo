@@ -4,11 +4,11 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 
-public class Main {
-    static class Person{
+public class Bj_G4_14502_연구소 {
+    static class Point{
         int x,y,index;
 
-        public Person(int y, int x) {
+        public Point(int y, int x) {
             this.x = x;
             this.y = y;
             this.index = 10 * y + x;
@@ -16,34 +16,50 @@ public class Main {
 
         @Override
         public String toString() {
-            return "Person{" +
+            return "Point{" +
                     "x=" + x +
                     ", y=" + y +
                     ", index=" + index +
                     '}';
         }
     }
-    static char[][] board;
-
+    static int n,m, res, all_blank;
+    static int[][] board;
+    static boolean[][] isvisited;
+    static int[] temp_arr;
+    static int[][] delta = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    static ArrayList<Point> points, viruss;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
         st = new StringTokenizer(br.readLine());
-        idasom = new ArrayList<>();
-        board = new char[5][5];
-        for (int i = 0; i < 5; i++) {
-            st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < 5; j++) {
-                board[i][j] = st.nextToken().charAt(0);
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
 
+        board = new int[n][m];
+        points = new ArrayList<Point>();
+        viruss = new ArrayList<Point>();
+        all_blank = 0;
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < m; j++) {
+                board[i][j] = Integer.parseInt(st.nextToken());
+                if (board[i][j] == 0){
+                    points.add(new Point(i,j));
+                    all_blank++;
+                }
+                if (board[i][j] == 2){
+                    viruss.add(new Point(i,j));
+                }
             }
         }
+        res = Integer.MAX_VALUE;
 
-        // 이다솜파 4명을 끼우고 그다음을 아무나 끼우면 되잖아.
-        temp_arr = new int[7];
+        temp_arr = new int[3];
         combination(0,0);
 
+        System.out.println(all_blank - res-3);
     }
 
     static void combination(int count, int start){

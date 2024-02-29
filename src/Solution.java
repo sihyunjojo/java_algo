@@ -1,11 +1,5 @@
-import java.io.FileInputStream;
-import java.io.*;
-import java.util.*;
-
-
-// 보호 필름
-
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -22,6 +16,12 @@ public class Solution {
             this.x = x;
             this.y = y;
         }
+
+        @Override
+        public String toString() {
+            return "core [x=" + x + ", y=" + y + "]";
+        }
+
     }
 
     static int N;
@@ -33,13 +33,11 @@ public class Solution {
     static int[] result;
     static int[] dir = { 1, 2, 3, 4 };
     static int coreCount;
-    static int answer;
+    static int totalMinCount;
+    static int totalMaxLine;
 
     public static void main(String[] args) throws NumberFormatException, IOException {
-        Measure_time.runFunction( () -> {
-
-
-//        System.setIn(new FileInputStream("InputFile/input1767.txt"));
+        System.setIn(new FileInputStream("InputFile/input1767.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
 
@@ -49,8 +47,8 @@ public class Solution {
             arr = new int[N][N];
             copy = new int[N][N];
             list = new ArrayList<>();
-            coreCount = 0;
-            answer = Integer.MAX_VALUE;
+            totalMinCount = Integer.MAX_VALUE;
+            totalMaxLine = Integer.MIN_VALUE;
             for (int i = 0; i < N; i++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
                 for (int j = 0; j < N; j++) {
@@ -66,66 +64,77 @@ public class Solution {
                 }
             }
             result = new int[list.size()];
-
-            recursion(0, 0);
-            System.out.println("#" + t + " " + answer);
+            System.out.println(list.size());
+            dps(0, 0, 0);
+            System.out.println("#" + t + " " + totalMinCount);
         }
-        });
 
     }
 
-    private static void recursion(int idx, int start) {
+    private static void dps(int idx, int maxLine, int lineCount) {
         // TODO Auto-generated method stub
         if (idx == list.size()) {
-            isOk();
+
+            if(totalMaxLine < maxLine ) {
+                totalMaxLine = maxLine;
+                totalMinCount = lineCount;
+            }
+            else if( totalMaxLine == maxLine) {
+                if(lineCount < totalMinCount) {
+                    totalMinCount = lineCount;
+                }
+            }
             return;
         }
-        for (int i = 0; i < 4; i++) {
-            result[idx] = dir[i];
-            recursion(idx + 1, i + 1);
-        }
-    }
 
-    private static void isOk() {
-        copy = new int[N][N];
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                copy[i][j] = arr[i][j];
-            }
-        }
-        int nx = 0;
-        int ny = 0;
-        for (int i = 0; i < list.size(); i++) {
-            core now = list.get(i);
-            int dir = result[i];
-            nx = now.x;
-            ny = now.y;
-            while (true) {
-                nx += dx[dir];
-                ny += dy[dir];
 
-                if (nx < 0 || ny < 0 || nx >= N || ny >= N) {
+        dps(idx+1, maxLine, lineCount);
+        core now = list.get(idx);
+
+        for(int i=1; i<5; i++) {
+            int nx = now.x;
+            int ny = now.y;
+
+            int count =0;
+            while(true) {
+                nx += dx[i];
+                ny += dy[i];
+
+                if(nx<0 || ny<0 || nx>=N || ny>=N) {
                     break;
                 }
-                copy[nx][ny] += 1;
-                if (copy[nx][ny] >= 2) {
-                    return;
-                }
-            }
-        }
-        int count = 0;
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (copy[i][j] == 1) {
-                    count++;
-                }
-            }
-        }
-        int totalCount = count - coreCount;
 
-        answer = Math.min(totalCount, answer);
+                if(arr[nx][ny]==1) {
+                    count =0;
+                    break;
+                }
+                count++;
+            }
+
+            if(count!=0 ) {
+                nx = now.x;
+                ny = now.y;
+
+                for(int k=0; k<count; k++) {
+                    nx += dx[i];
+                    ny += dy[i];
+                    arr[nx][ny] =1;
+                }
+
+                dps(idx+1, maxLine+1, lineCount+count);
+
+                nx = now.x;
+                ny = now.y;
+
+                for(int k=0; k<count; k++) {
+                    nx += dx[i];
+                    ny += dy[i];
+                    arr[nx][ny] =0;
+                }
+            }
+
+        }
 
     }
 
 }
-// 시간차이(ms) : 0.004948

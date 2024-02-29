@@ -3,7 +3,6 @@ import java.io.*;
 import java.util.*;
 
 
-// 보호 필름
 public class Swea_1767_프로세서연결하기 {
 
     static class Core{
