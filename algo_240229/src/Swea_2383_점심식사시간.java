@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 // dp 로 풀어보기?
-public class Solution {
+public class Swea_2383_점심식사시간 {
     static StringBuilder sb = new StringBuilder();
     static int[][] board, stairs;
     static int[] temp_arr;
