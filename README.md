@@ -18,6 +18,46 @@ Swea_d2_문제_이름_메모.java
 ㄴ Bj_S4_1244_스위치끄고켜기.java
 ```
 
+# 📚Check Table
+<table>
+<thead align="center">
+<tr>
+    <td><b>알고리즘 유형</b></td>
+    <td><b>문제</b></td>
+    <td><b>코드</b></td>
+    <td><b>메모</b></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td rowspan="1">구현</td> 
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV4suNtaXFEDFAUf">Swea_1767_프로세서연결하기</a></td></a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/be6ae079d9b503fa94cb1b4038739217b0276236/algo_240228/src/Swea_1767_프로세서연결하기.java">Swea_1767_프로세서연결하기</a></td>
+    <td>여기에서 문제는 프로세서당 가능한 dir을 class에 넣어줘서 해결하는 것 <br>
+        그리고 temp_board를 마지막에 init_board(처음 받아온 것)으로 원복해주는 것</td>
+</tr>
+<tr>
+    <td rowspan="1">구현</td> 
+    <td><a href="https://www.acmicpc.net/problem/17471">Swea_1767_프로세서연결하기</a></td></a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/2e401c34b5955af7f95217b6953ab8a4d9b46fee/algo_240222/src/solved/Bj_G4_17471_게리맨더링_another.java#L47-L46">Swea_1767_프로세서연결하기</a></td>
+    <td>여기에서 문제는 프로세서당 가능한 dir을 class에 넣어줘서 해결하는 것 <br>
+        그리고 temp_board를 마지막에 init_board(처음 받아온 것)으로 원복해주는 것</td>
+</tr>
+<tr>
+    <td rowspan="1">윈도우 슬라이싱</td> 
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_12891_DNA비밀번호.java">Bj_S2_12891_DNA비밀번호</a></td></a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_12891_DNA비밀번호.java">Bj_S2_12891_DNA비밀번호</a></td></a></td>
+    <td>슬라이싱에 대한 개념 외우기</td>
+</tr>
+<tr>
+    <td rowspan="1">Stack</td> 
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240205/src/fail/Bj_G5_2493_탑_Fail.java">Bj_G5_2493_탑_Fail</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240205/src/fail/Bj_G5_2493_탑_Fail.java">Bj_G5_2493_탑_Fail</a></td>
+    <td>순차적으로 된 형태?? 그걸 스택 형태로 빠르게 해결할 수 있는 방법 외우기</td>
+</tr>
+</tbody>
+</table>
+
 # 📚Algo Table
 [//]: # (<td colspan="2">내용</td>)
 
