@@ -74,9 +74,6 @@ public class Swea_5653_줄기세포배양 {
             while (time < k) {
                 time++;
                 go();
-//                System.out.println(time +"시간 후");
-//                print_board();
-//                print_not_die();
             }
             sb.append(not_die_cell.size()).append("\n");
         }
@@ -109,7 +106,7 @@ public class Swea_5653_줄기세포배양 {
         for (int d = 0; d < 4; d++) {
             int dy = cell.y + delta[d][0];
             int dx = cell.x + delta[d][1];
-            if (board[dy][dx] < cell.value && board[dy][dx] == 0) {
+            if (board[dy][dx] == 0) {
 //                System.out.println(dx+" "+ dy);
                 Cell new_cell = new Cell(dx, dy, cell.value, time+1);
                 board[dy][dx] = new_cell.value; // ???
@@ -152,9 +149,6 @@ public class Swea_5653_줄기세포배양 {
         for (int[] ints : board) {
             System.out.println(Arrays.toString(ints));
         }
-//        for (int i = board.length-1; i > 0; i--) {
-//            System.out.println(Arrays.toString(board[i]));
-//        }
         System.out.println();
     }
 }

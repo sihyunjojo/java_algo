@@ -4,127 +4,53 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-// dp 로 풀어보기?
+// 입구 도착 후 1분 뒤에 내려갈 수 있음
+// 계단 위에 동시 최대 3명까지만 가능
+// 이미 계단 3명 내려가고 있는 경우, 1명이 완전히 내려갈 때까지 계단입구에서 대기
 public class Solution {
     static StringBuilder sb = new StringBuilder();
-    static int[][] board, stairs;
-    static int[] temp_arr;
-    static ArrayList<int[]> persons;
-    static int n, res;
+    static int[] swim_prices, swim_plans, dp;
 
-    public static void main(String[] args) throws NumberFormatException, IOException {
-        System.setIn(new FileInputStream("InputFile/input2383.txt"));
+    public static void main(String[] args) throws IOException {
+        System.setIn(new FileInputStream("InputFile/input1952.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int tc = Integer.parseInt(br.readLine());
+        StringTokenizer st = null;
 
+        int tc = Integer.parseInt(br.readLine());
         for (int t = 1; t <= tc; t++) {
             sb.append("#").append(t).append(" ");
-            n = Integer.parseInt(br.readLine());
 
-            board = new int[n][n];
-            stairs = new int[2][2];
-            int stair_index = 0;
-            persons = new ArrayList<>();
-
-            for (int i = 0; i < n; i++) {
-                StringTokenizer st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < n; j++) {
-                    board[i][j] = Integer.parseInt(st.nextToken());
-                    if (board[i][j] > 1) {
-                        stairs[stair_index++] = new int[]{i, j};
-                    }
-                    if (board[i][j] == 1) persons.add(new int[]{i, j});
-                }
+            swim_prices = new int[4];
+            swim_plans = new int[13];
+            st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < 4; i++) {
+                swim_prices[i] = Integer.parseInt(st.nextToken());
             }
 
-            temp_arr = new int[persons.size()];
-            res = Integer.MAX_VALUE;
-            go();
-            sb.append(res+1).append("\n");
+            st = new StringTokenizer(br.readLine());
+            for (int i = 1; i <= 12; i++) {
+                swim_plans[i] = Integer.parseInt(st.nextToken());
+            }
+
+            dp = new int[13];
+            // 1월달
+            dp[1] = Math.min(swim_prices[1], swim_prices[0] * swim_plans[1]);
+            // 2월달
+            dp[2] = dp[1] + Math.min(swim_prices[1], swim_prices[0] * swim_plans[2]);
+//            3달부터 시작.
+            for (int i = 3; i <= 12; i++) {
+                // 우선 그 달의 한달과 하루 이용권을비교 + 이전달까지의 비용
+                int temp = dp[i - 1] + Math.min(swim_prices[1], swim_prices[0] * swim_plans[i]);
+                int three_price = dp[i - 3] + swim_prices[2];
+                dp[i] = Math.min(temp, three_price);
+            }
+
+
+            int res = Math.min(swim_prices[3], dp[12]);
+            System.out.println(t + " " + res);
+            System.out.println(Arrays.toString(dp));
+            sb.append(res).append("\n");
         }
         System.out.println(sb);
     }
-
-    static void go() {
-        powerset(0);
-    }
-
-    static void powerset(int count) {
-        if (count == persons.size()) {
-            int stair0 = count_time(0);
-            int stair1 = count_time(1);
-            int max = Math.max(stair1, stair0);
-            if (max < res) res = max;
-            return;
-        }
-        temp_arr[count] = 0;
-        powerset(count + 1);
-        temp_arr[count] = 1;
-        powerset(count + 1);
-    }
-
-    static int count_time(int stair) {
-        System.out.println("stair = " + stair);
-        System.out.println("temp = " + Arrays.toString(temp_arr));
-        int max_dis = 0;
-        ArrayList<Integer> person_stair_dis = new ArrayList<>();
-        for (int i = 0; i < temp_arr.length; i++) {
-            if (temp_arr[i] == stair) {
-                int dis = cal_dis(persons.get(i), stairs[stair]);
-                person_stair_dis.add(dis);
-                if (max_dis < dis) max_dis = dis;
-            }
-        }
-        Collections.sort(person_stair_dis);
-
-        int stair_time = board[stairs[stair][0]][stairs[stair][1]];
-        int time = 0;
-        int wait_people = 0;
-        int[] stair_people = new int[3];
-
-        while (true) {
-            time++;
-            // 기다리는 사람 있으면 계단에 사람들 보내줌.
-            // 앞에서 부터
-            for (int i = 0; i < 3; i++) {
-                if (stair_people[i] == 0 && wait_people > 0) {
-                    stair_people[i] = stair_time - 1;
-                    wait_people--;
-                } else if (stair_people[i] > 0) {
-                    stair_people[i]--;
-                }
-
-            }
-
-            // 그 시간이 되면 다들 기다리는 사람으로 해줌.
-            for (int i = 0; i < person_stair_dis.size(); i++) {
-                Integer person_dis = person_stair_dis.get(i);
-                if (person_dis == time) {
-                    wait_people++;
-                }
-            }
-
-            System.out.println("time = " + time);
-            System.out.println("wait = " + wait_people);
-            System.out.println("stair_people= " + Arrays.toString(stair_people));
-
-
-            int finish_flag = 0;
-            if (time > max_dis) {
-                for (int i = 0; i < 3; i++) {
-                    if (stair_people[i] == 0) {
-                        finish_flag++;
-                    }
-                }
-            }
-            if (finish_flag == 3) break;
-        }
-        System.out.println(time);
-        return time;
-    }
-
-    static int cal_dis(int[] a, int[] b) {
-        return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
-    }
-
 }

@@ -38,7 +38,9 @@ public class Swea_2383_점심식사시간 {
             }
 
             temp_arr = new int[persons.size()];
+
             res = Integer.MAX_VALUE;
+
             go();
             sb.append(res+1).append("\n");
         }
@@ -53,6 +55,7 @@ public class Swea_2383_점심식사시간 {
         if (count == persons.size()) {
             int stair0 = count_time(0);
             int stair1 = count_time(1);
+
             int max = Math.max(stair1, stair0);
             if (max < res) res = max;
             return;
@@ -64,10 +67,12 @@ public class Swea_2383_점심식사시간 {
     }
 
     static int count_time(int stair) {
-        System.out.println("stair = " + stair);
-        System.out.println("temp = " + Arrays.toString(temp_arr));
+//        System.out.println("stair = " + stair);
+//        System.out.println("temp = " + Arrays.toString(temp_arr));
+
         int max_dis = 0;
         ArrayList<Integer> person_stair_dis = new ArrayList<>();
+
         for (int i = 0; i < temp_arr.length; i++) {
             if (temp_arr[i] == stair) {
                 int dis = cal_dis(persons.get(i), stairs[stair]);
@@ -75,6 +80,7 @@ public class Swea_2383_점심식사시간 {
                 if (max_dis < dis) max_dis = dis;
             }
         }
+
         Collections.sort(person_stair_dis);
 
         int stair_time = board[stairs[stair][0]][stairs[stair][1]];
@@ -93,7 +99,6 @@ public class Swea_2383_점심식사시간 {
                 } else if (stair_people[i] > 0) {
                     stair_people[i]--;
                 }
-
             }
 
             // 그 시간이 되면 다들 기다리는 사람으로 해줌.

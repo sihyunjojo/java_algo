@@ -111,6 +111,7 @@ public class Swea_2115_벌꿀채취 {
         }
         return work <= c;
     }
+
     // 그 조합에 맞는 돈
     private static int cal_money() {
         int money = 0;

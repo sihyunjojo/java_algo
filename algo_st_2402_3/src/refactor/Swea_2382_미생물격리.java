@@ -29,17 +29,6 @@ public class Swea_2382_미생물격리 {
         }
 
         @Override
-        public String toString() {
-            return "Micro{" +
-                    "x=" + x +
-                    ", y=" + y +
-                    ", cnt=" + cnt +
-                    ", dir=" + dir +
-                    ", index=" + index +
-                    '}';
-        }
-
-        @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
@@ -55,6 +44,7 @@ public class Swea_2382_미생물격리 {
     static StringBuilder sb = new StringBuilder();
     static List<Micro> micros;
     static int n;
+
     public static void main(String[] args) throws IOException {
         System.setIn(new FileInputStream("inputFile/input2382.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -136,18 +126,6 @@ public class Swea_2382_미생물격리 {
             }
         }
     }
-
-//    static Micro mix(List<Micro> micros){
-//        micros.sort((o1, o2) -> -(o1.cnt - o2.cnt));
-//        Micro micro = micros.get(0);
-//        for (int i =1; i < micros.size(); i++){
-//            micro.cnt += micros.get(i).cnt;
-//            micro.index.addAll(micros.get(i).index);
-//            micro.aa.addAll(micros.get(i).aa);
-//        }
-//        return micro;
-//    }
-
     static void move(Micro m){
         switch (m.dir){
             case 1:
