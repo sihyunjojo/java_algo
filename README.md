@@ -44,7 +44,7 @@ Swea_d2_문제_이름_메모.java
         그리고 연결되어 있는지 체크할때, 리스트에 contains()되어 있는 값만 체크해서 cnt가 같으면 true를 똭!!!!!</td>
 </tr>
 <tr>
-    <td rowspan="1">Dfs</td> 
+    <td rowspan="1">DFS</td> 
     <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5PoOKKAPIDFAUq">Swea_1949_등산로조성</a></td>
     <td><a href="https://github.com/sihyunjojo/java_algo/blob/ff8df9426d87a6acc8ea793c2f8b7960948c8e4c/algo_st_2402_4/src/fail/Swea_1949_등산로조성_Best.java#L18">Swea_1949_등산로조성</a></td>
     <td>최고로 긴거니까 dfs를 사용.<br>
@@ -71,10 +71,12 @@ Swea_d2_문제_이름_메모.java
 </tr>
 <tr>
     <td rowspan="1">구현</td> 
-    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V1SYKAaUDFAWu">Swea_2112_보호필림</a></td>
-    <td><a href="https://github.com/sihyunjojo/java_algo/blob/ff8df9426d87a6acc8ea793c2f8b7960948c8e4c/algo_st_2402_4/src/solved/Swea_2112_보호필림.java">Swea_2112_보호필림</a></td>
-    <td>for문을 사용할 때, 다시 쓸것들을 반드시 초기화를 무조건 반드시 해줘야한다.<br>
-        temp_board를 원복해주는 것도 중요!! <br>
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV597vbqAH0DFAVl">Swea_2382_미생물격리</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/0297bca8cbb49240b60f33994393c6f78dd5ce66/algo_st_2402_3/src/refactor/Swea_2382_미생물격리.java#L12-L11">Swea_2382_미생물격리</a></td>
+    <td>문제의 한 단계 한 단계를 확실히 체크하고 가야한다.<br>
+        클래스로 미생물을 써서 dir을 함수로 편하게 관리하고, x와y를 정렬해주기 편하게 하면 좋음. <br>
+        뺄때 2중 for문에서 i--만 해주면 됨. <br>
+        equals 메서드는 웬만하면 재정의 하지말고, if문으로 하기 // 만약 할꺼면 remove나 기본 함수 쓸때 인자 class로 쓰는거 조심. </td>
 <tr>
 <tr>
     <td rowspan="1">구현</td> 
@@ -86,11 +88,46 @@ Swea_d2_문제_이름_메모.java
 <tr>
     <td rowspan="1">BFS</td> 
     <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5VwAr6APYDFAWu">Swea_2105_디저트카페</a></td>
-    <td><a href="">Swea_2105_디저트카페</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/60c59c9ce9805325bc386daa88274c88c5138fcb/algo_st_2402_5/src/Swea_2105_디저트카페_NotMy.java">Swea_2105_디저트카페</a></td>
     <td>대각선 bfs, 제발 그냥 for 전체를 전부 bfs로 해주면 편한문제.<br>
         init_x,init_y를 써서 초기 값을 인자로 넣어주는 문제.<br>
         리스트 관리를 잘해야하는 문제. <br>
         전체 디저트를 배열로 관리해서 거기에 이미 1이 들어있으면 리턴하게 해주면 편하개 풀 수 있는 문제</td>
+<tr>
+<tr>
+    <td rowspan="1">DFS</td> 
+    <td><a href="https://www.acmicpc.net/problem/3109">Bj_G2_3109_빵집</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/0297bca8cbb49240b60f33994393c6f78dd5ce66/algo_240229/src/again/Bj_G2_3109_빵집.java#L6-L5">Bj_G2_3109_빵집</a></td>
+    <td>문제를 잘 생각해서 이미 간 곳은 의미가 없으므로 visitied를 그냥 계속 두는는게 핵심인 문제.<br>
+        그리고 성공하면 하나씩 세는 문제는 return true;를 해주고 true이면 res++ 해주는게 좋다.</td>
+</tr>
+<tr>
+    <td rowspan="1">구현</td>
+    <td><a href="https://www.acmicpc.net/problem/15686">Bj_G5_15686_치킨배달</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/39fea4f9ea4910097fed9fc98a89b48a02609110/algo_240220/src/Bj_G5_15686_치킨배달.java#L10">Bj_G5_15686_치킨배달</a></td>
+    <td>치킨 집과 가정 집을 리스트로 둘 다 선언 (특정한 것은 리스트로 선언해서 어떻게 하면 조금 더 쉬울 지도?)<br>
+        순열과 조합은 코드 작성하고 잘 되는지 한번 출력해보고 넘어가자 <br>
+        bfs 돌리면서 가장 가까운 애들 찾아도 되지만, 그냥 치킨집과 가정집들 dis를 구해서 가장 작은거 해줘도 됨.</td>
+</tr>
+<tr>
+    <td rowspan="1">BFS</td>
+    <td><a href="https://www.acmicpc.net/problem/2636">Bj_G3_2636_치즈</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/1fb91e9ffa9804bab3f04fc006b99d80fbe7c4f0/algo_240220/src/again/Bj_G3_2636_치즈.java#L15-L14">Bj_G3_2636_치즈</a></td>
+    <td> 처음부터 해서 0을 BFS에 넣어주고 1인 부분은 지워만 주고 queue에는 넣지않는 기가막힌 방법을 쓰는 문제<br>
+        visited와 queue에 넣는 것을 너무 무의식적으로 당연하게 넣지는 말자.</td>
+</tr>
+<tr>
+    <td rowspan="1">BFS</td>
+    <td><a href="https://www.acmicpc.net/problem/4963">Bj_S2_4963_섬의개수</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/6f3d1bda3fe089ccd2ddbb1966816f37bd2b8f02/algo_240216/src/Bj_S2_4963_섬의개수.java#L11">Bj_S2_4963_섬의개수</a></td>
+    <td>for문으로 하면서 섬이면 거기서부터 bfs해서 다 바꿔주고 cnt를 추가하는 문제였지.</td>
+</tr>
+<tr>
+    <td rowspan="1">구현</td>
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do">Swea_2383_점심식사시간</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/0297bca8cbb49240b60f33994393c6f78dd5ce66/algo_240229/src/Swea_2383_점심식사시간.java#L14-L13">Swea_2383_점심식사시간</a></td>
+    <td> 부분 집합해서 마지막에 3명이 0이면 피니시 플래그를 바꿔주고 피니시 플래그가 3이면 break를 해주면 된다.</td>
+</tr>
 <tr>
     <td rowspan="1">윈도우 슬라이싱</td> 
     <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_12891_DNA비밀번호.java">Bj_S2_12891_DNA비밀번호</a></td></a></td>

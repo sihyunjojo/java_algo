@@ -50,11 +50,8 @@ public class Bj_G5_15686_치킨배달 {
             return;
         }
         for (int i = start; i < chicken.size(); i++) {
-            if (isused[i]) continue;
             tmp_chicken[count] = chicken.get(i);
-            isused[i] = true;
             go(count + 1, i + 1);
-            isused[i] = false;
         }
     }
 
