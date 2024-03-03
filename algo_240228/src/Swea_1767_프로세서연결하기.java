@@ -58,6 +58,7 @@ public class Swea_1767_프로세서연결하기 {
                     }
                 }
 
+                // 코어의 가능한 방향을 체크해주는 코드.
                 for (Core core : cores) {
                     int x = core.x;
                     int y = core.y;
@@ -77,10 +78,6 @@ public class Swea_1767_프로세서연결하기 {
                         core.dirs.add(d);
                     }
                 }
-
-//            for (Core core : cores) {
-//                System.out.println(core);
-//            }
                 go();
 
                 sb.append(res).append("\n");
@@ -141,10 +138,6 @@ public class Swea_1767_프로세서연결하기 {
             int dx = core.x + delta[temp_combi_dir_arr[i]][1];;
             while (check_size(dy,dx)){
                 if (temp_board[dy][dx] != 0){
-//                    System.out.println(dy+" " + dx);
-//                    System.out.println(cnt);
-//                    System.out.println(i);
-                    // 있어서는 안되는 경우 가장 큰 값으로 리턴함.
                     copy_board();
                     return Integer.MAX_VALUE;
                 }
@@ -156,10 +149,9 @@ public class Swea_1767_프로세서연결하기 {
                 dx += delta[temp_combi_dir_arr[i]][1];
             }
         }
-        copy_board();
+        copy_board(); // 여기서 시간이 좀 걸린 문제였지.. 그치그치 맞아맞아.
         return cnt;
     }// 우 우 상 하 하
-    // 3 3 0 1 1
 
     static void copy_board() {
         for (int i = 0; i < n; i++) {
@@ -180,5 +172,4 @@ public class Swea_1767_프로세서연결하기 {
         System.out.println();
     }
 }
-// 시간차이(ms) : 0.004948
-// 0.169830
+

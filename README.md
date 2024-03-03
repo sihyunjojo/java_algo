@@ -38,11 +38,59 @@ Swea_d2_문제_이름_메모.java
 </tr>
 <tr>
     <td rowspan="1">구현</td> 
-    <td><a href="https://www.acmicpc.net/problem/17471">Swea_1767_프로세서연결하기</a></td></a></td>
-    <td><a href="https://github.com/sihyunjojo/java_algo/blob/2e401c34b5955af7f95217b6953ab8a4d9b46fee/algo_240222/src/solved/Bj_G4_17471_게리맨더링_another.java#L47-L46">Swea_1767_프로세서연결하기</a></td>
-    <td>여기에서 문제는 프로세서당 가능한 dir을 class에 넣어줘서 해결하는 것 <br>
-        그리고 temp_board를 마지막에 init_board(처음 받아온 것)으로 원복해주는 것</td>
+    <td><a href="https://www.acmicpc.net/problem/17471">Bj_G4_17471_게리맨더링</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/2e401c34b5955af7f95217b6953ab8a4d9b46fee/algo_240222/src/solved/Bj_G4_17471_게리맨더링_another.java#L47-L46">Bj_G4_17471_게리맨더링</a></td>
+    <td>순열이나 부분집합으로 01로 짠 후에 1이면 a에 넣고 0이면 b에 넣는 방식으로 구현.<br>
+        그리고 연결되어 있는지 체크할때, 리스트에 contains()되어 있는 값만 체크해서 cnt가 같으면 true를 똭!!!!!</td>
 </tr>
+<tr>
+    <td rowspan="1">Dfs</td> 
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5PoOKKAPIDFAUq">Swea_1949_등산로조성</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/ff8df9426d87a6acc8ea793c2f8b7960948c8e4c/algo_st_2402_4/src/fail/Swea_1949_등산로조성_Best.java#L18">Swea_1949_등산로조성</a></td>
+    <td>최고로 긴거니까 dfs를 사용.<br>
+        그리고 dfs에서 부쉇는지 check하는 인자를 넣어서 부술 수 있는 경우의 수를 체크!!</td>
+</tr>
+<tr>
+    <td rowspan="1">구현</td> 
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V4A46AdIDFAWu">Swea_2115_벌꿀채취</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/ff8df9426d87a6acc8ea793c2f8b7960948c8e4c/algo_st_2402_4/src/fail/Swea_2115_벌꿀채취.java">Swea_2115_벌꿀채취</a></td>
+    <td> 제곱 값을 비교할 때, 그냥 원래 값이 큰거랑 제곱 값이 큰거랑 다른거여서 확실하게 최종적으로 제곱 값을 비교를 해줘야하는 문제.</td>
+</tr>
+<tr>
+    <td rowspan="1">BFS</td> 
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V61LqAf8DFAWu">Swea_2117_홈방범서비스</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/ff8df9426d87a6acc8ea793c2f8b7960948c8e4c/algo_st_2402_4/src/solved/Swea_2117_홈방범서비스.java#L37">Swea_2117_홈방범서비스</a></td>
+    <td>index = n+1; 이걸 안해서 고민을 했던 문제. +1 을 안하면 모서리가 체크가 안됨.<br></td>
+</tr>
+<tr>
+    <td rowspan="1">BFS</td>
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRJ8EKe48DFAUo">Swea_5653_줄기세포배양</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/0297bca8cbb49240b60f33994393c6f78dd5ce66/algo_st_2402_3/src/Swea_5653_줄기세포배양.java#L14">Swea_5653_줄기세포배양</a></td>
+    <td>살아 있는 세포를 List로 관리하고 1. 죽은 세포는 빼주고 2. 그 리스트를 value로 내림차순 정렬을 해주는 거야.<br>
+        board에 값 추가해주고, 그 값이 0이 아니면 안해주고 0만 해주는 걸로.</td>
+</tr>
+<tr>
+    <td rowspan="1">구현</td> 
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V1SYKAaUDFAWu">Swea_2112_보호필림</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/ff8df9426d87a6acc8ea793c2f8b7960948c8e4c/algo_st_2402_4/src/solved/Swea_2112_보호필림.java">Swea_2112_보호필림</a></td>
+    <td>for문을 사용할 때, 다시 쓸것들을 반드시 초기화를 무조건 반드시 해줘야한다.<br>
+        temp_board를 원복해주는 것도 중요!! <br>
+<tr>
+<tr>
+    <td rowspan="1">구현</td> 
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V1SYKAaUDFAWu">Swea_2112_보호필림</a></td>
+    <td><a href="https://github.com/sihyunjojo/java_algo/blob/ff8df9426d87a6acc8ea793c2f8b7960948c8e4c/algo_st_2402_4/src/solved/Swea_2112_보호필림.java">Swea_2112_보호필림</a></td>
+    <td>for문을 사용할 때, 다시 쓸것들을 반드시 초기화를 무조건 반드시 해줘야한다.<br>
+        temp_board를 원복해주는 것도 중요!! <br>
+<tr>
+<tr>
+    <td rowspan="1">BFS</td> 
+    <td><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5VwAr6APYDFAWu">Swea_2105_디저트카페</a></td>
+    <td><a href="">Swea_2105_디저트카페</a></td>
+    <td>대각선 bfs, 제발 그냥 for 전체를 전부 bfs로 해주면 편한문제.<br>
+        init_x,init_y를 써서 초기 값을 인자로 넣어주는 문제.<br>
+        리스트 관리를 잘해야하는 문제. <br>
+        전체 디저트를 배열로 관리해서 거기에 이미 1이 들어있으면 리턴하게 해주면 편하개 풀 수 있는 문제</td>
 <tr>
     <td rowspan="1">윈도우 슬라이싱</td> 
     <td><a href="https://github.com/sihyunjojo/java_algo/blob/main/algo_240201/src/Bj_S2_12891_DNA비밀번호.java">Bj_S2_12891_DNA비밀번호</a></td></a></td>
