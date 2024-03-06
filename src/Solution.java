@@ -11,65 +11,15 @@ import java.util.stream.Collectors;
 public class Solution {
     static StringBuilder sb = new StringBuilder();
     static int n, res;
-    static int[][] board;
-    static boolean[][] isvisited;
-    static int[] ;
-    static int[][] delta = new int[][]{{1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
-
     public static void main(String[] args) throws IOException {
         System.setIn(new FileInputStream("InputFile/input2105.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
         int tc = Integer.parseInt(br.readLine());
-        for (int t = 1; t <= tc; t++) {
-            System.out.println("===================="+t);
-            sb.append("#").append(t).append(" ");
-
-            n = Integer.parseInt(br.readLine());
-            board = new int[n][n];
-
-            for (int i = 0; i < n; i++) {
-                st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < n; j++) {
-                    board[i][j] = Integer.parseInt(st.nextToken());
-                }
-            }
-
-
-            res = -1;
-            isvisited = new boolean[n][n];
-
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-
-                    isvisited[i][j] = true;
-                    dfs(i,j,i,j);
-                    isvisited[i][j] = false;
-                }
-            }
-
-            sb.append(res).append("\n");
-        }
+//        for (int t = 1; t <= tc; t++) {
+//
+//        }
         System.out.println(sb);
-    }
-
-    static void dfs(int y, int x,int init_y, int init_x,int del) {
-        if (y == init_y && x == init_x && del == 3){
-        }
-        for (int d = 0; d <4; d++){
-            int dy = y + delta[d][0];
-            int dx = x + delta[d][1];
-            if (check_size(y,x) && !isvisited[dy][dx]){
-                isvisited[dy][dx] = true;
-                dfs(dy,dx,init_y,init_x,d);
-                isvisited[dy][dx] = false;
-            }
-
-        }
-    }
-
-    static boolean check_size(int y, int x) {
-        return 0 <= y && y < n && 0 <= x && x < n;
     }
 }

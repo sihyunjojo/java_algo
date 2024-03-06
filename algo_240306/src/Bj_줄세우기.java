@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 
-public class Main {
+public class Bj_줄세우기 {
     static int[] arr;
     static int n,m,res;
 

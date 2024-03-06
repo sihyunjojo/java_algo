@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 
-public class Main {
+public class Bj_음악프로그램 {
     static int[] arr;
     static int n,m,res;
 
@@ -25,10 +25,15 @@ public class Main {
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
-            int from = Integer.parseInt(st.nextToken());
-            int to = Integer.parseInt(st.nextToken());
-            arr[from].add(to);
-            arr_depth[to]++;
+            int num = Integer.parseInt(st.nextToken());
+            int[] tmp_arr = new int[num];
+            for (int j = 0; j < num; j++) {
+                tmp_arr[j] = Integer.parseInt(st.nextToken());
+            }
+            for (int j = 0; j < num-1; j++){
+                arr[tmp_arr[j]].add(tmp_arr[j+1]);
+                arr_depth[tmp_arr[j+1]]++;
+            }
         }
 
         Queue<Integer> q = new ArrayDeque<>();
@@ -58,7 +63,7 @@ public class Main {
 
         if (n == res.size()) {
             for (Integer re : res) {
-                System.out.printf(re + " ");
+                System.out.println(re);
             }
         }else System.out.println(0);
     }
