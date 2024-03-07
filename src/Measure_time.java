@@ -12,6 +12,6 @@ public class Measure_time{
         long elapsedTime  = endTime - startTime;
 
         System.out.println();
-        System.out.printf("시간차이(ms) : %f", elapsedTime * 1e-9);
+        System.out.printf("시간차이(s) : %f", elapsedTime * 1e-9);
     }
 }
