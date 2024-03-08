@@ -1,0 +1,5 @@
+public class Bj_G2_19236_청소년상어 {
+    public static void main(String[] args) {
+
+    }
+}

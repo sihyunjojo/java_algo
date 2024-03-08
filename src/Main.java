@@ -5,62 +5,120 @@ import java.util.*;
 
 
 public class Main {
+    static class Fish{
+        int x,y,index,dir;
+
+        public Fish(int y, int x, int index, int dir) {
+            this.x = x;
+            this.y = y;
+            this.index = index;
+            this.dir = dir;
+        }
+    }
     static int[] arr;
     static int n,m,res;
-
-
+    static Fish[][] board;
+    static int[][] delta = new int[][] {{-1,0},{-1,-1},{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1}};
+    static PriorityQueue<Fish> fishs;
+    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
 
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-
-        ArrayList<Integer>[] arr = new ArrayList[n+1];
-        int[] arr_depth = new int[n+1];
-
-        for (int i = 0; i <= n; i++) {
-            arr[i] = new ArrayList<>();
-        }
-
-        for (int i = 0; i < m; i++) {
+        board = new Fish[4][4];
+        fishs = new PriorityQueue<>(Comparator.comparingInt(f -> f.index));
+        for (int i = 0; i < 4; i++) {
             st = new StringTokenizer(br.readLine());
-            int from = Integer.parseInt(st.nextToken());
-            int to = Integer.parseInt(st.nextToken());
-            arr[from].add(to);
-            arr_depth[to]++;
-        }
+            for (int j = 0; j < 4; j++) {
+                int index = Integer.parseInt(st.nextToken());
+                int dir = Integer.parseInt(st.nextToken());
+                Fish fish = new Fish(i, j, index, dir);
 
-        Queue<Integer> q = new ArrayDeque<>();
-        boolean[] isvisited = new boolean[n+1];
-        ArrayList<Integer> res = new ArrayList<>();
-
-        for (int i = 1; i < n+1; i++){
-            if (arr_depth[i] == 0){
-                q.add(i);
-                isvisited[i] = true;
-                res.add(i);
+                fishs.add(fish);
+                board[i][j] = fish;
             }
         }
 
-        while (!q.isEmpty()){
-            Integer poll = q.poll();
-            for (int i = 0; i < arr[poll].size(); i++) {
-                Integer now = arr[poll].get(i);
-                arr_depth[now] -= 1;
-                if (arr_depth[now] == 0){
-                    q.add(now);
-                    isvisited[now] = true;
-                    res.add(now);
-                }
-            }
-        }
+        res = 0;
+        // y,x,sum(index)
+        go(0,0, board[0][0].dir, board[0][0].index);
+        dfs(0,0, board[0][0].dir, board[0][0].index);
 
-        if (n == res.size()) {
-            for (Integer re : res) {
-                System.out.printf(re + " ");
-            }
-        }else System.out.println(0);
+        System.out.println(res);
     }
+    static void move_fishs(){
+        for (Fish fish : fishs) {
+            move_fish(fish);
+        }
+    }
+    // 물고기 이동
+    static void move_fish(Fish fish){
+        int dy = fish.y;
+        int dx = fish.x;
+        int dir = fish.dir;
+
+        loop:
+        for (int i = 0; i < 8; i++) {
+            dir = (fish.dir++) % 8;
+
+            int move_y = delta[dir][0];
+            int move_x = delta[dir][1];
+
+            dy += move_y;
+            dx += move_x;
+
+            // 다른 거라도 하는게 이득이므로 그냥 return해줘도 됨.
+            if (board[dy][dx] == null) break loop;
+            if (board[dy][dx].index > 0) break loop;
+
+            if(i == 7){
+                return;
+            }
+
+            dy = fish.y;
+            dx = fish.x;
+        }
+
+        Fish fish1 = board[dy][dx];
+        fish1.y = fish.y;
+        fish1.x = fish.x;
+
+        board[fish.y][fish.x] = fish1;
+
+        fish.y = dy;
+        fish.x = dx;
+        fish.dir = dir;
+
+        board[dy][dx] = fish;
+
+    }
+    // 상어 이동
+    static void dfs(int y, int x, int dir, int ans){
+        // 갈 곳이 없으면
+        int move_y = delta[dir][0];
+        int move_x = delta[dir][1];
+
+        int dy = y + move_y;
+        int dx = x + move_x;
+
+        while (!check_size(dy,dx)){
+            // 다른 거라도 하는게 이득이므로 그냥 return해줘도 됨.
+            if (board[dy][dx] == null) return;
+            Fish tmp_fish = board[dy][dx];
+
+            board[dy][dx] = null;
+            dfs(dy, dx, board[dy][dx].dir, ans + board[dy][dx].index);
+            board[dy][dx] = tmp_fish;
+
+            dy += move_y;
+            dx += move_x;
+        }
+    }
+
+    static boolean check_size(int y, int x){
+        return 0 <= x && x < 4 && 0 <= y && y < 4;
+    }
+
+
 }
 

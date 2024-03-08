@@ -2,31 +2,32 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/algo_240130/algo_240130.iml" filepath="$PROJECT_DIR$/algo_240130/algo_240130.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240131/algo_240131.iml" filepath="$PROJECT_DIR$/algo_240131/algo_240131.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240201/algo_240201.iml" filepath="$PROJECT_DIR$/algo_240201/algo_240201.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240202/algo_240202.iml" filepath="$PROJECT_DIR$/algo_240202/algo_240202.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240205/algo_240205.iml" filepath="$PROJECT_DIR$/algo_240205/algo_240205.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240206/algo_240206.iml" filepath="$PROJECT_DIR$/algo_240206/algo_240206.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240207/algo_240207.iml" filepath="$PROJECT_DIR$/algo_240207/algo_240207.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240209/algo_240209.iml" filepath="$PROJECT_DIR$/algo_240209/algo_240209.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240213/algo_240213.iml" filepath="$PROJECT_DIR$/algo_240213/algo_240213.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240214/algo_240214.iml" filepath="$PROJECT_DIR$/algo_240214/algo_240214.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240215/algo_240215.iml" filepath="$PROJECT_DIR$/algo_240215/algo_240215.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240216/algo_240216.iml" filepath="$PROJECT_DIR$/algo_240216/algo_240216.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240220/algo_240220.iml" filepath="$PROJECT_DIR$/algo_240220/algo_240220.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240221/algo_240221.iml" filepath="$PROJECT_DIR$/algo_240221/algo_240221.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240222/algo_240222.iml" filepath="$PROJECT_DIR$/algo_240222/algo_240222.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240223/algo_240223.iml" filepath="$PROJECT_DIR$/algo_240223/algo_240223.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240227/algo_240227.iml" filepath="$PROJECT_DIR$/algo_240227/algo_240227.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240228/algo_240228.iml" filepath="$PROJECT_DIR$/algo_240228/algo_240228.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240229/algo_240229.iml" filepath="$PROJECT_DIR$/algo_240229/algo_240229.iml" />
-      <module fileurl="file://$PROJECT_DIR$/algo_240306/algo_240306.iml" filepath="$PROJECT_DIR$/algo_240306/algo_240306.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240130/algo_240130.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240130/algo_240130.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240131/algo_240131.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240131/algo_240131.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240201/algo_240201.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240201/algo_240201.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240202/algo_240202.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240202/algo_240202.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240205/algo_240205.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240205/algo_240205.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240206/algo_240206.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240206/algo_240206.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240207/algo_240207.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240207/algo_240207.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240209/algo_240209.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240209/algo_240209.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240213/algo_240213.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240213/algo_240213.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240214/algo_240214.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240214/algo_240214.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240215/algo_240215.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240215/algo_240215.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240216/algo_240216.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240216/algo_240216.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240220/algo_240220.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240220/algo_240220.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240221/algo_240221.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240221/algo_240221.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240222/algo_240222.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240222/algo_240222.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240223/algo_240223.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240223/algo_240223.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240227/algo_240227.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240227/algo_240227.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240228/algo_240228.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240228/algo_240228.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240229/algo_240229.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240229/algo_240229.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_daily/algo_240306/algo_240306.iml" filepath="$PROJECT_DIR$/algo_daily/algo_240306/algo_240306.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_hw/algo_hw.iml" filepath="$PROJECT_DIR$/algo_hw/algo_hw.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_month_test/algo_month_test.iml" filepath="$PROJECT_DIR$/algo_month_test/algo_month_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_st_2402_3/algo_st_2402_3.iml" filepath="$PROJECT_DIR$/algo_st_2402_3/algo_st_2402_3.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_st_2402_4/algo_st_2402_4.iml" filepath="$PROJECT_DIR$/algo_st_2402_4/algo_st_2402_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_st_2402_5/algo_st_2402_5.iml" filepath="$PROJECT_DIR$/algo_st_2402_5/algo_st_2402_5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algo_week_240302/algo_week_240302.iml" filepath="$PROJECT_DIR$/algo_week_240302/algo_week_240302.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_week_test/algo_week_test.iml" filepath="$PROJECT_DIR$/algo_week_test/algo_week_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java_algo.iml" filepath="$PROJECT_DIR$/.idea/java_algo.iml" />
       <module fileurl="file://$PROJECT_DIR$/time/time.iml" filepath="$PROJECT_DIR$/time/time.iml" />
