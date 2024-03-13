@@ -104,8 +104,7 @@ public class Bj_G4_14502_연구소 {
                 }
             }
         }
-//        Point{x=4, y=0, index=4}
-//        Point{x=3, y=1, index=13}
+
         res = cnt;
     }
 
