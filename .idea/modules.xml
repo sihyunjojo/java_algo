@@ -28,12 +28,8 @@
       <module fileurl="file://$PROJECT_DIR$/algo_study/algo_st_2402_4/algo_st_2402_4.iml" filepath="$PROJECT_DIR$/algo_study/algo_st_2402_4/algo_st_2402_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_study/algo_st_2402_5/algo_st_2402_5.iml" filepath="$PROJECT_DIR$/algo_study/algo_st_2402_5/algo_st_2402_5.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_week_240302/algo_week_240302.iml" filepath="$PROJECT_DIR$/algo_week_240302/algo_week_240302.iml" />
-<<<<<<< Updated upstream
-      <module fileurl="file://$PROJECT_DIR$/algo_test/algo_week_test/algo_week_test.iml" filepath="$PROJECT_DIR$/algo_test/algo_week_test/algo_week_test.iml" />
-=======
       <module fileurl="file://$PROJECT_DIR$/algo_week_240303/algo_week_240303.iml" filepath="$PROJECT_DIR$/algo_week_240303/algo_week_240303.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo_week_test/algo_week_test.iml" filepath="$PROJECT_DIR$/algo_week_test/algo_week_test.iml" />
->>>>>>> Stashed changes
       <module fileurl="file://$PROJECT_DIR$/.idea/java_algo.iml" filepath="$PROJECT_DIR$/.idea/java_algo.iml" />
       <module fileurl="file://$PROJECT_DIR$/time/time.iml" filepath="$PROJECT_DIR$/time/time.iml" />
     </modules>
