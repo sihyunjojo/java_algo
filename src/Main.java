@@ -5,6 +5,25 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
+<<<<<<< Updated upstream
+=======
+    static class Fish{
+        int x,y,index,dir;
+
+        public Fish(int y, int x, int index, int dir) {
+            this.x = x;
+            this.y = y;
+            this.index = index;
+            this.dir = dir;
+        }
+    }
+
+    static int[] arr;
+    static int n,m,res;
+    static Fish[][] board;
+    static int[][] delta = new int[][] {{-1,0},{-1,-1},{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1}};
+    static PriorityQueue<Fish> fishs;
+>>>>>>> Stashed changes
     static StringBuilder sb = new StringBuilder();
     static int res,k,n;
     static int[] dp;
@@ -48,6 +67,14 @@ public class Main {
                 q.add(new int[] {poll[0] * 2, poll[1]});
             }
         }
+<<<<<<< Updated upstream
+=======
+
+        res = 0;
+        dfs(0,0, board[0][0].dir, board[0][0].index);
+
+        System.out.println(res);
+>>>>>>> Stashed changes
     }
     static void dfs(int x, int ans){
         if (dp[x] <= ans) return;
