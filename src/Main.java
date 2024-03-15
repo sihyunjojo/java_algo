@@ -17,25 +17,82 @@ public class Main {
         n = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
 
-        ArrayDeque<Integer> q = new ArrayDeque<>();
+        LinkedList<Integer> arr = new LinkedList<>();
 
-        for (int i = 0; i < n; i++){
-            q.add(i+1);
-        }
+        // 1,2,3,4,5 ~
+//        for (int i = n; i > 0; i--){
+//            arr.add(i);
+//        }
 
-        System.out.println(q);
+        System.out.println(arr);
 
-        for (int i = 0; i < n; i++) {
+        int one_index = 0;
+        int two_index = 1;
+        int last_index = n-1;
+
+        for (int i = n; i > 0; i--) {
             int num = Integer.parseInt(st.nextToken());
             switch (num){
                 case 1:
+                    arr.set(one_index,i);
+                    one_index++;
+                    two_index++;
                     break;
                 case 2:
+                    arr.set(two_index,i);
+                    two_index++;
                     break;
                 default:
+                    arr.set(last_index,i);
+                    last_index--;
                     break;
             }
         }
+        System.out.println(arr);
+
+        // 한칸씩 다 밀림
+
+        // 1의 경우도 ++
+        // 대신 2도 ++ 해줘야함.
+
+        // 2의 경우는
+        // 2번째 넣은거 ++
+        // 3은 바닥에서 --
+        // 1은
+
+//        1,2,3,4,5
+
+        // 2 3 3 2 1 을 했다.
+        // 그럼 (위) 1 5 2 3 4 가 순서대로 나온다.
+        // 바닥 -> 맨 위
+        // 바닥 -> 맨 위서 2번째
+        // 바닥 -> 바닥
+
+        // 1 5 2 3 4
+
+        // 1 2 3 3 2
+
+        // 1 2 3 4 5
+
+        // 5 4 3 2 1
+        // 1 1 1 1 1
+
+        //
+
+        // 5 4 3 2 1
+        // 2 3 3 2 1
+
+        //    5 4
+        // 1 2 3 4 5
+        // 1 2 3 3 2
+
+        // 1 2 5 3 4
+
+//        index 위치 기억?
+
+        //  1  5  2  3  4
+        //   5  2  3  4
+
 
 
     }
