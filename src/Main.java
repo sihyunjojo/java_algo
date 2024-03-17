@@ -17,6 +17,7 @@ public class Main {
         n = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
 
+<<<<<<< Updated upstream
         LinkedList<Integer> arr = new LinkedList<>();
 
         // 1,2,3,4,5 ~
@@ -45,8 +46,32 @@ public class Main {
                 default:
                     arr.set(last_index,i);
                     last_index--;
+=======
+        int[] arr = new int[n];
+
+        int last = n-1;
+        int first = 0;
+        int second = 1;
+
+        for (int i = n; i >= 1; i--) {
+            int num = Integer.parseInt(st.nextToken());
+            switch (num){
+                case 1:
+                    arr[first] = i;
+                    second++;
+                    first = second-1;
+                    break;
+                case 2:
+                    arr[second] = i;
+                    second++;
+                    break;
+                default:
+                    arr[last] = i;
+                    last--;
+>>>>>>> Stashed changes
                     break;
             }
+//            System.out.println(list);
         }
         System.out.println(arr);
 
@@ -94,6 +119,12 @@ public class Main {
         //   5  2  3  4
 
 
+        StringBuilder sb = new StringBuilder();
+
+        for (int i= 0; i < n; i++) {
+            sb.append(arr[i]).append(" ");
+        }
+        System.out.println(sb);
 
     }
 }
