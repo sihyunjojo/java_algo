@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-// 너무너무너무너무너무 어려움
 public class Main {
     static StringBuilder sb = new StringBuilder();
 
@@ -23,30 +22,41 @@ public class Main {
 
         Arrays.sort(arr);
 
-        System.out.println(Arrays.toString(arr));
+        // 무조건 -1 이랑 +1해주는게 조은가?
+        int left = -1;
+        int right = arr[n - 1] + 1;
 
-        int left = 0;
-        int right = arr[n-1];
-
-        while (left < right){
+        while (left < right) {
             int mid = (left + right) / 2;
+//            System.out.println("mid = " + mid);
+            int sum = 0;
+            int i = 0; int j = 1;
 
-            int sum = n-1;
-
-            for (int i = 0; i < n - 1; i++) {
-                sum -= (arr[i+1] - arr[i] - 1) / mid;
+            while (true) {
+//                System.out.println("I" + i + "j " + j);
+                if (arr[j] - arr[i]  >= mid){
+                    i = j;
+                    j = i + 1;
+                    sum++;
+                } else {
+                    j++;
+                }
+                if (j == n) break;
             }
-            System.out.println("sum = "+sum);
 
-            if (sum < m-1) {
-                left = mid +1;
+//            System.out.println("sum = " + sum);
+
+            if (sum >= m-1) {
+                // 이거는 고정을 한데.
+                left = mid + 1;
             } else {
                 right = mid;
             }
-            System.out.println("mid = " + mid);
+
+//            System.out.println("left = " + left);
+//            System.out.println("right = " + right);
         }
 
-        System.out.println(left);
-
+        System.out.println(right-1);
     }
 }
