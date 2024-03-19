@@ -7,56 +7,56 @@ import java.util.*;
 
 public class Main {
     static StringBuilder sb = new StringBuilder();
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
 
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(br.readLine());
+        int m = Integer.parseInt(br.readLine());
 
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(br.readLine());
+        long[][] graph = new long[n+1][n+1];
+        int a = 0;
+        for (long[] line : graph) {
+            Arrays.fill(line,Integer.MAX_VALUE);
+            graph[a][a++] = 0;
         }
 
-        Arrays.sort(arr);
+        for (long[] ints : graph) {
+            System.out.println(Arrays.toString(ints));
+        }
+        for (int i = 0; i < m; i++){
+            st = new StringTokenizer(br.readLine());
+            int from = Integer.parseInt(st.nextToken());
+            int to = Integer.parseInt(st.nextToken());
+            int w = Integer.parseInt(st.nextToken());
 
-        // 무조건 -1 이랑 +1해주는게 조은가?
-        int left = -1;
-        int right = arr[n - 1] + 1;
+            if (graph[from][to] > w){
+                graph[from][to] = w;
+            }
+        }
 
-        while (left < right) {
-            int mid = (left + right) / 2;
-//            System.out.println("mid = " + mid);
-            int sum = 0;
-            int i = 0; int j = 1;
-
-            while (true) {
-//                System.out.println("I" + i + "j " + j);
-                if (arr[j] - arr[i]  >= mid){
-                    i = j;
-                    j = i + 1;
-                    sum++;
-                } else {
-                    j++;
+        // 중간 점
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                for (int k = 1; k <= n; k++) {
+                    graph[j][k] = Math.min(graph[j][k], graph[j][i] + graph[i][k]);
                 }
-                if (j == n) break;
             }
-
-//            System.out.println("sum = " + sum);
-
-            if (sum >= m-1) {
-                // 이거는 고정을 한데.
-                left = mid + 1;
-            } else {
-                right = mid;
-            }
-
-//            System.out.println("left = " + left);
-//            System.out.println("right = " + right);
         }
 
-        System.out.println(right-1);
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (Integer.MAX_VALUE == graph[i][j]) {
+                    System.out.println(0 + " ");
+                    continue;
+                }
+                System.out.print(graph[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+
+
     }
 }
