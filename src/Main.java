@@ -1,5 +1,3 @@
-import javax.swing.text.html.ListView;
-import java.awt.desktop.QuitEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,6 +5,11 @@ import java.util.*;
 
 public class Main {
     static StringBuilder sb = new StringBuilder();
+<<<<<<< HEAD
+=======
+    static int res;
+
+>>>>>>> 0d8e12514b23cfeb4c062ca5d119a64cd8241216
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -14,6 +17,7 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         int m = Integer.parseInt(br.readLine());
 
+<<<<<<< HEAD
         long[][] graph = new long[n+1][n+1];
         int a = 0;
         for (long[] line : graph) {
@@ -58,5 +62,13 @@ public class Main {
 
 
 
+=======
+        int[] arr = new int[n];
+        for (int i = 0 ; i < n; i++){
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+
+
+>>>>>>> 0d8e12514b23cfeb4c062ca5d119a64cd8241216
     }
 }
