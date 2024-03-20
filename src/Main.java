@@ -5,70 +5,48 @@ import java.util.*;
 
 public class Main {
     static StringBuilder sb = new StringBuilder();
-<<<<<<< HEAD
-=======
-    static int res;
+    static int[] arr;
 
->>>>>>> 0d8e12514b23cfeb4c062ca5d119a64cd8241216
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int n = Integer.parseInt(br.readLine());
-        int m = Integer.parseInt(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
-<<<<<<< HEAD
-        long[][] graph = new long[n+1][n+1];
-        int a = 0;
-        for (long[] line : graph) {
-            Arrays.fill(line,Integer.MAX_VALUE);
-            graph[a][a++] = 0;
+        arr = new int[n+1];
+        for (int i = 0; i <= n; i++) {
+            arr[i] = i;
         }
 
-        for (long[] ints : graph) {
-            System.out.println(Arrays.toString(ints));
-        }
-        for (int i = 0; i < m; i++){
+        for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
-            int from = Integer.parseInt(st.nextToken());
-            int to = Integer.parseInt(st.nextToken());
-            int w = Integer.parseInt(st.nextToken());
+            int command = Integer.parseInt(st.nextToken());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
 
-            if (graph[from][to] > w){
-                graph[from][to] = w;
+            switch (command){
+                case 0:
+                    union(a,b);
+                    break;
+                default:
+                    System.out.println(checkUnion(a,b));
+                    break;
             }
         }
 
-        // 중간 점
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                for (int k = 1; k <= n; k++) {
-                    graph[j][k] = Math.min(graph[j][k], graph[j][i] + graph[i][k]);
-                }
-            }
-        }
+    }
 
-
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (Integer.MAX_VALUE == graph[i][j]) {
-                    System.out.println(0 + " ");
-                    continue;
-                }
-                System.out.print(graph[i][j] + " ");
-            }
-            System.out.println();
-        }
-
-
-
-=======
-        int[] arr = new int[n];
-        for (int i = 0 ; i < n; i++){
-            arr[i] = Integer.parseInt(br.readLine());
-        }
-
-
->>>>>>> 0d8e12514b23cfeb4c062ca5d119a64cd8241216
+    private static void union(int a, int b) {
+        a = find(a);
+        b = find(b);
+    }
+    private static int find(int a) {
+        if (arr[a] == a) return a;
+        return find(arr[a]);
+    }
+    private static String checkUnion(int a, int b) {
+        if ()
+        return null;
     }
 }
