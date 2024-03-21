@@ -33,6 +33,7 @@
       <module fileurl="file://$PROJECT_DIR$/algo_week_test/algo_week_test.iml" filepath="$PROJECT_DIR$/algo_week_test/algo_week_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java_algo.iml" filepath="$PROJECT_DIR$/.idea/java_algo.iml" />
       <module fileurl="file://$PROJECT_DIR$/time/time.iml" filepath="$PROJECT_DIR$/time/time.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unsolved_algo/unsolved_algo.iml" filepath="$PROJECT_DIR$/unsolved_algo/unsolved_algo.iml" />
     </modules>
   </component>
 </project>
