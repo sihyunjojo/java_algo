@@ -5,30 +5,64 @@ import java.util.*;
 
 public class Main {
     static StringBuilder sb = new StringBuilder();
-    static int res;
-
+    static int size;
+    static boolean[] isvisited;
+    static String[] split;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        String s = br.readLine();
+        int n = Integer.parseInt(br.readLine());
+        for (int i = 0; i < n; i++) {
+            String s = br.readLine();
+            split = s.split("");
+            Arrays.sort(split);
+            isvisited = new boolean[split.length];
 
-
-
-        int[] table = new int[s.length()];
-        int j = 0;
-
-
-        for (int i = 1; i < s.length(); i++) {
-            while (j > 0 && s.charAt(i) != s.charAt(j)) {
-                j = table[j-1]; // 이전 테이블 값 가져오면서 그
-            }
-            if(s.charAt(i) == s.charAt(j)){
-                j += 1; // j는 1을 증가해서 다음 반복문에서 비교할 변수 준비 (+1 과 마지막을 비교해야하니)
-                table[i] = j; // j는 위에서 1을 증가시켜줘야지 인덱스 + 1이므로 개수가 들어간다.
+            String[] tmp_arr = new String[split.length];
+            madePermutation(0, tmp_arr);
+        }
+        System.out.println(sb);
+    }
+    static void madePermutation(int cnt, String[] arr) {
+        if(cnt == split.length) {
+            for (int i = 0; i < arr.length; i++) {
+                sb.append(arr[i]);
+            }sb.append("\n");
+            return;
+        }
+        int duplication = 0;
+        for (int i =0; i < split.length; i++) {
+            if(!isvisited[i]) {
+                // 다음 차례랑 비교해서 같다면 다음으로 넘김
+                if(duplication == split[i].charAt(0)) continue;
+                arr[cnt] = split[i];
+                isvisited[i] = true;
+                madePermutation(cnt+1, arr);
+                isvisited[i] = false;
+                duplication = split[i].charAt(0);
             }
         }
-
-        System.out.println(Arrays.toString(table));
     }
+
+//    static void madePermutation(int cnt, String[] arr) {
+//        if(cnt == size) {
+//            for (int i = 0; i < arr.length; i++) {
+//                sb.append(arr[i]).append(" ");
+//            }sb.append("\n");
+//            return;
+//        }
+//        int duplication = 0;
+//        for (int i =0; i < split.length; i++) {
+//            if(!isvisited[i]) {
+//                // 다음 차례랑 비교해서 같다면 다음으로 넘김
+//                if(duplication == split[i].charAt(0)) continue;
+//                arr[cnt] = split[i];
+//                isvisited[i] = true;
+//                madePermutation(cnt+1, arr);
+//                isvisited[i] = false;
+//                duplication = split[i].charAt(0);
+//            }
+//        }
+//    }
 }
