@@ -2,67 +2,125 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Comparator.naturalOrder;
 
 public class Main {
     static StringBuilder sb = new StringBuilder();
-    static int size;
-    static boolean[] isvisited;
-    static String[] split;
+    static int res;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        int n = Integer.parseInt(br.readLine());
-        for (int i = 0; i < n; i++) {
-            String s = br.readLine();
-            split = s.split("");
-            Arrays.sort(split);
-            isvisited = new boolean[split.length];
+        int n  = Integer.parseInt(br.readLine());
 
-            String[] tmp_arr = new String[split.length];
-            madePermutation(0, tmp_arr);
+        HashMap<String, Integer> map = new HashMap<>();
+        ArrayList<String>[] relation = new ArrayList[n];
+        ArrayList<String> tmp = new ArrayList<>();
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            tmp.add(st.nextToken());
+        }
+        tmp.sort(naturalOrder());
+
+        for (int i = 0; i < n; i++) {
+            String name = tmp.get(i);
+            relation[i] = new ArrayList<>();
+            relation[i].add(name);
+            map.put(name, i);
+        }
+
+
+        int m = Integer.parseInt(br.readLine());
+
+        int[] dis = new int[n];
+        for (int i = 0; i < m; i++) {
+            st = new StringTokenizer(br.readLine());
+
+            String p1 = st.nextToken();
+            String p2 = st.nextToken();
+            relation[map.get(p2)].add(p1);
+            dis[map.get(p1)]++;
+        }
+
+        boolean[] isvisited = new boolean[n];
+        int root_cnt = 0;
+
+
+        Queue<Integer> q = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            if (dis[i] == 0) {
+                root_cnt++;
+                q.add(i);
+            }
+        }
+
+        sb.append(root_cnt).append("\n");
+
+        for (Integer i : q) {
+            sb.append(relation[i].get(0)).append(" ");
+        }
+        sb.append("\n");
+
+        ArrayList<Integer>[] result = new ArrayList[n];
+        for (int i = 0; i < n; i++) {
+            result[i] = new ArrayList<>();
+            result[i].add(i+10000);
+        }
+
+
+
+        while (!q.isEmpty()){
+            Integer now = q.poll();
+
+            for (String next : relation[now]) {
+                Integer nextNum = map.get(next);
+                if (!now.equals(nextNum)){
+                    result[now].add(nextNum);
+                }
+                if(--dis[nextNum] == 0) {
+                    q.add(nextNum);
+                }
+            }
+        }
+
+
+
+        Arrays.sort(result,Comparator.comparingInt(o->o.size()));
+        ArrayList<Integer> tmptmp = new ArrayList<>();
+
+        for (ArrayList<Integer> integers : result) {
+            loop:
+            for (int i = 0; i < integers.size(); i++) {
+                for (int j = 0; j < tmptmp.size(); j++) {
+                    if (integers.get(i).equals(tmptmp.get(j))){
+                        integers.remove(i);
+                        i--;
+                        continue loop;
+                    }
+                }
+                tmptmp.add(integers.get(i));
+            }
+        };
+
+
+        for (ArrayList<String> strings : relation) {
+            System.out.println(strings);
+        }
+
+        Arrays.sort(result,Comparator.comparingInt(o->o.get(0)));
+        for (ArrayList<Integer> integers : result) {
+            sb.append(relation[integers.get(0)-10000]).append(" ");
+            sb.append(integers.size()-1).append(" ");
+            integers.remove(0);
+
+            for (Integer integer : Arrays.sort(integers)) sb.append(relation[integer].get(0)).append(" ");
+            sb.append("\n");
         }
         System.out.println(sb);
     }
-    static void madePermutation(int cnt, String[] arr) {
-        if(cnt == split.length) {
-            for (int i = 0; i < arr.length; i++) {
-                sb.append(arr[i]);
-            }sb.append("\n");
-            return;
-        }
-        int duplication = 0;
-        for (int i =0; i < split.length; i++) {
-            if(!isvisited[i]) {
-                // 다음 차례랑 비교해서 같다면 다음으로 넘김
-                if(duplication == split[i].charAt(0)) continue;
-                arr[cnt] = split[i];
-                isvisited[i] = true;
-                madePermutation(cnt+1, arr);
-                isvisited[i] = false;
-                duplication = split[i].charAt(0);
-            }
-        }
-    }
-
-//    static void madePermutation(int cnt, String[] arr) {
-//        if(cnt == size) {
-//            for (int i = 0; i < arr.length; i++) {
-//                sb.append(arr[i]).append(" ");
-//            }sb.append("\n");
-//            return;
-//        }
-//        int duplication = 0;
-//        for (int i =0; i < split.length; i++) {
-//            if(!isvisited[i]) {
-//                // 다음 차례랑 비교해서 같다면 다음으로 넘김
-//                if(duplication == split[i].charAt(0)) continue;
-//                arr[cnt] = split[i];
-//                isvisited[i] = true;
-//                madePermutation(cnt+1, arr);
-//                isvisited[i] = false;
-//                duplication = split[i].charAt(0);
-//            }
-//        }
-//    }
 }

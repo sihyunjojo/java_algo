@@ -15,15 +15,14 @@ public class Bj_KMp {
 
 
         int[] table = new int[s.length()];
+
         int j = 0;
-
-
         for (int i = 1; i < s.length(); i++) {
             while (j > 0 && s.charAt(i) != s.charAt(j)) {
                 j = table[j - 1]; // 이전 테이블 값 가져오면서 그
             }
             if (s.charAt(i) == s.charAt(j)) {
-                j += 1; // j는 1을 증가해서 다음 반복문에서 비교할 변수 준비 (+1 과 마지막을 비교해야하니)
+                j++; // j는 1을 증가해서 다음 반복문에서 비교할 변수 준비 (+1 과 마지막을 비교해야하니)
                 table[i] = j; // j는 위에서 1을 증가시켜줘야지 인덱스 + 1이므로 개수가 들어간다.
             }
         }
@@ -32,12 +31,12 @@ public class Bj_KMp {
 
         j = 0;
         for (int i = 0; i < s.length(); i++) {
-            while (j > 0 && s.charAt(i) != s.charAt(j)){
-                j = table[j-1];
+            while (j > 0 && s.charAt(i) != s.charAt(j)) {
+                j = table[j - 1];
             }
-            if (s.charAt(i) == s.charAt(j)){
-                if (j == s.length()-1){
-                    System.out.printf("%d번쨰 에서 찾았습니다\n",i-s.length()+2);
+            if (s.charAt(i) == s.charAt(j)) {
+                if (j == s.length() - 1) {
+                    System.out.printf("%d번째 에서 찾았습니다\n", i - j + 1);
                     j = table[j];
                 } else {
                     j++;
