@@ -113,12 +113,24 @@ public class Main {
         }
 
         Arrays.sort(result,Comparator.comparingInt(o->o.get(0)));
+//        for (int i = 0; i < result.length; i++) {
+//            sb.append(relation[result[i].get(0)-10000]).append(" ");
+//            sb.append(result[i].size()-1).append(" ");
+//            result[i].remove(0);
+//
+//            for (int j = 0; j < ; j++) {
+//
+//            }
+//        }
+
         for (ArrayList<Integer> integers : result) {
-            sb.append(relation[integers.get(0)-10000]).append(" ");
+            sb.append(relation[integers.get(0)-10000].get(0)).append(" ");
             sb.append(integers.size()-1).append(" ");
             integers.remove(0);
-
-            for (Integer integer : Arrays.sort(integers)) sb.append(relation[integer].get(0)).append(" ");
+            integers.sort(Comparator.naturalOrder());
+            for (Integer integer : integers) {
+                sb.append(relation[integer].get(0)).append(" ");
+            }
             sb.append("\n");
         }
         System.out.println(sb);
