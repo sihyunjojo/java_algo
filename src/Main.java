@@ -57,17 +57,19 @@ public class Main{
 
         bfs_water();
 
-        for (int[] ints : board) {
-            System.out.println(Arrays.toString(ints));
-        }
 
         time = 0;
         while (true) {
             time++;
-            if (bfs_go()) break;
+            if (bfs_go()) {
+                System.out.println(time);
+                break;
+            }
+            if (q_go.isEmpty()){
+                System.out.println("KAKTUS");
+                break;
+            }
         }
-
-        System.out.println(time);
 
 
     }
@@ -85,7 +87,7 @@ public class Main{
                 int dx = x + delta[d][1];
                 if (!checkSize(dy, dx) || v[dy][dx]) continue;
                 if (board[dy][dx] == 2) return true;
-                if (board[dy][dx] >= time+ 1000) {
+                if (board[dy][dx] > time + 1000) {
                     q.add(new int[]{dy, dx});
                     v[dy][dx] = true;
                 }
