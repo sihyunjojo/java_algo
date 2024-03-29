@@ -30,7 +30,7 @@ public class KMP {
             }
         }
 
-//        System.out.println(Arrays.toString(table));
+        System.out.println(Arrays.toString(table));
 
         ArrayList<Integer> list = new ArrayList<>();
 
