@@ -1,25 +1,19 @@
 import java.io.*;
-import java.nio.Buffer;
 import java.util.*;
 
 
 public class Solution {
     static int n, r;
     static StringBuilder sb = new StringBuilder();
-<<<<<<< HEAD
-    static int[][] board, tmp_board;
-    static int[][] delta = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-    static boolean[][] isvisited;
-    static int[] tmp;
-
-=======
-    static Deque<Long> q = new ArrayDeque<>();
->>>>>>> 44c6335a952afee22bc7de10b8a8885def246049
+    static Long[] arr = new Long[1000001];
+    static ArrayList<Long> arr1 = new ArrayList<>();
+    static final int MOD = 1234567891;
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("InputFile/input5656.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int tc = Integer.parseInt(br.readLine());
+        go();
+
         for (int t = 1; t <= tc; t++) {
             sb.append("#").append(t).append(" ");
 
@@ -27,28 +21,32 @@ public class Solution {
             n = Integer.parseInt(st.nextToken());
             r = Integer.parseInt(st.nextToken());
 
-            //  n C r 을 mod 한 값을 출력
+            long under = arr[r] * arr[n - r];
+            long zegop = zegop(under,MOD - 2);
 
-            q = new ArrayDeque<>();
-            q.add(1L);
+            sb.append((arr[n] * zegop) % MOD).append("\n");
 
-            go(2,3);
+        }
+        System.out.println(sb);
+    }
 
-            for (Long l : q) {
-                System.out.println(l);
-            }
-//            int a = go(r,1);
-//            int b = go(n,1);
-//            int c = go(r-n,1);
-
-
+    static void go() {
+        arr[0] = 1L;
+        for (int i = 1; i <= 1000001; i++) {
+            arr[i] = arr[i-1] * i % MOD;
         }
     }
-    static void go (int now, int index){
-        if (now == 1){
-            return;
+
+    static long zegop(long under, long up) {
+        if (up == 1) {
+            return under % MOD;
         }
-        q.add((long) now);
-        go((now * index) % 1234567891, ++index);
+        long l = zegop(under,up/2) % MOD;
+        if (up % 2 == 1) {
+            return ((l * l) % MOD * under) % MOD;
+        }
+        else  {
+            return l * l % MOD;
+        }
     }
 }
