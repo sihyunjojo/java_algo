@@ -1,188 +1,75 @@
-import org.w3c.dom.Node;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
-import static java.lang.System.in;
-
-
-// 10: 53 11: 11
 public class Main {
-    static class Node{
-        int i1, i2, dis;
-
-        public Node(int i1, int i2, int dis) {
-            this.i1 = i1;
-            this.i2 = i2;
-            this.dis = dis;
-        }
-
-
-
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "i1=" + i1 +
-                    ", i2=" + i2 +
-                    ", dis=" + dis +
-                    '}';
-        }
-    }
-
-    static int n, m, k,is_num;
-    static StringBuilder sb;
-    static int[][] board;
-    static int[][] delta = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-    static boolean[][] isvisited;
-    static ArrayList<Node> nodes;
-    static int[] parent;
-
+    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
+        int n= Integer.parseInt(br.readLine());
+        int m = Integer.parseInt(br.readLine());
 
-        board = new int[n][m];
-        for (int i = 0; i < n; i++) {
+        ArrayList<int[]>[] arr = new ArrayList[n+1];
+        for (int i = 0; i < n+1; i++) {
+            arr[i] = new ArrayList<>();
+        }
+
+        for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < m; j++) {
-                board[i][j] = Integer.parseInt(st.nextToken());
-            }
+            int from = Integer.parseInt(st.nextToken());
+            int to = Integer.parseInt(st.nextToken());
+            int dis = Integer.parseInt(st.nextToken());
+
+            arr[from].add(new int[] {dis, to});
         }
 
-        is_num = make_island_num();
+        st = new StringTokenizer(br.readLine());
+        int start = Integer.parseInt(st.nextToken());
+        int end = Integer.parseInt(st.nextToken());
 
-        nodes = new ArrayList<>();
-        make_bridge();
+        int[] dis = new int[n+1];
+        int[] last_points = new int[n+1];
 
-        nodes.sort(Comparator.comparingInt(n -> n.dis));
-        parent = new int[is_num+1];
-        for (int i = 1; i < is_num+1; i++) {
-            parent[i] = i;
+        for (int i = 0; i < n+1; i++) {
+            dis[i] = Integer.MAX_VALUE;
         }
-        System.out.println(mst());
+        dis[start] = 0;
 
-        for (Node node : nodes) {
-            System.out.println(node);
-        }
-        for (int[] ints : board) {
-            System.out.println(Arrays.toString(ints));
-        }
-    }
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
+        pq.add(new int[] {0, start});
 
-    static int mst(){
-        int sum = 0;
-        for (Node node : nodes) {
-            if (union(node.i1, node.i2)){
-                sum += node.dis;
-            }
-        }
-        for (int i = 2; i < is_num+1; i++) {
-            if (find(i) != find(i-1)) return -1;
-        }
-        return sum;
-    }
+        loop:
+        while (!pq.isEmpty()){
+            int[] poll = pq.poll();
+            int now_dis = poll[0];
+            int now = poll[1];
 
-    static boolean union(int i1, int i2){
-        int a = find(i1);
-        int b = find(i2);
-        if (a == b){
-            return false;
-        } else {
-            parent[a] = b;
-            return true;
-        }
-    }
+            if(now_dis > dis[now]) continue;
 
-    static int find(int i1){
-        if (parent[i1] == i1) return i1;
-        return  parent[i1] = find(parent[i1]);
-    }
-
-
-    private static void make_bridge() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (board[i][j] != 0) {
-                    int this_num = board[i][j];
-                    loop:
-                    for (int d = 0; d < 4; d++) {
-                        int len = 0;
-                        int dy = i + delta[d][0];
-                        int dx = j + delta[d][1];
-                        while (true) {
-                            if (!checkSize(dy,dx)) continue loop;
-                            // 같은 섬이면 취소
-                            if (this_num == board[dy][dx]) continue loop;
-                            // 다른 섬 도착하면 나오기
-                            if (board[dy][dx] != 0) break;
-                            len++;
-                            dy += delta[d][0];
-                            dx += delta[d][1];
-                        }
-                        if (len > 1) {
-                            nodes.add(new Node(this_num, board[dy][dx], len));
-                        }
-                    }
+            for (int[] ints : arr[now]) {
+                int next_dis = ints[0];
+                int next = ints[1];
+                if (dis[next] > now_dis + next_dis){
+                    dis[next] = now_dis + next_dis;
+                    last_points[next] = now;
+                    pq.add(new int[] {dis[next], next});
                 }
             }
         }
-    }
 
-    static int make_island_num() {
-        isvisited = new boolean[n][m];
-        int number = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (board[i][j] == 1 && !isvisited[i][j]) {
-                    this_island(i, j, ++number);
-                }
-            }
+        int tmp = end;
+        Deque<Integer> temp = new ArrayDeque<>();
+        temp.add(end);
+        while (tmp != start){
+            tmp= last_points[tmp];
+            temp.offerFirst(tmp);
         }
-        return number;
-    }
-
-    static void this_island(int y, int x, int n) {
-        Deque<int[]> q = new ArrayDeque<>();
-        q.add(new int[]{y, x});
-        isvisited[y][x] = true;
-
-
-        while (!q.isEmpty()) {
-            int[] poll = q.poll();
-            y = poll[0];
-            x = poll[1];
-            board[y][x] = n;
-
-            for (int d = 0; d < 4; d++) {
-                int dy = y + delta[d][0];
-                int dx = x + delta[d][1];
-                if (!checkSize(dy, dx)) continue;
-                if (isvisited[dy][dx]) continue;
-                if (board[dy][dx] == 1) {
-                    q.add(new int[]{dy, dx});
-                    isvisited[dy][dx] = true;
-                }
-            }
+        System.out.println(dis[end]);
+        System.out.println(temp.size());
+        for (Integer i : temp) {
+            System.out.print(i + " ");
         }
-    }
-
-    private static boolean checkSize(int dy, int dx) {
-        return 0 <= dy && dy < n && 0 <= dx && dx < m;
     }
 }
-
-
-//8 8
-//1 1 1 1 1 1 1 1
-//1 0 0 0 0 0 0 1
-//1 0 0 0 0 0 0 1
-//1 0 0 1 1 0 0 1
-//1 0 0 0 0 0 0 1
-//1 0 0 0 0 0 0 1
-//1 0 0 0 0 0 0 1
-//1 1 1 1 1 1 1 1

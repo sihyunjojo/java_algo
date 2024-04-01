@@ -9,7 +9,6 @@ public class Solution {
     static int[][] board, tmp_board;
     static int[][] delta = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     static boolean[][] isvisited;
-    static ArrayList<Main.Node> nodes;
     static int[] tmp;
 
     public static void main(String[] args) throws IOException {
