@@ -22,8 +22,10 @@ public class Solution {
             //  n C r 을 mod 한 값을 출력
 
             q = new ArrayDeque<>();
-            go(2,3);
             q.add(1L);
+
+            go(2,3);
+
             for (Long l : q) {
                 System.out.println(l);
             }
