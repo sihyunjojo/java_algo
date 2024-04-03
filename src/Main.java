@@ -1,61 +1,75 @@
 import java.io.*;
-import java.util.StringTokenizer;
-
-import static java.lang.System.in;
+import java.util.*;
 
 public class Main {
-    static int res;
-    static StringBuilder sb;
+    static class Queen {
+        int x, y, minus, plus, index, in;
 
-    private void solve() {
-        int page = sc.nextInt();
-        int[] ans = new int[10];
-        int point = 1;
-        int start = 1;
-        while (start <= page) {
-            // 끝자리 9로 만들기
-            // -를 통해서 9로 만든다 -> 999
-            // 125 이면 125 에서 99로 만드는 과정
-            // 2이면 0으로하니까 밑에 브레이크.
-            while (page % 10 != 9 && start <= page) {
-                cal(page, ans, point);
-                page--;
-            }
-
-            // 이때 처음 까지 가능하면
-            if (page < start) {
-                break;
-            }
-
-            // 끝자리 0으로 만들기
-            // start 증가시키며
-            // 1 ~ 9 까지 하기
-            // 10 ~ 99 까지 하기
-            while (start % 10 != 0 && start <= page) {
-                cal(start, ans, point);
-                start++;
-            }
-
-            // start 는 그럼 0으로 가는데? 그럼 똑같겠네!!
-            start /= 10;
-            page /= 10;
-            for (int i = 0; i < 10; i++) {
-                ans[i] += (page - start + 1) * point;
-            }
-            point *= 10;
+        public Queen(int x, int y,int index) {
+            this.x = x;
+            this.y = y;
+            this.index = index;
+            this.minus = x - y + n-1;
+            this.plus = x + y;
         }
-        for (int i = 0; i < 10; i++) {
-            System.out.print(ans[i] + " ");
+
+        @Override
+        public String toString() {
+            return "Queen{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    '}';
         }
     }
 
-    // 일의 자리수에 point만큼 추가해주고
-    // 또 x/10해서 그 다음 값 point 만큼 추가해주고.
-    public static void cal(int x, int[] ans, int point) {
-        while (x > 0) {
-            ans[x % 10] += point;
-            x /= 10;
+    static StringBuilder sb = new StringBuilder();
+    static int[][] board, tempBoard;
+    static int n,res1,res2;
+    static ArrayList<Queen> list1,list2,now_list;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        n = Integer.parseInt(br.readLine());
+
+        board = new int[n][n];
+        tempBoard = new int[n][n];
+        list1 = new ArrayList<>();
+        list2 = new ArrayList<>();
+        now_list = new ArrayList<>();
+        int cnt = 0;
+
+        int index = 1;
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < n; j++) {
+                board[i][j] = Integer.parseInt(st.nextToken());
+                if (board[i][j] == 1) {
+                    Queen queen = new Queen(j, i, ++index);
+                    if ((i+j) % 2 == 0){
+                        list1.add(queen);
+                    } else {
+                        list2.add(queen);
+                    }
+                }
+            }
+        }
+    }
+
+
+    static boolean checkThis(Queen q) {
+        for (Queen queen : now_list) {
+            if (queen.minus == q.minus) return false;
+            if (queen.plus == q.plus) return false;
+        }
+        return true;
+    }
+
+    static void copyBoard() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                tempBoard[i][j] = board[i][j];
+            }
         }
     }
 }
-
