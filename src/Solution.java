@@ -1,57 +1,77 @@
-import java.util.*;
+import java.io.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
-public class Solution {
-    static HashMap<Long, Long> f;
-    static long start, end, ans;
+public class Solution{
+    static int res;
     static StringBuilder sb = new StringBuilder();
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int tc = sc.nextInt();
-        f = new HashMap<Long, Long>();
+    public static void main(String[] args) throws IOException {
+        System.setIn(new FileInputStream("InputFile/input5643.txt"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        int tc = Integer.parseInt(br.readLine());
+        for (int i = 1; i <= tc; i++) {
+            sb.append("#").append(i).append(" ");
 
-        long sum = 0;
-        for(long i=0; i<10; i++) {
-            sum += i;
-            f.put(i, sum);
-        }
+            int n = Integer.parseInt(br.readLine());
+            int m = Integer.parseInt(br.readLine());
+            ArrayList<Integer>[] arr = new ArrayList[n+1];
+            ArrayList<Integer>[] arr1 = new ArrayList[n+1];
 
-        for(int t=1; t<=tc; t++) {
-            start = sc.nextLong();
-            end = sc.nextLong();
+            for (int j = 0; j < n+1; j++) {
+                arr[j] = new ArrayList<>();
+                arr1[j] = new ArrayList<>();
 
-            if(start > 0)
-                ans = F(end) - F(start-1);
-            else
-                ans = F(end) - F(start);
-            sb.append("#").append(t).append(" ").append(ans).append("\n");
+            }
+
+            for (int j = 0; j < m; j++) {
+                st = new StringTokenizer(br.readLine());
+                int from = Integer.parseInt(st.nextToken());
+                int to = Integer.parseInt(st.nextToken());
+
+                arr[from].add(to);
+                arr1[to].add(from);
+            }
+
+            int res = 0;
+            for (int j = 1; j < n+1; j++) {
+                ArrayDeque<Integer> q = new ArrayDeque<>();
+                q.add(j);
+                int cnt = 1;
+                
+                boolean[] isvisited = new boolean[n+1];
+                isvisited[j] = true;
+                
+                while (!q.isEmpty()){
+                    Integer now = q.poll();
+
+                    for (Integer next : arr[now]) {
+                        if (isvisited[next]) continue;
+                        q.add(next);
+                        isvisited[next] = true;
+                        cnt++;
+                    }
+                }
+
+                q.add(j);
+
+                while (!q.isEmpty()){
+                    Integer now = q.poll();
+
+                    for (Integer next : arr1[now]) {
+                        if (isvisited[next]) continue;
+                        q.add(next);
+                        isvisited[next] = true;
+                        cnt++;
+                    }
+                }
+                if (cnt == n) res++;
+            }
+            sb.append(res).append("\n");
         }
         System.out.println(sb);
     }
 
-    static long F(long i) {
-        if(f.containsKey(i)) return f.get(i);
-
-        if(i<10) return f.get(i);
-
-        long v = V(i); // 자리 단위 100, 1000
-        long F = F(i-1-i%v); // 가장 가까운 9 , 99, 999
-        long G = (i/v)*(i%v+1)+ F(i%v); // 100 ~ i
-        long num = F+G; // 최종 값을 더해서 알려줌.
-
-        f.put(i, num);
-
-        return num;
-    }
-
-    static long V(long i) {
-        long v = 1;
-        while(i>=10) {
-            v = v*10;
-            i = i/10;
-        }
-        return v;
-    }
 }
-
-
-
