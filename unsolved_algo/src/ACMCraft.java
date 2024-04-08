@@ -56,6 +56,7 @@ public class ACMCraft {
             if (o1[0] == o2[0]) return -(o1[2] - o2[2]);
             return -(o1[0] - o2[0]);
         });
+
         q.offer(new int[] {0, start, arr[start]});
         int[] dis = new int[n+1];
 

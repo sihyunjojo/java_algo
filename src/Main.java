@@ -1,257 +1,160 @@
 import java.io.*;
-import java.util.*;
-<<<<<<< HEAD
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main{
-    static int cnt,r,c;
-    static StringBuilder sb = new StringBuilder();
+    static int res,n,m;
+    static StringBuilder sb;
     static char[][] board;
+    static int[] blue, red, first, second, tmp_dirs,init_red,init_blue;
+    static boolean isRedFirst;
     static int[][] delta = new int[][] {{-1,0},{1,0},{0,-1},{0,1}};
-    static int[] arr;
-    static boolean[][] isvisited;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
 
-        r = Integer.parseInt(st.nextToken());
-        c = Integer.parseInt(st.nextToken());
+        board = new char[n][m];
+        blue = new int[3];
+        init_blue = new int[3];
+        red = new int[3];
+        init_red = new int[3];
+        first = new int[3];
+        second = new int[3];
+        tmp_dirs = new int[10];
 
-        board = new char[r+1][c];
-        cnt = 0;
-        for (int i = 0; i < r; i++) {
+        for (int i = 0; i < n; i++) {
             board[i] = br.readLine().toCharArray();
-            for (int j = 0; j < c; j++) {
-                if (board[i][j] == 'x'){
-                    cnt++;
-=======
+            for (int j = 0; j < m; j++) {
+                if (board[i][j] == 'B'){
+                    blue[0] = i;
+                    blue[1] = j;
+                    // 추후에 순서에 따라서 나눌때 파란색 체크하기 위해서
+                    blue[2] = 0;
+                    init_blue[0] = i;
+                    init_blue[1] = j;
+                    init_blue[2] = 0;
 
-public class Main {
-    static int n, end;
-    static StringBuilder sb = new StringBuilder();
-    static ArrayList<Integer>[] list;
-    static int[] arr;
+                }
+                if (board[i][j] == 'R'){
+                    red[0] = i;
+                    red[1] = j;
+                    red[2] = 1;
+                    init_red[0] = i;
+                    init_red[1] = j;
+                    init_red[2] = 1;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-//        System.out.println();
-        int tc = Integer.parseInt(br.readLine());
-        for (int i = 0; i < tc; i++) {
-            st = new StringTokenizer(br.readLine());
-            n = Integer.parseInt(st.nextToken());
-            int k = Integer.parseInt(st.nextToken());
-
-            st = new StringTokenizer(br.readLine());
-            arr = new int[n + 1];
-            for (int j = 1; j < n + 1; j++) {
-                arr[j] = Integer.parseInt(st.nextToken());
-            }
-
-            list = new ArrayList[n + 1];
-            int[] condition_make = new int[n + 1];
-            for (int j = 0; j < n + 1; j++) {
-                list[j] = new ArrayList<>();
-            }
-
-            int[] dis = new int[n + 1];
-            for (int j = 0; j < k; j++) {
-                st = new StringTokenizer(br.readLine());
-                int from = Integer.parseInt(st.nextToken());
-                int to = Integer.parseInt(st.nextToken());
-                list[from].add(to);
-                dis[to]++;
-            }
-
-            end = Integer.parseInt(br.readLine());
-
-            Queue<int[]> q = new ArrayDeque<>();
-
-            for (int j = 1; j < n+1; j++) {
-                if (dis[j] == 0){
-                    q.add(new int[] {j});
->>>>>>> 7bbae4f7d62bb44cca56bc590d0fe4179cb8ab3d
                 }
             }
         }
-        Arrays.fill(board[r],'x');
 
-<<<<<<< HEAD
-        int n = Integer.parseInt(br.readLine());
-
-        arr = new int[n];
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-        }
-
-        for (int i = 0; i < n; i++) {
-            delete(i);
-            check_down();
-        }
-
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
-                sb.append(board[i][j]);
-            }
-            sb.append("\n");
-        }
-        System.out.println(sb);
+        res = 10;
+        combi(0);
+        System.out.println(res);
     }
 
-    private static void check_down() {
-        // 띄워진 구간이 있다 == 내려 줘야한다
-        isvisited = new boolean[r+1][c];
+    private static void combi(int count) {
+        if (count >= res) {
+            red[0] = init_red[0];
+            red[1] = init_red[1];
+            blue[0] = init_blue[0];
+            blue[1] = init_blue[1];
+            int cnt = go();
+            if (res > cnt) res = cnt;
+            return;
+        }
 
-        if (cnt != bfs(r,0)){
-            loop:
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    if (board[i][j] == 'x'){
-                        if (isvisited[i][j]) continue;
-                        down(i,j);
-                        break loop;
-                    }
-                }
-            }
+        for (int i = 0; i < 4; i++) {
+            tmp_dirs[count] = i;
+            combi(count+1);
+        }
+
+    }
+
+    private static int go() {
+        for (int i = 0; i < 10; i++) {
+            whosFirst(tmp_dirs[i]);
+            // 파란색이 들어가거나, 안되는 상황이면 false를 넘겨주자.
+            if(!moveBalls(tmp_dirs[i])) return 100;
+            if(isRedInHole()) return i;
+        }
+        return 100;
+    }
+
+    private static void whosFirst(int dir) {
+        switch (dir){
+            case 0:
+                if (red[0] > blue[0]) isRedFirst = false;
+                else  isRedFirst = true;
+                break;
+            case 1:
+                if (red[0] < blue[0]) isRedFirst = false;
+                else  isRedFirst = true;
+                break;
+            case 2:
+                if (red[1] < blue[1]) isRedFirst = false;
+                else  isRedFirst = true;
+                break;
+            case 3:
+                if (red[1] > blue[1]) isRedFirst = false;
+                else  isRedFirst = true;
+                break;
+        }
+        if (isRedFirst) {
+            first = red;
+            second = blue;
+        } else {
+            first = blue;
+            second = red;
         }
     }
 
-    private static void down(int i, int j) {
-        int[] arr = new int[c];
 
-        Deque<int[]> q = new ArrayDeque<>();
-        q.add(new int[] {i,j});
-        isvisited[i][j] = true;
+    private static boolean moveBalls(int dir) {
+        if (moveBall(dir, first)) return false;
+        if (moveBall(dir, second)) return false;
+        // 별일 없이 일 마침.
+        return true;
+    }
 
-        ArrayList<int[]> list = new ArrayList<>();
-        list.add(new int[] {i,j});
+    private static boolean moveBall(int dir, int[] ball) {
+        System.out.println(Arrays.toString(ball) + " " + dir);
 
-
-        while (!q.isEmpty()){
-            int[] poll = q.poll();
-            int y = poll[0];
-            int x = poll[1];
-            if(arr[x] < y) arr[x] = y;
-
-            for (int d = 0; d < 4; d++) {
-                int dy = y + delta[d][0];
-                int dx = x + delta[d][1];
-                if (!checkSize(dy,dx)) continue;
-                if (isvisited[dy][dx]) continue;
-                if (board[dy][dx] == '.') continue;
-                q.add(new int[] {dy,dx});
-                list.add(new int[] {dy,dx});
-                isvisited[dy][dx] = true;
-            }
-        }
-
-        System.out.println(Arrays.toString(arr));
-        int tmp = 1;
-        loop:
+        int ball_y = ball[0];
+        int ball_x = ball[1];
         while (true){
-            for (int k = 0; k < c; k++) {
-                if (arr[k] == 0) continue;
-                System.out.println(arr[k]+tmp);
-                System.out.println(k);
-                if (board[arr[k]+tmp][k] == 'x'){
-                    break loop;
-                }
+            ball_y += delta[dir][0];
+            ball_x += delta[dir][1];
+            if(ball[2] == '1' && board[ball_y][ball_x] == '0'){
+                return true;
             }
-            tmp++;
-        }
-
-        for (int[] ints : list) {
-            board[ints[0]][ints[1]] = '.';
-        }
-        for (int[] ints : list) {
-            board[ints[0]+tmp-1][ints[1]] = 'x';
-        }
-    }
-
-    private static int bfs(int i, int j){
-
-        int cnt = 0;
-        Deque<int[]> q = new ArrayDeque<>();
-        q.add(new int[] {i,j});
-        isvisited[i][j] = true;
-
-        while (!q.isEmpty()){
-            int[] poll = q.poll();
-            int y = poll[0];
-            int x = poll[1];
-            cnt++;
-
-            for (int d = 0; d < 4; d++) {
-                int dy = y + delta[d][0];
-                int dx = x + delta[d][1];
-                if (!checkSize(dy,dx)) continue;
-                if (isvisited[dy][dx]) continue;
-                if (board[dy][dx] == '.') continue;
-
-                q.add(new int[] {dy,dx});
-                isvisited[dy][dx] = true;
+            if (board[ball_y][ball_x] == '#'){
+                ball_y -= delta[dir][0];
+                ball_x -= delta[dir][1];
+                break;
             }
         }
-        return cnt-c;
+        restoreBall(ball_y, ball_x, ball);
+        return false;
     }
 
-    static boolean checkSize(int y, int x){
-        return 0 <= y && y < r+1 && 0 <= x && x < c;
+    private static boolean isRedInHole() {
+        return board[red[0]][red[1]] == '0';
     }
-
-    private static void delete(int i) {
-        // 오른쪽에서
-        int shoot = r - arr[i];
-        if(i % 2 == 0){
-            for (int j = 0; j < c; j++) {
-                if (board[shoot][j] == 'x'){
-                    board[shoot][j] = '.';
-                    cnt--;
-                    break;
-                }
-            }
-        }
-        // 왼쪽에서
-        else {
-            for (int j = c-1; j >= 0; j--) {
-                if (board[shoot][j] == 'x'){
-                    board[shoot][j] = '.';
-                    cnt--;
-                    break;
-                }
-            }
+    
+    private static void restoreBall(int y, int x, int[] ball){
+        // 빨간색
+        if (ball[2] == 1){
+            red[0] = y;
+            red[1] = x;
+        } else {
+            blue[0] = y;
+            blue[1] = x;
         }
     }
 
-    static void printBoard(){
-        for (char[] chars : board) {
-            System.out.println(chars);
-        }
-    }
-=======
-            System.out.println();
-            int[] dp = new int[n+1];
-            boolean[] isvisited = new boolean[n+1];
->>>>>>> 7bbae4f7d62bb44cca56bc590d0fe4179cb8ab3d
 
-            while (!q.isEmpty()){
-                int[] now = q.poll();
-                int now_point = now[0];
 
-                System.out.println(Arrays.toString(now));
-//                if (isvisited[now_point]) continue;
-//                isvisited[now_point] = true;
 
-                for (int next : list[now_point]) {
-                    if (dp[next] >= arr[now_point] + dp[now_point]) continue;
-                    dp[next] = arr[now_point] + dp[now_point];
-                    q.add(new int[] {next});
-                    System.out.println(Arrays.toString(dp));
-                }
-            }
-
-            sb.append(dp[end]+arr[end]).append("\n");
-        }
-        System.out.println(sb);
-    }
 }
