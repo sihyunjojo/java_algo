@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main{
-    static int res,n,m;
+    static int res,n,m,tmp_res;
     static StringBuilder sb;
     static char[][] board;
     static int[] blue, red, first, second, tmp_dirs,init_red,init_blue;
@@ -49,19 +49,21 @@ public class Main{
             }
         }
 
-        res = 10;
+        res = 11;
         combi(0);
-        System.out.println(res);
+        if (res == 11) System.out.println(-1);
+        else System.out.println(res);
     }
 
     private static void combi(int count) {
-        if (count >= res) {
+        if (count == 10) {
             red[0] = init_red[0];
             red[1] = init_red[1];
             blue[0] = init_blue[0];
             blue[1] = init_blue[1];
-            int cnt = go();
-            if (res > cnt) res = cnt;
+            //[2, 1, 3, 1, 2]
+//            System.out.println(Arrays.toString(tmp_dirs));
+            go();
             return;
         }
 
@@ -72,14 +74,19 @@ public class Main{
 
     }
 
-    private static int go() {
+    private static void go() {
+        tmp_res = 100;
+        int[] target = {2, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
         for (int i = 0; i < 10; i++) {
             whosFirst(tmp_dirs[i]);
             // 파란색이 들어가거나, 안되는 상황이면 false를 넘겨주자.
-            if(!moveBalls(tmp_dirs[i])) return 100;
-            if(isRedInHole()) return i;
+            if(!moveBalls(i)) return;
+            if (res <= i) return;
+//            if (same(tmp_dirs,target)){
+//                System.out.println("true");
+//            }
         }
-        return 100;
     }
 
     private static void whosFirst(int dir) {
@@ -93,12 +100,12 @@ public class Main{
                 else  isRedFirst = true;
                 break;
             case 2:
-                if (red[1] < blue[1]) isRedFirst = false;
-                else  isRedFirst = true;
+                if (red[1] < blue[1]) isRedFirst = true;
+                else  isRedFirst = false;
                 break;
             case 3:
-                if (red[1] > blue[1]) isRedFirst = false;
-                else  isRedFirst = true;
+                if (red[1] > blue[1]) isRedFirst = true;
+                else  isRedFirst = false;
                 break;
         }
         if (isRedFirst) {
@@ -111,50 +118,73 @@ public class Main{
     }
 
 
-    private static boolean moveBalls(int dir) {
-        if (moveBall(dir, first)) return false;
-        if (moveBall(dir, second)) return false;
+    private static boolean moveBalls(int index) {
+        int[] target = {2, 3, 3, 3, 3, 3, 3, 3, 3, 3};
+
+        if (!moveBall(index, first)) return false;
+        if (!moveBall(index, second)) return false;
         // 별일 없이 일 마침.
+
+        if (res > tmp_res) res = tmp_res;
         return true;
     }
 
-    private static boolean moveBall(int dir, int[] ball) {
-        System.out.println(Arrays.toString(ball) + " " + dir);
+    private static boolean moveBall(int index, int[] ball) {
+        int[] target = {2, 3, 3, 3, 3, 3, 3, 3, 3, 3};
+//        System.out.println(Arrays.toString(target));
+        int dir = tmp_dirs[index];
 
         int ball_y = ball[0];
         int ball_x = ball[1];
+        int ball_color = ball[2];
         while (true){
             ball_y += delta[dir][0];
             ball_x += delta[dir][1];
-            if(ball[2] == '1' && board[ball_y][ball_x] == '0'){
-                return true;
+
+//            if (same(tmp_dirs,target)){
+//                System.out.println(ball_y + " "+ ball_x + " " + Arrays.toString(ball));
+//            }
+
+            if(ball[2] == 0 && board[ball_y][ball_x] == 'O'){
+//                System.out.println("false");
+                return false;
+            }
+
+            if(ball == second && first[0] == ball_y && first[1] == ball_x){
+                ball_y -= delta[dir][0];
+                ball_x -= delta[dir][1];
+                ball[0] = ball_y;
+                ball[1] = ball_x;
+                break;
             }
             if (board[ball_y][ball_x] == '#'){
                 ball_y -= delta[dir][0];
                 ball_x -= delta[dir][1];
+                ball[0] = ball_y;
+                ball[1] = ball_x;
                 break;
             }
+
+            if(ball[2] == 1 && board[ball_y][ball_x] == 'O'){
+//                System.out.println(Arrays.toString(tmp_dirs));
+                tmp_res = index+1;
+                ball[0] = ball_y;
+                ball[1] = ball_x;
+                return true;
+            }
+
         }
-        restoreBall(ball_y, ball_x, ball);
-        return false;
+//        if (same(tmp_dirs,target)){
+//            System.out.println("true");
+//        }
+        return true;
     }
-
-    private static boolean isRedInHole() {
-        return board[red[0]][red[1]] == '0';
-    }
-    
-    private static void restoreBall(int y, int x, int[] ball){
-        // 빨간색
-        if (ball[2] == 1){
-            red[0] = y;
-            red[1] = x;
-        } else {
-            blue[0] = y;
-            blue[1] = x;
+    private static boolean same(int[] a, int[] b){
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) {
+                return false;
+            }
         }
+        return true;
     }
-
-
-
-
 }
