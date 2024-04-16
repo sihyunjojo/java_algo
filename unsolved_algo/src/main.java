@@ -36,10 +36,10 @@ public class main {
         }
 
         // 위상정렬하면됨.
-        while (!q.isEmpty()) {
-            int[] poll = q.poll();
-            int
-        }
+//        while (!q.isEmpty()) {
+//            int[] poll = q.poll();
+//            int
+//        }
 
     }
 }
