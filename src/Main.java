@@ -1,48 +1,69 @@
 import java.io.*;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.StringTokenizer;
 
-public class Main {
+// 단지번호 붙이기
+public class Main{
+    static int res;
+    static int[][] board;
     static StringBuilder sb = new StringBuilder();
-
+    static int[][] delta = new int[][] {{1,0},{-1,0},{0,1},{0,-1}};
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int n = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
-        long max = 1000000000;
 
-        long[] arr = new long[n];
+        board = new int[n][n];
         for (int i = 0; i < n; i++) {
-            arr[i] = Long.parseLong(st.nextToken()) + max;
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < n; j++) {
+                board[i][j] = Integer.parseInt(st.nextToken());
+            }
         }
-        // 같은 양의 두 용액을 혼합
-        long[] res = new long[2];
-        long now_min = Long.MAX_VALUE;
 
-        System.out.println(Arrays.toString(arr));
+        ArrayList<Integer> list= new ArrayList();
         for (int i = 0; i < n; i++) {
-            long target = (max * 2) -arr[i];
-            int left = 0;
-            int right = n;
-            System.out.println(target);
-            while (left < right) {
-                int mid = (right + left) / 2;
-                if (arr[mid] < target) {
-                    left = mid + 1;
-                } else {
-                    right = mid;
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == 1){
+                    list.add(bfs(i,j));
                 }
             }
-
-            System.out.println(right);
-            if (right == n) right--;
-            long abs = Math.abs(arr[i] + arr[right]);
-            if (now_min > abs){
-                res[0] = arr[i] - max;
-                res[1] = arr[right] - max;
-                now_min = abs;
-            }
         }
-        System.out.println(res[0] + " " + res[1]);
+        list.sort(Comparator.naturalOrder());
+
+        System.out.println(list.size());
+        for (Integer i : list) {
+            System.out.println(i);
+        }
+    }
+
+    private static int bfs(int i, int j) {
+        int cnt = 1;
+        ArrayDeque<int[]> stack = new ArrayDeque<>();
+        stack.add(new int[] {i,j});
+        while (!stack.isEmpty()){
+            int[] poll = stack.poll();
+            int y = poll[0];
+            int x = poll[1];
+
+            for (int d = 0; d < 4; d++) {
+                int dy = y+delta[d][0];
+                int dx = x+delta[d][1];
+
+                if (!checkSize(dy,dx)) continue;
+                if (board[dy][dx] == 0) continue;
+                cnt++;
+                board[dy][dx] = 1;
+                stack.add(new int[] {dy, dx});
+            }
+
+        }
+        return cnt;
+    }
+
+    private static boolean checkSize(int i, int j) {
+        return 0 <= i && i < board.length && 0 <= j && j < board[0].length;
     }
 }

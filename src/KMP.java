@@ -5,11 +5,9 @@ import java.util.*;
 
 public class KMP {
     static StringBuilder sb = new StringBuilder();
-    static int res;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
 
         String t = br.readLine();
         String p = br.readLine();
@@ -32,7 +30,7 @@ public class KMP {
 
         System.out.println(Arrays.toString(table));
 
-        ArrayList<Integer> list = new ArrayList<>();
+//        ArrayList<Integer> list = new ArrayList<>();
 
         j = 0;
         for (int i = 0; i < t.length(); i++) {
