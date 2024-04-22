@@ -1,5 +1,9 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
     static StringBuilder sb = new StringBuilder();
@@ -35,20 +39,13 @@ public class Main {
 
     static void solve() {
         init();
-        int a = 0;
-        while (moveUp() && a < 3) {
-            a++;
+        while (moveUp()) {
         }
         moveFish();
-        print();
         moveLine();
-        print();
         moveHarp();
-        print();
         moveFish();
-        print();
         moveLine();
-        print();
     }
 
     static void init() {
@@ -118,7 +115,8 @@ public class Main {
         for (int i = 0; i <= tmp; i++) {
             // x
             for (int j = 0; j <= maxHeight; j++) {
-                arr[maxHeight + i][j] = tmp_board[i][j];
+                arr[1 + i][j] = tmp_board[i][j];
+//                arr[maxHeight + i][j] = tmp_board[i][j];
             }
         }
 
@@ -127,7 +125,7 @@ public class Main {
             arr[0][i - tmp - 1] = arr[0][i];
         }
 
-        underLine -= maxHeight + 1;
+        underLine -= tmp + 1;
         for (int i = underLine; i < n; i++) {
             arr[0][i] = 0;
         }
@@ -154,15 +152,13 @@ public class Main {
                 }
             }
         }
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 arr[i][j] += tmpBoard[i][j];
             }
         }
-//        arr = tmpBoard;
-
     }
+
 
     static void moveLine() {
         int[][] tmp = new int[n][n];
@@ -171,7 +167,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (arr[j][i] == 0) continue;
-                integers.add(arr[j][i]);
+                integers.add(Main.arr[j][i]);
             }
         }
         int tmpN = 0;
@@ -185,18 +181,18 @@ public class Main {
         int moveLine = n / 2;
 
         for (int i = 0; i < moveLine; i++) {
-            arr[1][moveLine-i-1] = arr[0][i];
+            arr[1][moveLine - i - 1] = arr[0][i];
             arr[0][i] = arr[0][i + moveLine];
         }
+
         for (int i = moveLine; i < n; i++) {
             arr[0][i] = 0;
         }
-
         moveLine /= 2;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < moveLine; j++) {
-                arr[2 + moveLine - i-1][2 - j-1] = arr[i][j];
-                arr[i][j] = arr[i][j + 2];
+                arr[1 + 2 - i][moveLine - j - 1] = arr[i][j];
+                arr[i][j] = arr[i][j + moveLine];
             }
         }
 
@@ -231,3 +227,4 @@ public class Main {
         System.out.println();
     }
 }
+
