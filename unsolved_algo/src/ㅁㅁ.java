@@ -5,7 +5,7 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
     static int[][] arr;
     static int n, k, underLine;
-    static int[][] delta = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    static int[][] delta = new int[][] {{-1,0},{1,0},{0,-1},{0,1}};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,7 +20,6 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[0][i] = Integer.parseInt(st.nextToken());
         }
-
         int time = 0;
         while (checkFinish()) {
             underLine = n;
@@ -35,20 +34,16 @@ public class Main {
 
     static void solve() {
         init();
+        print();
         int a = 0;
         while (moveUp() && a < 3) {
             a++;
         }
         moveFish();
-        print();
         moveLine();
-        print();
         moveHarp();
-        print();
         moveFish();
-        print();
         moveLine();
-        print();
     }
 
     static void init() {
@@ -58,10 +53,10 @@ public class Main {
         }
 
         arr[1][0] = arr[0][0];
-        for (int i = 0; i < n - 1; i++) {
-            arr[0][i] = arr[0][i + 1];
+        for (int i = 0; i < n-1; i++) {
+            arr[0][i] = arr[0][i+1];
         }
-        arr[0][n - 1] = 0;
+        arr[0][n-1] = 0;
 
     }
 
@@ -77,6 +72,7 @@ public class Main {
                 list.add(i);
             }
         }
+        System.out.println(list);
         return list;
     }
 
@@ -89,17 +85,22 @@ public class Main {
             tmp = i;
         }
 
+        System.out.println("tmp : " + tmp);
+
         int maxHeight = 0;
-        for (int j = 0; j < n; j++) {
-            if (arr[j][0] == 0) {
-                break;
-            }
-            if (maxHeight < j) {
-                maxHeight = j;
+        for (int i = 0; i <= tmp; i++) {
+            for (int j = 0; j < n; j++) {
+                if (arr[j][tmp] == 0){
+                    break;
+                }
+                if (maxHeight < j){
+                    maxHeight = j;
+                }
             }
         }
+        System.out.println("maxHeight: " + maxHeight);
 
-        if (2 * (maxHeight + 1) > underLine) {
+        if (2 * (maxHeight + 1) > underLine){
             return false;
         }
 
@@ -109,28 +110,31 @@ public class Main {
         for (int i = 0; i <= maxHeight; i++) {
             // x
             for (int j = 0; j <= tmp; j++) {
-                tmp_board[tmp - j][i] = arr[i][j];
+                tmp_board[maxHeight-j-1][i] = arr[i][j];
 //                arr[maxHeight-j][i] = arr[i][j];
             }
         }
 
+        for (int[] ints : tmp_board) {
+            System.out.println(Arrays.toString(ints));
+        }
+        System.out.println();
 
-        for (int i = 0; i <= tmp; i++) {
+        for (int i = 1; i <= tmp; i++) {
             // x
             for (int j = 0; j <= maxHeight; j++) {
-                arr[maxHeight + i][j] = tmp_board[i][j];
+                arr[maxHeight+i][j] = tmp_board[i][j];
             }
         }
 
 
-        for (int i = tmp + 1; i < underLine; i++) {
-            arr[0][i - tmp - 1] = arr[0][i];
+        for (int i = tmp+1; i < underLine; i++) {
+            arr[0][i-tmp-1] = arr[0][i];
         }
 
-        underLine -= maxHeight + 1;
-        for (int i = underLine; i < n; i++) {
-            arr[0][i] = 0;
-        }
+        underLine -= tmp;
+
+        print();
         return true;
     }
 
@@ -142,11 +146,13 @@ public class Main {
                 for (int d = 0; d < 4; d++) {
                     int dy = i + delta[d][0];
                     int dx = j + delta[d][1];
-                    if (!checkSize(dy, dx)) continue;
+                    if (!checkSize(dy,dx)) continue;
                     if (arr[dy][dx] == 0) continue;
-                    if (arr[i][j] > arr[dy][dx]) {
-                        int mock = (arr[i][j] - arr[dy][dx]) / 5;
-                        if (mock > 0) {
+//                    System.out.println(i + " " + j + " " + arr[i][j]);
+//                    System.out.println("d " + dy + " "+ dx + " " + arr[dy][dx]);
+                    if (arr[i][j] > arr[dy][dx]){
+                        int mock = arr[i][j] / 5;
+                        if (mock > 0){
                             tmpBoard[dy][dx] += mock;
                             tmpBoard[i][j] -= mock;
                         }
@@ -155,54 +161,45 @@ public class Main {
             }
         }
 
+        for (int[] ints : tmpBoard) {
+            System.out.println(Arrays.toString(ints));
+        }
+        System.out.println();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 arr[i][j] += tmpBoard[i][j];
             }
         }
 //        arr = tmpBoard;
-
+        print();
     }
 
     static void moveLine() {
-        int[][] tmp = new int[n][n];
-        ArrayDeque<Integer> integers = new ArrayDeque<>();
+        int tmp = 0;
 
+        int[][] tmpBoard = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (arr[j][i] == 0) continue;
-                integers.add(arr[j][i]);
+                if (arr[i][j] == 0) continue;
+                tmpBoard[0][tmp++] = arr[i][j];
             }
         }
-        int tmpN = 0;
-        while (!integers.isEmpty()) {
-            tmp[0][tmpN++] = integers.poll();
-        }
-        arr = tmp;
+        arr = tmpBoard;
     }
 
     static void moveHarp() {
         int moveLine = n / 2;
-
         for (int i = 0; i < moveLine; i++) {
-            arr[1][moveLine-i-1] = arr[0][i];
-            arr[0][i] = arr[0][i + moveLine];
-        }
-        for (int i = moveLine; i < n; i++) {
-            arr[0][i] = 0;
+            arr[1][i] = arr[0][i];
+            arr[0][i] = arr[0][i+moveLine];
         }
 
         moveLine /= 2;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < moveLine; j++) {
-                arr[2 + moveLine - i-1][2 - j-1] = arr[i][j];
-                arr[i][j] = arr[i][j + 2];
+                arr[2+j][i] = arr[i][j];
+                arr[i][j] = arr[i][j+2];
             }
-        }
-
-        for (int i = moveLine; i < n; i++) {
-            arr[0][i] = 0;
-            arr[1][i] = 0;
         }
     }
 
@@ -220,11 +217,11 @@ public class Main {
         return (max - min) > k;
     }
 
-    static boolean checkSize(int y, int x) {
+    static boolean checkSize(int y, int x){
         return 0 <= y && y < n && 0 <= x && x < n;
     }
 
-    static void print() {
+    static void print(){
         for (int[] ints : arr) {
             System.out.println(Arrays.toString(ints));
         }
