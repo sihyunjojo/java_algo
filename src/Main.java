@@ -1,53 +1,61 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
+//수열과 쿼리 17 실패
 public class Main {
-    static int min, max;
+    static int res, n;
+    static int[] arr, tree;
     static StringBuilder sb = new StringBuilder();
-    static int[] temp = new int[3];
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
-        int n = calHolsu(s);
-        max = n;
-        min = n;
-        solve(s);
-        System.out.println(min + " " + max);
-    }
+        StringTokenizer st;
+        n = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
 
-    static void solve(String s) {
-        while (s.length() > 1) {
-            if (s.length() == 2) {
-                s = isLenTwo(s);
-            }
-            else {
-                s = isLenUpTwo(s);
-            }
-            int cnt = calHolsu(s);
-            if (cnt > max) max = cnt;
-            if (cnt < min) min = cnt;
+        arr = new int[n];
+        for (int i = 1; i < n + 1; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-    }
 
-    static void Combi(int num) {
-        temp
-    }
+        tree = new int[getTreeSize(n)];
+        treeInit(0, n - 1, 1);
+        int m = Integer.parseInt(br.readLine());
+        for (int i = 0; i < m; i++) {
+            st = new StringTokenizer(br.readLine());
+            int select = Integer.parseInt(st.nextToken());
+            int first = Integer.parseInt(st.nextToken());
+            int second = Integer.parseInt(st.nextToken());
 
-    static String isLenTwo(String s) {
-        int first = Integer.parseInt(String.valueOf(s.charAt(0)));
-        int second = Integer.parseInt(String.valueOf(s.charAt(1)));
-        return String.valueOf(first + second);
-    }
-
-    static int calHolsu(String s) {
-        int cnt = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if ((Integer.parseInt(String.valueOf(s.charAt(i))) % 2) == 1) {
-                cnt++;
+            if (select == 1) {
+                arr[first] = second;
+            }
+            if (select == 2) {
+                int min = Integer.MAX_VALUE;
+                for (int j = first; j <= second; j++) {
+                    if (min > arr[j]) min = arr[j];
+                }
+                sb.append(min).append("\n");
             }
         }
-        return cnt;
+        System.out.println(sb);
     }
 
+    private static int treeInit(int start, int end, int node) {
+        if (start == end) return tree[node] = arr[start];
+
+        int mid = (start + end) / 2;
+        return tree[node] = Math.min(treeInit(start,mid,node*2), update(mid+1, end, node*2+1));
+    }
+
+    private static int update(int start, int end, int node) {
+
+        return start;
+    }
+
+    private static int getTreeSize(int n) {
+        int h = (int) Math.ceil(Math.log(n) / Math.log(2)) + 1;
+        return (int) Math.pow(2, h) - 1;
+    }
 
 }
